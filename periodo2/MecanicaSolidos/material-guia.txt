@@ -1,0 +1,10 @@
+Videoaulas:
+
+https://www.youtube.com/watch?v=q5aplQha1kI&index=8&list=PLxI8Can9yAHfdaLqDeKWXqUbkVofsmbtC
+/* Tem a materia de todo o semestre
+Resolve exercicios
+*/
+
+https://www.youtube.com/watch?v=LZGdUMnfxeQ&list=PLIsYjr60XplkSfzKAGonp163FCDlbUzbH
+/* Resolve os exercícios do livro de Hibbeler
+*/
