@@ -1,0 +1,7 @@
+VideoAulas:
+
+https://youtu.be/kAinr0VckJw
+/* Integração Numérica
+   bem detalhado 
+   vai até a Regra 3/8 de Simpson
+*/
