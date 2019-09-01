@@ -58,6 +58,7 @@ Z_{ad}^2=(R_1+R_2)^2+(\omega L_1+\omega L_2+\omega2M)^2
 \begin{equation}\label{sub}
 Z_{sub}^2=(R_1+R_2)^2+(\omega L_1+\omega L_2-\omega2M)^2
 \end{equation}
+
 Assim, tem-se:
 \begin{equation}
 L_1+L_2=\dfrac{\sqrt{Z_{ad}^2-(R_1+R_2)^2}-2\omega M}{\omega}
@@ -67,21 +68,20 @@ L_1+L_2=\dfrac{\sqrt{Z_{sub}^2-(R_1+R_2)^2}+2\omega M}{\omega}
 \end{equation}
 \vspace{0.1cm}
 
-Portanto, a Indutância Mútua será dada por:
+Portanto, a indutância mútua será dada por:
 \begin{equation}\label{mutua}
 M = \dfrac{1}{4\omega}\ \bigg(\sqrt{Z_{add}^2-(R_1+R_2)^2} - \sqrt{Z_{sub}^2-(R_1+R_2)^2}\bigg)
 \end{equation}
-\vspace{0.1cm}
+\vspace{0.01cm}
 
-\begin{comment}
 A indutância mútua surge devido a interação do fluxo magnético do primário ($\phi_p$) nos terminais do secundário, o que provoca uma tensão induzida. Entretanto, para transformadores não-ideais somente uma parcela do fluxo que percorre o primário também percorre o secundário ($\phi_m$). Assim, é interessante definir o \textbf{coeficiente de acoplamento} $k$ entre os dois enrolamentos, descrito pela Equação (\ref{k}).
-\end{comment}
 
 \begin{equation}\label{k}
 k = \dfrac{\phi_m}{\phi_p}
 \end{equation}
 
-A indutância mútua entre dois enrolamentos é proporcional à taxa de variação de fluxo de um dos enrolamentos em função da taxa de variação da corrente no outro enrolamento. \cite{boylestad}.
+\subsection{Cálculo das indutâncias próprias}
+Para o cálculo das impedâncias próprias é analisado o experimentalmente um transformador a vazio
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -90,7 +90,7 @@ A indutância mútua entre dois enrolamentos é proporcional à taxa de variaç�
 Alimentará todo o circuito.
 
 \item \emph{Conjunto de bobinas}\\
-Cada bobina possui uma resistência, sendo $R_1$ para a Bobina 1 e $R_2$ para a Bobina 2. Considere $R_1<R_2$.
+Cada bobina possui uma resistência, sendo $R_1$ para a bobina 1 e $R_2$ para a bobina 2. Considere $R_1<R_2$.
 
 \item \emph{Conectores}\\
 Foram utilizadas pontas de provas para a verificação das grandezas nos multímetros. Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
@@ -144,11 +144,11 @@ total aplicada as bobinas). Os valores de $Z_{ad}$ são obtidos fazendo $V/I$.
 \caption{Ligação série aditiva das bobinas 1 e 2}
 \label{2.3}
 \end{figure}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \def\arraystretch{1.35}
 \captionsetup{type=table, font=scriptsize}
-\caption{Tabela de tensões para cada valor de corrente $I_ad$ setado.} \label{tab1}
+\caption{Tabela de tensões para cada valor de corrente $I_{ad}$ setado.} \label{tab1}
 \begin{tabular}{|c|c|c|}
 \hline
 $I_{ad}$ (mA) & V (V) & $Z_{ad} (\Omega)$ \\ \hline
@@ -165,6 +165,7 @@ total aplicada as bobinas). Os valores de $Z_{sub}$ são obtidos fazendo $V/I$.
 
 \begin{figure}[h]
 \centering
+\def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig3}
 \caption{Ligação série subtrativa das bobinas 1 e 2.}
@@ -274,6 +275,7 @@ das bobinas ($R_1$ e $R_2$), encontre os valores das reatâncias próprias e das
 e $L_2$.\\
 O valor médio da impedância $Z_{2}$ será:
 $$Z_{2}=864,47\Omega$$
+
 
 
 \item Com os valores obtidos para $L_1$, $L_2$ e $M$ encontre o valor do coeficiente de acoplamento
