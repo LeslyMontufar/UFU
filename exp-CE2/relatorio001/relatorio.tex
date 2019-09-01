@@ -46,8 +46,14 @@ Nos circuitos em que a condução de energia elétrica ocorre por meios físicos
 
 O \emph{transformador} é baseado nesse princípio. Possui quatro terminais e consiste em dois indutores que são colocados com certa proximidade um do outro, logo comparttilham o mesmo fluxo magnético e, portanto, as bobinas indutoras estão acopladas magneticamente. 
 
-É vasta a aplicabilidade desse equipamento, por exemplo, em sistemas de comunicação eles são usados para casamento de impedâncias entre fontes e cargas ou linhas de transmissão. Em sistemas de potências, transformadores são usados para atenuar ou amplificar os sinais de tensão. De fato, transformadores são utilizados em eliminadores de pilha e recarregadores de baterias, que podem ser ligados diretamente em tomadas residenciais \cite{irwin}.
+Sua aplicabilidade é vasta, por exemplo, em sistemas de comunicação, são usados para casamento de impedâncias entre fontes e cargas ou linhas de transmissão. Em sistemas de potências, transformadores são usados para atenuar ou amplificar os sinais de tensão. De fato, transformadores são utilizados em eliminadores de pilha e recarregadores de baterias, que podem ser ligados diretamente em tomadas residenciais \cite{irwin}.
 
+\subsection{Indutância Mútua}
+
+
+O \textbf{coeficiente de acoplamento} ($k$) entre os dois enrolamentos é dado por:
+$$k = \dfrac{\phi_m}{\phi_p}$$
+A indutância mútua entre dois enrolamentos é proporcional à taxa de variação de fluxo de um dos enrolamentos em fun;cão da taxa de variação da corrente no outro enrolamento  \cite{boylestad}.
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -56,7 +62,7 @@ O \emph{transformador} é baseado nesse princípio. Possui quatro terminais e co
 Alimentará todo o circuito.
 
 \item \emph{Conjunto de bobinas}\\
-Cada bobina possui uma resistência, sendo $R_1$ para a Bobina 1 e $R_2$ para a Bobina 2. Considere $R_1\leq R_2$.
+Cada bobina possui uma resistência, sendo $R_1$ para a Bobina 1 e $R_2$ para a Bobina 2. Considere $R_1<R_2$.
 
 \item \emph{Conectores}\\
 Foram utilizadas pontas de provas para a verificação das grandezas nos multímetros. Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
@@ -78,33 +84,183 @@ O equipamento permitirá obter o valor desejado de corrente a partir da regulage
 \item \emph{Resistências das bobinas}\\
 Para o conjunto de bobinas fornecido, foi medido a resistência da bobina 1 (600 esp.) e a
 resistência da bobina 2 (1200 esp.) e obteve-se: 
-$$R_1= 2,6$$ e $$R_2=7,4$$
+$$R_1= 2,6\Omega$$ $$R_2=7,4\Omega$$
 
 \item \emph{Determinando a polaridade das bobinas}\\
 Efetue a montagem da Figura \ref{2.2}, aplicando uma corrente de 50 mA no
-miliamperímetro, anote a tensão V1 e marque a
-polaridade da bobina 1, indicando-a por um ponto “.”, no terminal em que a fem1 (terminal
-ligado ao positivo da fonte CA) é positiva. Na bobina 2 marque a polaridade ( o ponto ) no
-terminal ligado ao voltímetro se a tensão V’ for menor que a tensão V1, e marque o ponto no
-terminal debaixo se V’ for maior que V1 ( terminal em que a fem induzida é positiva). Anote
-o esquema e o ponto no caderno.
-
+miliamperímetro, anote a tensão $V_1$ e marque a
+polaridade da Bobina 1, indicando-a por um ponto “.”, no terminal em que a fem1 (terminal
+ligado ao positivo da fonte CA) é positiva. Na bobina 2 marque a polaridade (o ponto) no
+terminal ligado ao voltímetro se a tensão $V’< V1$, e marque o ponto no
+terminal debaixo se $V’>V_1$ (terminal em que a fem induzida é positiva). 
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{fig1}
-\caption{Marcação de polaridade}
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{fig1}
+\caption{Marcação de polaridade.}
 \label{2.2}
 \end{figure}
+
+Da análise experimental, obteve-se $V'=8,33V$ e $V_1=10,27V$. Logo, o ponto é indicado como na Figura \ref{2.2}, ponto no terminal superior da bobina 2, pois $V’< V1$.
+
+\item \emph{Ligação série aditiva}\\
+Como na Figura \ref{2.3}, a montagem faz a ligação em série aditiva das bobinas 1 e 2 (os fluxos são aditivos). Aplique a tensão necessária de modo a obter o valor de corrente
+indicado na Tabela \ref{tab1}, completando as demais colunas com os valores das tensões V (tensão
+total aplicada as bobinas). Os valores de $Z_{ad}$ são obtidos fazendo $V/I$.
+
+\begin{figure}[!htb]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{fig2}
+\caption{Ligação série aditiva das bobinas 1 e 2}
+\label{2.3}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{type=table, font=scriptsize}
+\caption{Tabela de tensões para cada valor de corrente $I_ad$ setado.} \label{tab1}
+\begin{tabular}{|c|c|c|}
+\hline
+$I_{ad}$ (mA) & V (V) & $Z_{ad} (\Omega)$ \\ \hline
+16,7        & 32,66 & 1955,68            \\ \hline
+33,3        & 61,55 & 1848,34            \\ \hline
+50,0        & 94,60 & 1892,00            \\ \hline
+\end{tabular}
+\end{table}
+
+\item \emph{Ligação série subtrativa}\\
+Como na Figura \ref{2.4}, a montagem faz a ligação em série subtrativa entre as bobinas 1 e 2 (fluxos subtrativos ou
+contrários). Aplique a tensão necessária de modo a obter as correntes indicadas na Tabela \ref{tab2}, completando as demais colunas com os valores das tensões V (tensão
+total aplicada as bobinas). Os valores de $Z_{sub}$ são obtidos fazendo $V/I$.
+
+\begin{figure}[!htb]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{fig3}
+\caption{Ligação série subtrativa das bobinas 1 e 2.}
+\label{2.4}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{type=table, font=scriptsize}
+\caption{Tabela de tensões para cada valor de corrente $I_{sub}$ setado.} \label{tab2}
+\begin{tabular}{|c|c|c|} 
+\hline
+$I_{sub}$ (mA) & V (V) & $Z_{sub} (\Omega)$ \\ \hline
+50,0          & 15,20 &  304,00           \\ \hline
+100,0        & 31,11 & 311,10            \\ \hline
+150,0        &46,09  & 307,27            \\ \hline
+\end{tabular}
+\end{table}
+
+
+\item \emph{Transformador a vazio}\\
+Efetue a montagem do circuito da Figura \ref{2.5} abaixo, considerando agora as bobinas 1 e 2
+isoladas (como num transformador a vazio). Aplique uma tensão na bobina 1 de modo a
+obter a corrente indicada na Tabela \ref{tab3}. Meça a tensão na bobina 1 ($V_1$) e a tensão que é
+induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ são obtidos fazendo $V/I$.
+
+\begin{figure}[h]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{fig4}
+\caption{Transformador com bobina 1 no primário e bobina 2 no secundário.}
+\label{2.5}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{type=table, font=scriptsize}
+\caption{Tabela de tensões para cada valor de corrente $I_1$ setado} \label{tab3}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$I_1$ (mA) & $V_1$ (V)  & $Z_{1} (\Omega)$ & $V_2$ (V) \\ \hline
+50,0          & 10,30  &  206,00       &  18,61     \\ \hline
+100,0        & 21,14  &  211,40       &  38,44   \\ \hline
+150,0        & 32,14  &  214,27       &  59,01   \\ \hline
+\end{tabular}
+\end{table}
+
+\item \emph{Transformador a vazio com bobinas invertidas}\\
+Efetue a montagem do circuito da Figura \ref{2.6} abaixo, considerando agora as bobinas 1 e 2
+isoladas (como num transformador a vazio). Aplique uma tensão na bobina 2 de modo a
+obter a corrente indicada na Tabela \ref{tab4}. Meça a tensão na bobina 1 ($V_1$) e a tensão que é
+induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ são obtidos fazendo $V/I$.
+
+\begin{figure}[h]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{fig5}
+\caption{Transformador com bobina 2 no primário e bobina 1 no secundário}
+\label{2.6}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{type=table, font=scriptsize}
+\caption{Tabela de tensões para cada valor de corrente $I_1$ setado} \label{tab4}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$I_2$ (mA) & $V_2$ (V)  & $Z_{2} (\Omega)$ & $V_1$ (V) \\ \hline
+25,0          & 20,97  &  838,80       &  9,81     \\ \hline
+50,0          & 43,53  &  870,60       &  19,14   \\ \hline
+75,0          & 66,30  &  884,00       &  29,43   \\ \hline
+\end{tabular}
+\end{table}
+
 
 
 \end{enumerate}
 
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
-É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro dos equipamentos.
+É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
 
 \section{Cálculos, análise dos resultados e questões} %(quando houver) (70%)
+
+\begin{enumerate}[1 - ]
+\item A partir dos valores obtidos na tabela \ref{tab1}, encontre o valor médio da impedância $Z_{ad}$.\\
+O valor médio da impedância $Z_{ad}$ será:
+$$Z_{ad}=1898,67\Omega$$
+
+\item A partir dos valores obtidos na tabela \ref{tab2}, encontre o valor médio da impedância $Z_{sub}$.
+Com os valores médios das impedâncias aditiva e subtrativa e os valores das resistências das
+bobinas ($R_1$ e $R_2$), encontre o valor da impedância mútua $M$. \\
+O valor médio da impedância $Z_{sub}$ será:
+$$Z_{sub}=307,42\Omega$$
+
+
+
+\item A partir dos valores obtidos na tabela \ref{tab3}, encontre o valor médio da impedância $Z_1$.\\
+\item A partir dos valores obtidos na tabela \ref{tab4}, encontre o valor médio da impedância $Z_2$.
+Com os valores médios das impedâncias das bobinas ($Z_1$ e $Z_2$) e os valores das resistências
+das bobinas ($R_1$ e $R_2$), encontre os valores das reatâncias próprias e das auto indutâncias $L_1$
+e $L_2$.\\
+
+
+\item Com os valores obtidos para $L_1$, $L_2$ e $M$ encontre o valor do coeficiente de acoplamento
+entre as bobinas 1 e 2. \\
+
+\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.5}), encontre o valor do fluxo $\phi_1$, $\phi_{L1}$. \\
+\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.6}), encontre o valor do fluxo $\phi_2$, $\phi_{L2}$. \\
+
+\item O que deve acontecer com as leituras dos instrumentos do primário, em qualquer das
+montagens efetuadas, se a barra superior do núcleo de ferro for removida (o núcleo for
+aberto)? \\
+
+\item O que deve acontecer com as leituras dos instrumentos do secundário, em qualquer das
+montagens efetuadas, se o núcleo de ferro for retirado do circuito sem desligamento do
+mesmo? \\
+
+
+\end{enumerate}
 
 
 \section{Simulação computacional} %(10%);
@@ -124,6 +280,10 @@ Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e sã
 \bibitem{irwin}
     J. D. Irwin,
     “Análise de Circuitos Em Engenharia”, Pearson, $4^a$ Ed., 2000.
+
+\bibitem{boylestad}
+    R. L. Boylestad,
+    “Intrdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
 
 
 \bibitem{safe}
