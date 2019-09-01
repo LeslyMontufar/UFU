@@ -9,7 +9,7 @@
 \usepackage[brazilian]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath, graphicx, mathptmx, enumerate}
-\usepackage{float}
+\usepackage{float, verbatim}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{makeidx} % Para o sumário
 \usepackage{geometry}
@@ -48,12 +48,40 @@ O \emph{transformador} é baseado nesse princípio. Possui quatro terminais e co
 
 Sua aplicabilidade é vasta, por exemplo, em sistemas de comunicação, são usados para casamento de impedâncias entre fontes e cargas ou linhas de transmissão. Em sistemas de potências, transformadores são usados para atenuar ou amplificar os sinais de tensão. De fato, transformadores são utilizados em eliminadores de pilha e recarregadores de baterias, que podem ser ligados diretamente em tomadas residenciais \cite{irwin}.
 
-\subsection{Indutância Mútua}
+\subsection{A Indutância Mútua}
+ Enrolamentos acoplados magneticamente dão origem ao fenômeno de indutância mútua. Os indutores podem neste experimento são acoplados em série, o que permite o cálculo da indutância mútua a partir da Equação (\ref{mutua}), considerando a natureza não-ideal dos transformadores.
 
+Da ligação série aditiva e subtrativa tem-se os resultados das Equações (\ref{ad}) e (\ref{sub}) para os módulos das impedâncias obtidas.
+\begin{equation}\label{ad}
+Z_{ad}^2=(R_1+R_2)^2+(\omega L_1+\omega L_2+\omega2M)^2
+\end{equation}
+\begin{equation}\label{sub}
+Z_{sub}^2=(R_1+R_2)^2+(\omega L_1+\omega L_2-\omega2M)^2
+\end{equation}
+Assim, tem-se:
+\begin{equation}
+L_1+L_2=\dfrac{\sqrt{Z_{ad}^2-(R_1+R_2)^2}-2\omega M}{\omega}
+\end{equation}
+\begin{equation}
+L_1+L_2=\dfrac{\sqrt{Z_{sub}^2-(R_1+R_2)^2}+2\omega M}{\omega}
+\end{equation}
+\vspace{0.1cm}
 
-O \textbf{coeficiente de acoplamento} ($k$) entre os dois enrolamentos é dado por:
-$$k = \dfrac{\phi_m}{\phi_p}$$
-A indutância mútua entre dois enrolamentos é proporcional à taxa de variação de fluxo de um dos enrolamentos em fun;cão da taxa de variação da corrente no outro enrolamento  \cite{boylestad}.
+Portanto, a Indutância Mútua será dada por:
+\begin{equation}\label{mutua}
+M = \dfrac{1}{4\omega}\ \bigg(\sqrt{Z_{add}^2-(R_1+R_2)^2} - \sqrt{Z_{sub}^2-(R_1+R_2)^2}\bigg)
+\end{equation}
+\vspace{0.1cm}
+
+\begin{comment}
+A indutância mútua surge devido a interação do fluxo magnético do primário ($\phi_p$) nos terminais do secundário, o que provoca uma tensão induzida. Entretanto, para transformadores não-ideais somente uma parcela do fluxo que percorre o primário também percorre o secundário ($\phi_m$). Assim, é interessante definir o \textbf{coeficiente de acoplamento} $k$ entre os dois enrolamentos, descrito pela Equação (\ref{k}).
+\end{comment}
+
+\begin{equation}\label{k}
+k = \dfrac{\phi_m}{\phi_p}
+\end{equation}
+
+A indutância mútua entre dois enrolamentos é proporcional à taxa de variação de fluxo de um dos enrolamentos em função da taxa de variação da corrente no outro enrolamento. \cite{boylestad}.
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -94,7 +122,7 @@ ligado ao positivo da fonte CA) é positiva. Na bobina 2 marque a polaridade (o 
 terminal ligado ao voltímetro se a tensão $V’< V1$, e marque o ponto no
 terminal debaixo se $V’>V_1$ (terminal em que a fem induzida é positiva). 
 
-\begin{figure}[!htb]
+\begin{figure}[h]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig1}
@@ -109,14 +137,13 @@ Como na Figura \ref{2.3}, a montagem faz a ligação em série aditiva das bobin
 indicado na Tabela \ref{tab1}, completando as demais colunas com os valores das tensões V (tensão
 total aplicada as bobinas). Os valores de $Z_{ad}$ são obtidos fazendo $V/I$.
 
-\begin{figure}[!htb]
+\begin{figure}[h]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig2}
 \caption{Ligação série aditiva das bobinas 1 e 2}
 \label{2.3}
 \end{figure}
-
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
@@ -136,14 +163,13 @@ Como na Figura \ref{2.4}, a montagem faz a ligação em série subtrativa entre 
 contrários). Aplique a tensão necessária de modo a obter as correntes indicadas na Tabela \ref{tab2}, completando as demais colunas com os valores das tensões V (tensão
 total aplicada as bobinas). Os valores de $Z_{sub}$ são obtidos fazendo $V/I$.
 
-\begin{figure}[!htb]
+\begin{figure}[h]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig3}
 \caption{Ligação série subtrativa das bobinas 1 e 2.}
 \label{2.4}
 \end{figure}
-
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
@@ -172,7 +198,6 @@ induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ 
 \caption{Transformador com bobina 1 no primário e bobina 2 no secundário.}
 \label{2.5}
 \end{figure}
-
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
@@ -200,7 +225,6 @@ induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ 
 \caption{Transformador com bobina 2 no primário e bobina 1 no secundário}
 \label{2.6}
 \end{figure}
-
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
@@ -214,8 +238,6 @@ $I_2$ (mA) & $V_2$ (V)  & $Z_{2} (\Omega)$ & $V_1$ (V) \\ \hline
 75,0          & 66,30  &  884,00       &  29,43   \\ \hline
 \end{tabular}
 \end{table}
-
-
 
 \end{enumerate}
 
@@ -236,17 +258,27 @@ bobinas ($R_1$ e $R_2$), encontre o valor da impedância mútua $M$. \\
 O valor médio da impedância $Z_{sub}$ será:
 $$Z_{sub}=307,42\Omega$$
 
+Assim, a indutância mútua será dada por meio da Equação (\ref{mutua}).
+\begin{equation*}
+M = \dfrac{1}{4\times(2\pi \cdot 60)}\ \bigg(\sqrt{1898,67^2-(2,6+7,4)^2} - \sqrt{307,42^2-(2,6+7,4)^2}\bigg) = 1,0553 H
+\end{equation*}
 
 
 \item A partir dos valores obtidos na tabela \ref{tab3}, encontre o valor médio da impedância $Z_1$.\\
+O valor médio da impedância $Z_{1}$ será:
+$$Z_{1}=210,56\Omega$$
+
 \item A partir dos valores obtidos na tabela \ref{tab4}, encontre o valor médio da impedância $Z_2$.
 Com os valores médios das impedâncias das bobinas ($Z_1$ e $Z_2$) e os valores das resistências
 das bobinas ($R_1$ e $R_2$), encontre os valores das reatâncias próprias e das auto indutâncias $L_1$
 e $L_2$.\\
+O valor médio da impedância $Z_{2}$ será:
+$$Z_{2}=864,47\Omega$$
 
 
 \item Com os valores obtidos para $L_1$, $L_2$ e $M$ encontre o valor do coeficiente de acoplamento
 entre as bobinas 1 e 2. \\
+A partir equação
 
 \item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.5}), encontre o valor do fluxo $\phi_1$, $\phi_{L1}$. \\
 \item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.6}), encontre o valor do fluxo $\phi_2$, $\phi_{L2}$. \\
