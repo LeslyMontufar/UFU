@@ -74,14 +74,78 @@ M = \dfrac{1}{4\omega}\ \bigg(\sqrt{Z_{add}^2-(R_1+R_2)^2} - \sqrt{Z_{sub}^2-(R_
 \end{equation}
 \vspace{0.01cm}
 
-A indutância mútua surge devido a interação do fluxo magnético do primário ($\phi_p$) nos terminais do secundário, o que provoca uma tensão induzida. Entretanto, para transformadores não-ideais somente uma parcela do fluxo que percorre o primário também percorre o secundário ($\phi_m$). Assim, é interessante definir o \textbf{coeficiente de acoplamento} $k$ entre os dois enrolamentos, descrito pela Equação (\ref{k}).
+A indutância mútua surge devido a interação do fluxo magnético do primário ($\phi_p$) nos terminais do secundário, o que provoca uma tensão induzida. Entretanto, para transformadores não-ideais somente uma parcela do fluxo que percorre o primário também percorre o secundário ($\phi_m$). Assim, é interessante definir o \textbf{coeficiente de acoplamento} $k$ entre os dois enrolamentos, descrito pela Equação (\ref{k}) \cite{boylestad}.
 
 \begin{equation}\label{k}
 k = \dfrac{\phi_m}{\phi_p}
 \end{equation}
+\vspace{0.1cm}
+
 
 \subsection{Cálculo das indutâncias próprias}
-Para o cálculo das impedâncias próprias é analisado o experimentalmente um transformador a vazio
+Para o cálculo das impedâncias próprias é analisado o experimentalmente um transformador a vazio. Na Figura \ref{vazio}, tem-se um transformador a vazio  e analisando as duas malhas do circuito tem-se o sistema de equações de (\ref{siseq}).
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{tvazio}
+\caption{Transformador a vazio (Adaptado de \cite{exp}).}
+\label{vazio}
+\end{figure}
+
+
+\begin{gather}\label{siseq}
+\begin{cases}
+v_{1}( t) =R_{L1} \ i_{1}( t) +L_{1} \cdot \dfrac{di_{1}( t)}{dt} +M\cdot \dfrac{di_{2}( t)}{dt}\\
+ \\
+v_{2}( t) =R_{L2} \ i_{2}( t) +L_{2} \cdot \dfrac{di_{2}( t)}{dt} +M\cdot \dfrac{di_{1}( t)}{dt}
+\end{cases}
+\end{gather}
+
+Passando para o domínio da frequência, em regime permanente, tem-se \ref{fasores}.
+\begin{equation}\label{fasores}
+\begin{cases}
+\dot{V_{1}} =R_{L1} \ \dot{I_{1}} +L_{1} \cdot j\omega \dot{I_{1}} +M\cdot j\omega \dot{I_{2}}\\
+\dot{V_{2}} =R_{L2} \ \dot{I_{2}} +L_{2} \cdot j\omega \dot{I_{2}} +M\cdot j\omega \dot{I_{1}}
+\end{cases}
+\end{equation}
+
+Como a malha do secundário encontra-se em aberto tem-se $\dot{I_2}=0$, logo (\ref{fasores}) reescreve-se como em (\ref{-I2})de forma a conseguir (\ref{L}).
+\begin{equation}\label{-I2}
+\begin{cases}
+\dot{V_{1}} =R_{L1} \ \dot{I_{1}} +L_{1} \cdot j\omega \dot{I_{1}}\\
+\dot{V_{2}} =R_{L2} \ \dot{I_{2}} +L_{2} \cdot j\omega \dot{I_{2}}
+\end{cases}
+\end{equation}
+
+
+\begin{equation*}
+\begin{cases}
+|\dot{I_{1}} |=\dfrac{|\dot{V_{1}} |}{R_{L1} \ +L_{1} \omega }\\\\
+|M|=\dfrac{|\dot{V_{2}} |}{\omega \dot{I_{1}}}
+\end{cases}
+\end{equation*}
+
+\begin{equation}\label{L}
+Z_1=R_{L1} \ +L_{1} \omega
+\end{equation}
+
+Da Equação (\ref{L}) obtém-se a indutância própria $L_1$ da bobina 1, e invertendo o tranformador, com a bobina 1 em circuito aberto e a bobina 2 conectada ao variador de tensão consegue-se a indutância própria $L_2$. Ademais, define-se o coeficiente de acoplamento como em \ref{km}.
+\begin{equation}\label{km}
+k=\dfrac{M}{\sqrt{L_1\ L_2}}
+\end{equation}
+\vspace{0.1cm}
+
+
+\subsection{Fluxo em circuitos magnéticos}
+O fluxo no primário $\phi_p$ pode ser descrito como na Equação (\ref{flux}) e, por meio de (\ref{km}), é possível obter suas componentes.
+\begin{equation*}
+L= \dfrac{\lambda}{\dot{I}}=\dfrac{N\cdot \phi_p}{\dot{I}}
+\end{equation*}
+\begin{equation}\label{flux}
+\phi_p=\dfrac{L\cdot\dot{I}}{N}
+\end{equation}
+
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -89,8 +153,11 @@ Para o cálculo das impedâncias próprias é analisado o experimentalmente um t
 \item \emph{Fonte}\\
 Alimentará todo o circuito.
 
+\item \emph{Variador de tensão (Varivolt)}\\
+O equipamento permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
+
 \item \emph{Conjunto de bobinas}\\
-Cada bobina possui uma resistência, sendo $R_1$ para a bobina 1 e $R_2$ para a bobina 2. Considere $R_1<R_2$.
+Cada bobina possui uma resistência, sendo $R_1$ para a bobina 1 (600 esp.) e $R_2$ para a bobina 2 (1200 esp.). Considere $R_1<R_2$.
 
 \item \emph{Conectores}\\
 Foram utilizadas pontas de provas para a verificação das grandezas nos multímetros. Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
@@ -100,10 +167,6 @@ Utilizado para medir as tensões elétricas entre os pontos das bobinas especifi
 
 \item \emph{Miliamperímetro}\\
 A escala mais precisa permite melhor regulagem da corrente desejada.
-
-\item \emph{Varivolt}\\
-O equipamento permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
-
 
 \end{enumerate}
 
@@ -122,7 +185,7 @@ ligado ao positivo da fonte CA) é positiva. Na bobina 2 marque a polaridade (o 
 terminal ligado ao voltímetro se a tensão $V’< V1$, e marque o ponto no
 terminal debaixo se $V’>V_1$ (terminal em que a fem induzida é positiva). 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig1}
@@ -137,7 +200,7 @@ Como na Figura \ref{2.3}, a montagem faz a ligação em série aditiva das bobin
 indicado na Tabela \ref{tab1}, completando as demais colunas com os valores das tensões V (tensão
 total aplicada as bobinas). Os valores de $Z_{ad}$ são obtidos fazendo $V/I$.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig2}
@@ -163,7 +226,7 @@ Como na Figura \ref{2.4}, a montagem faz a ligação em série subtrativa entre 
 contrários). Aplique a tensão necessária de modo a obter as correntes indicadas na Tabela \ref{tab2}, completando as demais colunas com os valores das tensões V (tensão
 total aplicada as bobinas). Os valores de $Z_{sub}$ são obtidos fazendo $V/I$.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
@@ -171,7 +234,7 @@ total aplicada as bobinas). Os valores de $Z_{sub}$ são obtidos fazendo $V/I$.
 \caption{Ligação série subtrativa das bobinas 1 e 2.}
 \label{2.4}
 \end{figure}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \def\arraystretch{1.35}
 \captionsetup{type=table, font=scriptsize}
@@ -192,14 +255,14 @@ isoladas (como num transformador a vazio). Aplique uma tensão na bobina 1 de mo
 obter a corrente indicada na Tabela \ref{tab3}. Meça a tensão na bobina 1 ($V_1$) e a tensão que é
 induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ são obtidos fazendo $V/I$.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig4}
 \caption{Transformador com bobina 1 no primário e bobina 2 no secundário.}
 \label{2.5}
 \end{figure}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \def\arraystretch{1.35}
 \captionsetup{type=table, font=scriptsize}
@@ -219,14 +282,14 @@ isoladas (como num transformador a vazio). Aplique uma tensão na bobina 2 de mo
 obter a corrente indicada na Tabela \ref{tab4}. Meça a tensão na bobina 1 ($V_1$) e a tensão que é
 induzida na bobina 2 devido a corrente na bobina 1 ($V_2$). Os valores de $Z_1$ são obtidos fazendo $V/I$.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
 \includegraphics[width=11cm]{fig5}
 \caption{Transformador com bobina 2 no primário e bobina 1 no secundário}
 \label{2.6}
 \end{figure}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \def\arraystretch{1.35}
 \captionsetup{type=table, font=scriptsize}
@@ -276,28 +339,94 @@ e $L_2$.\\
 O valor médio da impedância $Z_{2}$ será:
 $$Z_{2}=864,47\Omega$$
 
+Da Equação (\ref{L}) utilizando como referência a montagem da Figura \ref{2.5} tem-se:
+\begin{equation*}
+210,56= 2,6 \ +L_{1} \cdot(2  \pi\cdot 60) \Rightarrow L_1 = 0,55H
+\end{equation*}
 
+E utilizando como referência a montagem da Figura \ref{2.6} tem-se:
+\begin{equation*}
+864,47= 7,4 \ +L_{2} \cdot(2  \pi\cdot 60) \Rightarrow L_2 = 2,27H
+\end{equation*}
 
 \item Com os valores obtidos para $L_1$, $L_2$ e $M$ encontre o valor do coeficiente de acoplamento
 entre as bobinas 1 e 2. \\
-A partir equação
+A partir Equação (\ref{km}), tem o coeficiente de acoplamento:
+\begin{equation*}
+k=\dfrac{1,0553}{\sqrt{0,55\cdot2,27}}= 0,9424
+\end{equation*}
 
-\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.5}), encontre o valor do fluxo $\phi_1$, $\phi_{L1}$. \\
-\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.6}), encontre o valor do fluxo $\phi_2$, $\phi_{L2}$. \\
+\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.5}), encontre o valor do fluxo $\phi_1$, $\phi_{12}$. \\
+Utilizando-se a Equação (\ref{flux}), obtém-se:
+\begin{equation*}
+\phi_1=\dfrac{0,55\cdot 1}{600} = 0,92\, mWb
+\end{equation*}
+
+Da Equação (\ref{km}), tem-se ainda que $\phi_{12}=0,00086697\, Wb$.
+
+
+\item Para uma corrente de $1,0 A$ na bobina 1 (Figura \ref{2.6}), encontre o valor do fluxo $\phi_2$, $\phi_{22}$. \\
+Utilizando-se a Equação (\ref{flux}), obtém-se:
+\begin{equation*}
+\phi_2=\dfrac{2,27\cdot 1}{1200} = 0,19\, mWb
+\end{equation*}
+
+Da Equação (\ref{km}), tem-se ainda que $\phi_{22} =0,00017905\, Wb$.
 
 \item O que deve acontecer com as leituras dos instrumentos do primário, em qualquer das
 montagens efetuadas, se a barra superior do núcleo de ferro for removida (o núcleo for
 aberto)? \\
+Nesse caso, a tensão diminui, uma vez que no lugar da barra haverá o espraiamento do fluxo, o que significa que haverá uma relutância. Entretanto a corrente aumenta bastante, haja vista que o fluxo deve aumentar consideravelmente a fim de vencer a barreira dielétrica imposta pelo entreferro.
 
 \item O que deve acontecer com as leituras dos instrumentos do secundário, em qualquer das
 montagens efetuadas, se o núcleo de ferro for retirado do circuito sem desligamento do
 mesmo? \\
+Ocorre o mesmo comportamento de tensão e corrente que na situação anterior. Observe como no secundário o fluxo é menor, provavelmente a corrente se elevará mais ainda comparada à situação anteriormente proposta.
 
 
 \end{enumerate}
 
-
 \section{Simulação computacional} %(10%);
+
+\begin{enumerate}
+
+\item \emph{Ligação série aditiva}\\
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{sim1}
+\caption{Ligação série aditiva.}
+\label{aditiva}
+\end{figure}
+
+\item \emph{Ligação série subtrativa}\\
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{sim1}
+\caption{Ligação série subtrativa.}
+\label{aditiva}
+\end{figure}
+
+\item \emph{Transformador a vazio}\\
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{sim1}
+\caption{Ligação série subtrativa.}
+\label{aditiva}
+\end{figure}
+
+\item \emph{Transformador a vazio com bobinas invertidas}\\
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=11cm]{sim1}
+\caption{Ligação série subtrativa.}
+\label{aditiva}
+\end{figure}
+
+\end{enumerate}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%)
 
@@ -319,14 +448,17 @@ mesmo? \\
     R. L. Boylestad,
     “Intrdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
 
+\bibitem{exp}
+    B. S. Marczewski, B. J. R. Santos, F. H. G. Zucatelli, L. A. Tonin,
+    “Experimento 4: Indutância Mútua.”, Uversidade Federal do ABC, 2011.
+ Disponível em:
+ \url{https://www.scribd.com/document/97029440/Relatorio-Exp4-Indutancia-Mutua-Circuitos-Eletricos-2-Trim3-3}. Acesso em: set. 2019.
 
 \bibitem{safe}
     SafetyTrabi,
     “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
  Disponível em:
  \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
-
-
 
 
 \end{thebibliography}
