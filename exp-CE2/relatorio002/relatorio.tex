@@ -45,6 +45,7 @@ resultados teóricos com aqueles obtidos experimentalmente.
 
 
 
+
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
 \begin{enumerate}[1 - ]
@@ -52,7 +53,7 @@ resultados teóricos com aqueles obtidos experimentalmente.
 Alimentará todo o circuito.
 
 \item \emph{Variador de tensão (Varivolt)}\\
-O equipamento permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
+O equipamento permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte. Também chamado de autotransformador.
 
 \item \emph{Medidor eletrônico KRON Mult K}\\
 Possibilita encontrar a medição da potência
@@ -106,14 +107,63 @@ Tabelas 1 e 2).
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
 É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
 
-Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos.
+Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobre-carga na rede.
 
 \section{Cálculos, análise dos resultados e questões} %(quando houver) (70%)
 
 \begin{enumerate}[1 - ]
-\item A partir dos valores obtidos na tabela \ref{tab1}, encontre o valor médio da impedância $Z_{ad}$.\\
-O valor médio da impedância $Z_{ad}$ será:
-$$Z_{ad}=1898,67\Omega$$
+\item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_ef=100V$ e $R=100\Omega$ (teórico).
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionof{table}{Parâmetros reais da montagem do primeiro caso.} \label{tab1}
+\begin{tabular}{|c|c|c|l|l|l|}
+\hline
+$R [\Omega]$ & $V (V)$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ \\ \hline
+             &         &          &                &             &          \\ \hline
+\end{tabular}
+\end{table}
+
+\item Complete a Tabela \ref{tab2} com os dados do Caso B, sendo $V_ef=50V$ e $R=20\Omega$ (teórico).
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionof{table}{Parâmetros reais da montagem do segundo caso.} \label{tab2}
+\begin{tabular}{|c|c|c|l|l|l|}
+\hline
+$R [\Omega]$ & $V (V)$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ \\ \hline
+             &         &          &                &             &          \\ \hline
+\end{tabular}
+\end{table}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_ef=100V$ e $R=100\Omega$ (teórico).
+
+\begin{table}[h]
+\centering
+\def\arraystretch{1.35}
+\captionof{table}{Erro percentual das duas montagens.} \label{tab2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{3}{*}{Valores} & \multicolumn{9}{c|}{Medições}                                                                         & \multicolumn{3}{c|}{Cálculos}     \\ \cline{2-13} 
+                         & $V_{ef}$ & I       & $cos\theta$ & $V_R$   & $V_C$   & $V_{(L+R_L)}$ & P       & S        & Q         & $\theta^1$ & $S^2$    & $Q^3$     \\ \cline{2-13} 
+                         & {[}V{]}  & {[}A{]} & {[}fp{]}    & {[}V{]} & {[}V{]} & {[}V{]}       & {[}W{]} & {[}VA{]} & {[}VAr{]} & $[^circ]$  & {[}VA{]} & {[}Var{]} \\ \hline
+\multicolumn{13}{|c|}{Caso A}                                                                                                                                        \\ \hline
+Medidos                  &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+Calculados               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+Erros (\%)               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+\multicolumn{13}{|c|}{Caso B}                                                                                                                                        \\ \hline
+Medidos                  &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+Calculados               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+Erros (\%)               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
+\end{tabular}
+
+\end{table}
+
 \end{enumerate}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%)
