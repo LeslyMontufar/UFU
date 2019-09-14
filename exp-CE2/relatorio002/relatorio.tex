@@ -96,7 +96,7 @@ Tabelas 1 e 2).
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=11cm]{fig1}
+\includegraphics[width=14.5cm]{fig1}
 \caption{Montagem experimental.}
 \label{fig1}
 \end{figure}
@@ -106,70 +106,77 @@ Tabelas 1 e 2).
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
 É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
+Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
 
-Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobre-carga na rede.
-
-\section{Cálculos, análise dos resultados e questões} %(quando houver) (70%)
+\section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
 
 \begin{enumerate}[1 - ]
-\item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_ef=100V$ e $R=100\Omega$ (teórico).
+\item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_{ef}=100V$ e $R=100\Omega$ (teórico).
 
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
 \captionof{table}{Parâmetros reais da montagem do primeiro caso.} \label{tab1}
-\begin{tabular}{|c|c|c|l|l|l|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
 $R [\Omega]$ & $V (V)$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ \\ \hline
-             &         &          &                &             &          \\ \hline
+       100      &         &          &                &      99,4       &     59,95     \\ \hline
 \end{tabular}
 \end{table}
 
-\item Complete a Tabela \ref{tab2} com os dados do Caso B, sendo $V_ef=50V$ e $R=20\Omega$ (teórico).
+\item Complete a Tabela \ref{tab2} com os dados do Caso B, sendo $V_{ef}=50V$ e $R=20\Omega$ (teórico).
 
 \begin{table}[h]
 \centering
 \def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
 \captionof{table}{Parâmetros reais da montagem do segundo caso.} \label{tab2}
 \begin{tabular}{|c|c|c|l|l|l|}
 \hline
 $R [\Omega]$ & $V (V)$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ \\ \hline
-             &         &          &                &             &          \\ \hline
+       20      &         &          &                &       49,39      &     60,00     \\ \hline
 \end{tabular}
 \end{table}
 
-
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-\item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_ef=100V$ e $R=100\Omega$ (teórico).
-
-\begin{table}[h]
+\item Ajuste a tensão de saída do autotransformador (varivolt) de maneira a obter a tensão solicitada para o voltímetro e anote os valores medidos na Tabela \ref{tab3} (para ambos os casos, A e B).
+\begin{table}[H]
 \centering
 \def\arraystretch{1.35}
-\captionof{table}{Erro percentual das duas montagens.} \label{tab2}
+\captionsetup{font=scriptsize}
+\captionof{table}{Erro percentual das duas montagens.} \label{tab3}
+
+\resizebox{\textwidth}{!}{ %
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\multirow{3}{*}{Valores} & \multicolumn{9}{c|}{Medições}                                                                         & \multicolumn{3}{c|}{Cálculos}     \\ \cline{2-13} 
-                         & $V_{ef}$ & I       & $cos\theta$ & $V_R$   & $V_C$   & $V_{(L+R_L)}$ & P       & S        & Q         & $\theta^1$ & $S^2$    & $Q^3$     \\ \cline{2-13} 
-                         & {[}V{]}  & {[}A{]} & {[}fp{]}    & {[}V{]} & {[}V{]} & {[}V{]}       & {[}W{]} & {[}VA{]} & {[}VAr{]} & $[^circ]$  & {[}VA{]} & {[}Var{]} \\ \hline
-\multicolumn{13}{|c|}{Caso A}                                                                                                                                        \\ \hline
-Medidos                  &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-Calculados               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-Erros (\%)               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-\multicolumn{13}{|c|}{Caso B}                                                                                                                                        \\ \hline
-Medidos                  &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-Calculados               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-Erros (\%)               &          &         &             &         &         &               &         &          &           &            &          &           \\ \hline
-\end{tabular}
-
+\multirow{3}{*}{Valores} & \multicolumn{9}{c|}{Medições}                                                                         & \multicolumn{3}{c|}{Cálculos}          \\ \cline{2-13} 
+                         & $V_{ef}$ & I       & $cos\theta$ & $V_R$   & $V_C$   & $V_{(L+R_L)}$ & P       & S        & Q         & $\theta^{[1]}$ & $S^{[2]}$ & $Q^{[3]}$ \\ \cline{2-13} 
+                         & {[}V{]}  & {[}A{]} & {[}fp{]}    & {[}V{]} & {[}V{]} & {[}V{]}       & {[}W{]} & {[}VA{]} & {[}VAr{]} & $[^{\circ}]$   & {[}VA{]}  & {[}Var{]} \\ \hline
+\multicolumn{13}{|c|}{Caso A}                                                                                                                                             \\ \hline
+Medidos                  & 99,40    & 0,932   & 0,988       & 93,10   & 54,36   & 69,40         & 90,90   & 92,01    & 14,23     & 8,89           & 92,64     & 14,25     \\ \hline
+Calculados               &          &         &             &         &         &               &         &          &           &                &           &           \\ \hline
+Erros (\%)               &          &         &             &         &         &               &         &          &           &                &           &           \\ \hline
+\multicolumn{13}{|c|}{Caso B}                                                                                                                                             \\ \hline
+Medidos                  & 49,39    & 1,702   & 0,873       & 34,16   & 99,80    & 124,00        & 73,10   & 84,00    & 41,39     & 29,19          & 84,06     & 41,38     \\ \hline
+Calculados               &          &         &             &         &         &               &         &          &           &                &           &           \\ \hline
+Erros (\%)               &          &         &             &         &         &               &         &          &           &                &           &           \\ \hline
+\end{tabular} %
+}
 \end{table}
+
+\noindent\text{[1]} Calcule o valor medido de $\theta$ à partir do fator de potência, ou seja, $\theta = arccos(fp)$. \\
+\noindent\text{[2]} Calcule a potência aparente S à partir dos valores medidos para V e I, ou seja, $S=V\times I$. \\
+\noindent\text{[3]} Calcule a potência reativa Q à partir do triângulo de potência, ou seja, $Q^2=S^2-P^2$. 
+
 
 \end{enumerate}
 
-\section{Conclusões} % (no mínimo 10 linhas) (5%)
-No experimento, um transformador foi uitlizado a fim de discutir o fenômeno da indutância mútua. A simulação experimental permitiu também calcular o fluxo e impedâncias envolvidas. Além disso, foi discutido a situação em que é removido o barramento superior do núcleo. 
 
-Sobreleva-se a importância dos Equipamento de Proteção Invidual, para melhor aproveitamento.
+\section{Simulação computacional} %(10%);
+
+
+\section{Conclusões} % (no mínimo 10 linhas) (5%)
+
 
 \newpage
 \begin{thebibliography}{9} 
@@ -186,7 +193,7 @@ Sobreleva-se a importância dos Equipamento de Proteção Invidual, para melhor 
 
 \bibitem{boylestad}
     R. L. Boylestad,
-    “Intrdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
+    “Introdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
 
 \bibitem{exp}
     B. S. Marczewski, B. J. R. Santos, F. H. G. Zucatelli, L. A. Tonin,
