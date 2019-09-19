@@ -153,7 +153,7 @@ $R [\Omega]$ & $C [\mu F]$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ 
 \end{tabular}
 \end{table}
 
-\item Complete a Tabela \ref{tab2} com os dados do Caso B, sendo $V_{ef}=50V$ e $R=20\Omega$ (teórico).
+\item Complete a Tabela \ref{tab2} com os dados do Caso B, sendo $V_{ef}=50V$ e $R=20\Omega$ (teórico). \\
 
 \begin{table}[h]
 \centering
@@ -167,7 +167,7 @@ $R [\Omega]$ & $C [\mu F]$ & $L [mH]$ & $R_L [\Omega]$ & $V [volts]$ & $f [Hz]$ 
 \end{tabular}
 \end{table}
 
-\item Ajuste a tensão de saída do autotransformador (varivolt) de maneira a obter a tensão solicitada para o voltímetro e anote os valores medidos na Tabela \ref{tab3} (para ambos os casos, A e B). Os resultados são obtidos por meio dos cálculos apresentados na introdução teórica.
+\item Ajuste a tensão de saída do autotransformador (varivolt) de maneira a obter a tensão solicitada para o voltímetro e anote os valores medidos na Tabela \ref{tab3} (para ambos os casos, A e B). Os resultados são obtidos por meio dos cálculos apresentados na introdução teórica. \\
 \begin{table}[H]
 \centering
 \def\arraystretch{1.35}
@@ -219,7 +219,47 @@ Use a função MEASURE $>$ TODAS MED para o equipamento realizar os cálculos pr
 \label{osc2}
 \end{figure}
 
-\item 
+\item Comparação dos equipamentos de medição analógicos e digitais \\
+\begin{table}[H]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Comparativo das medições para o Caso A.} \label{cA}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+                                              & \textit{V {[}V{]}} & \textit{I {[}A{]}} \\ \hline
+\multicolumn{1}{|c|}{KRON Mult K}             & 99,40              & 0,932              \\ \hline
+\multicolumn{1}{|c|}{Analógico}               & 102,00             & 0,930              \\ \hline
+\multicolumn{1}{|c|}{Osciloscópio}            & 106,00             & (1,06)             \\ \hline
+\multicolumn{1}{|c|}{Erros Analógico (\%)}    & -2,62              & 0,21               \\ \hline
+\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} & -6,64              & -13,73             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Comparativo das medições para o Caso B.} \label{cB}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+                                              & \textit{V {[}V{]}} & \textit{I {[}A{]}} \\ \hline
+\multicolumn{1}{|c|}{KRON Mult K}             & 49,39              & 1,732              \\ \hline
+\multicolumn{1}{|c|}{Analógico}               & 50,08              & 1,65               \\ \hline
+\multicolumn{1}{|c|}{Osciloscópio}            &                    &                    \\ \hline
+\multicolumn{1}{|c|}{Erros Analógico (\%)}    & 1,39               & 4,73               \\ \hline
+\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} &                    &                    \\ \hline
+\end{tabular}
+\end{table}
+
+\item Manejo do equipamento \emph{KRON Mult K}\\
+A regulagem do equipamento utilizando-se os parâmetros TP (Transformador de Potencial), TC (Transformador de Corrente) e TL (Transformador de Ligação) foi essencial, uma vez que é preciso informar ao equipamento que se trata de um circuito monofásico (1 fase + neutro), para isso configura-se $TL=0002$. TP e TC foram regulados a partir dos equipamentos analógicos pela relação descrita pela Equação \ref{TP} e \ref{TC}e conseguiu-se $TP=1,00$ e $TC=1,01$, para os quais os valores no equipamento digital também correspondem ao do analógico.
+\begin{equation}\label{TP}
+\dfrac{{TP}_{antigo}}{{TP}_{novo}}=\dfrac{V_{KRON}}{V_{analogico}}
+\end{equation}
+\begin{equation}\label{TC}
+\dfrac{{TC}_{antigo}}{{TC}_{novo}}=\dfrac{I_{KRON}}{I_{analogico}}
+\end{equation}
 
 \end{enumerate}
 
@@ -289,17 +329,14 @@ Da simulação computacional tem-se as Figuras \ref{corrente2}, \ref{tensao-R2},
 \end{figure}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-A análise do circuito série 
+Este experimento trata-se da análise de um circuito série \emph{RLC} energizado com tensão senoidal, descrito pela Figura \ref{fig1}, . Calculou-se as impedâncias, corrente, tensão sobre cada componente a partir da análise das malhas, além das potências eficazes, por meio da análise teórica. Assim, foi possível a comparação com os valores obtidos experimentalmente tanto com medidores analógicos quanto com os digitais, o que é descrito pelas Tabelas \ref{cA} e \ref{cB}. Também foi importante a configuração do equipamento \emph{KRON Mult K} por meio dos parâmetros TL, TP e TC. 
+
+Finalmente, a simulação computacional permitiu obter as medições com os dados experimentais dos componentes, dessa forma, identificou-se os erros associados aos equipamentos de medidas, seja por desregulagem ou erro do olho humano. Agrega-se a importância dos Equipamentos de Segurança Individual (EPI), uma vez que a utilização dos óculos durante o manejo dos componentes, mesmo que aparentemente ainda não sejam potenciais situações de risco, permite a criação do hábito de proteção e prevenção, uma característica essencial para o engenheiro na área de trabalho.
+
 
 \newpage
 \begin{thebibliography}{9} 
 % Introdução
-\bibitem{ph}
-    P. H. Rezende,
-    “Circuitos Magneticamente Acoplados”, UFU, 2018.
- Disponível em:
- \url{https://www.moodle.ufu.br/pluginfile.php/702496/mod_resource/content/3/Cap.\%20I_Acoplamento.pdf}. Acesso em: ago. 2019.
-
 \bibitem{irwin}
     J. D. Irwin,
     “Análise de Circuitos Em Engenharia”, Pearson, $4^a$ Ed., 2000.
