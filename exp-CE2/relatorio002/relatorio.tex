@@ -20,7 +20,7 @@
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
-\newcommand{\thetitle}{TENSÕES, CORRENTE E POTÊNCIAS EM CIRCUITO SÉRIE, FATOR DE POTÊNCIA E CORRENTE ALTERNADA SENOIDAL - USO DE MEDIDORES ANALÓGICOS E DIGITAIS}
+\newcommand{\thetitle}{TENSÕES, CORRENTE E POTÊNCIAS EM CIRCUITO SÉRIE, FATOR DE POTÊNCIA E CORRENTE ALTERNADA SENOIDAL - USO DE MEDIDORES ANALÓGICOS E DIGITAIS - VATÍMETRO ANALÓGICO}
 \newcommand{\thetype}{Relatório da Disciplina de Circuitos Elétricos II}
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
 \newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
@@ -39,7 +39,8 @@
 \section{Objetivos} % 2,5%
 Montar um circuito série \emph{RLC}, energizá-lo com tensão alternada senoidal, realizar medições usando
 equipamentos analógicos e digitais, efetuar desenvolvimentos teóricos e cálculos numéricos confrontando os
-resultados teóricos com aqueles obtidos experimentalmente.
+resultados teóricos com aqueles obtidos experimentalmente. Comparar a potência ativa
+obtida pelo vatímetro analógico com o valor obtido no medidor digital.
 
 \section{Introdução teórica} % 5%
 
@@ -138,6 +139,7 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 
 \section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
 
+\subsection{Comparação das medidas experimentais}
 \begin{enumerate}[1 - ]
 \item Complete a Tabela \ref{tab1} com os dados do Caso A, sendo $V_{ef}=100V$ e $R=100\Omega$ (teórico).
 
@@ -230,9 +232,9 @@ Use a função MEASURE $>$ TODAS MED para o equipamento realizar os cálculos pr
                                               & \textit{V {[}V{]}} & \textit{I {[}A{]}} \\ \hline
 \multicolumn{1}{|c|}{KRON Mult K}             & 99,40              & 0,932              \\ \hline
 \multicolumn{1}{|c|}{Analógico}               & 102,00             & 0,930              \\ \hline
-\multicolumn{1}{|c|}{Osciloscópio}            & 106,00             & (1,06)             \\ \hline
+\multicolumn{1}{|c|}{Osciloscópio}            & 106,00             & (1,021)             \\ \hline % V = Z * I (tudo rms)
 \multicolumn{1}{|c|}{Erros Analógico (\%)}    & -2,62              & 0,21               \\ \hline
-\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} & -6,64              & -13,73             \\ \hline
+\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} & -6,64              & -9,540             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -244,13 +246,15 @@ Use a função MEASURE $>$ TODAS MED para o equipamento realizar os cálculos pr
 \begin{tabular}{c|c|c|}
 \cline{2-3}
                                               & \textit{V {[}V{]}} & \textit{I {[}A{]}} \\ \hline
-\multicolumn{1}{|c|}{KRON Mult K}             & 49,39              & 1,732              \\ \hline
-\multicolumn{1}{|c|}{Analógico}               & 50,08              & 1,65               \\ \hline
-\multicolumn{1}{|c|}{Osciloscópio}            &                    &                    \\ \hline
-\multicolumn{1}{|c|}{Erros Analógico (\%)}    & 1,39               & 4,73               \\ \hline
-\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} &                    &                    \\ \hline
+\multicolumn{1}{|c|}{KRON Mult K}             & 49,39             & 1,732           \\ \hline
+\multicolumn{1}{|c|}{Analógico}               & 50,08               & 1,65             \\ \hline
+\multicolumn{1}{|c|}{Osciloscópio}            & 88,00              & (3,677)            \\ \hline
+\multicolumn{1}{|c|}{Erros Analógico (\%)}   & 1,39            & 4,73              \\ \hline
+\multicolumn{1}{|c|}{Erros Osciloscópio (\%)} & -78,17        & -112,3                   \\ \hline % Nao sei o que aconteceu (-78,17)
 \end{tabular}
 \end{table}
+
+\vspace{0.3cm}
 
 \item Manejo do equipamento \emph{KRON Mult K}\\
 A regulagem do equipamento utilizando-se os parâmetros TP (Transformador de Potencial), TC (Transformador de Corrente) e TL (Transformador de Ligação) foi essencial, uma vez que é preciso informar ao equipamento que se trata de um circuito monofásico (1 fase + neutro), para isso configura-se $TL=0002$. TP e TC foram regulados a partir dos equipamentos analógicos pela relação descrita pela Equação \ref{TP} e \ref{TC}e conseguiu-se $TP=1,00$ e $TC=1,01$, para os quais os valores no equipamento digital também correspondem ao do analógico.
@@ -261,6 +265,44 @@ A regulagem do equipamento utilizando-se os parâmetros TP (Transformador de Pot
 \dfrac{{TC}_{antigo}}{{TC}_{novo}}=\dfrac{I_{KRON}}{I_{analogico}}
 \end{equation}
 
+\end{enumerate}
+
+\subsection{Questões}
+\begin{enumerate}[1)]
+\item A potência ativa lida no mediador KRON Mult K apresenta informação incorreta em relação ao vatímetro
+analógico. Aponte as possíveis causas.\\
+A possível causa pode ser devido ao
+equipamento estar com defeito, mal contato nos cabos, TC e TP desajustados ou TL desconfigurado.
+
+\item Por que dependendo do tipo da ligação do vatímetro, seu ponteiro indicador deflete em sentido “negativo”?\\
+Uma vez que ligado de forma incorreta ou invertida pode detectar uma potência negativa e essa polarização negativa é representada pela deflexão do
+ponteiro no sentido inverso.
+
+\item Quais as vantagens da utilização do mediador KRON Mult K frente aos medidores analógicos? Discuta a
+respeito de espaço físico empregado para a utilização dos equipamentos bem como o tempo de montagem.
+Pesquise também sobre custos para aquisição.\\
+Medidores digitais como o KRON são mais precisos e facilita a leitura para o usuário. Ademais permite a medição de várias grandezas em um só equipamento, o que economiza tempo. Já os equipamentos analógico tendem
+a ocupar mais espaço, além de demandarem a utilização de muitos cabos em suas conexões. Com relação a custos, os aparelhos analógicos são consideravelmente
+mais baratos que o KRON Mult K.
+
+\item Considerando que a escala percentual do reostato esteja correta, qual é o efeito físico no amperímetro,
+multímetro e vatímetro se o usuário excursiona de 25\% para 50\% da resistência nominal?\\
+
+Ao reduzir a resistência pela metade, a potência $P=V\cdot I$ também cairá pela metade, assim como a leitura no amperímetro a medida será reduzida pela metade,
+no voltímetro não haverá alterações e no wattímetro teremos também a metade, devido à ligação em paralelo.
+
+\item Explique a importância do transformador de potencial e de corrente no medidor KRON Mult K.\\
+O TP e TC são de maior importância em circuitos trifásicos com transformadores, uma vez que neste experimento, como é um circuito monofásico, a relação deverá estar próxima de 1, dado que só há influência de erros do próprio equipamento KRON.
+
+\item Qual é a importância de AAUX e VAUX? Neste roteiro, é necessária a permanência constante desses medidores
+ou podem ser eliminados sem prejuízo? Se sim, em qual momento?\\
+São usados para calibrar os valores de TL, TC e TP do KRON, mas podem ser
+retirados a qualquer momento.
+
+\item Nota-se que muitos medidores analógicos possuem um espelho logo abaixo da escala graduada. Explique o
+motivo.\\
+O espelho existe para que o usuário consiga fazer uma leitura mais precisa. O
+valor correto é aquele em que o ponteiro e a imagem refletida no espelho coincidam.
 \end{enumerate}
 
 
@@ -329,7 +371,7 @@ Da simulação computacional tem-se as Figuras \ref{corrente2}, \ref{tensao-R2},
 \end{figure}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-Este experimento trata-se da análise de um circuito série \emph{RLC} energizado com tensão senoidal, descrito pela Figura \ref{fig1}, . Calculou-se as impedâncias, corrente, tensão sobre cada componente a partir da análise das malhas, além das potências eficazes, por meio da análise teórica. Assim, foi possível a comparação com os valores obtidos experimentalmente tanto com medidores analógicos quanto com os digitais, o que é descrito pelas Tabelas \ref{cA} e \ref{cB}. Também foi importante a configuração do equipamento \emph{KRON Mult K} por meio dos parâmetros TL, TP e TC. 
+Este experimento trata-se da análise de um circuito série \emph{RLC} energizado com tensão senoidal, descrito pela Figura \ref{fig1}. Calculou-se as impedâncias, corrente, tensão sobre cada componente a partir da análise das malhas, além das potências eficazes, por meio da análise teórica. Assim, foi possível a comparação com os valores obtidos experimentalmente tanto com medidores analógicos quanto com os digitais, o que é descrito pelas Tabelas \ref{cA} e \ref{cB}. Também foi importante a configuração do equipamento \emph{KRON Mult K} por meio dos parâmetros TL, TP e TC. 
 
 Finalmente, a simulação computacional permitiu obter as medições com os dados experimentais dos componentes, dessa forma, identificou-se os erros associados aos equipamentos de medidas, seja por desregulagem ou erro do olho humano. Agrega-se a importância dos Equipamentos de Segurança Individual (EPI), uma vez que a utilização dos óculos durante o manejo dos componentes, mesmo que aparentemente ainda não sejam potenciais situações de risco, permite a criação do hábito de proteção e prevenção, uma característica essencial para o engenheiro na área de trabalho.
 
