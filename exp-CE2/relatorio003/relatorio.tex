@@ -40,6 +40,8 @@
 Montar um circuito sob curto circuito, energizá-lo com tensão alternada senoidal e realizar medições usando equipamentos analógicos e digitais. Mostrar a importância de excursionar com cautela o regulador de tensão para identificação de curto-circuito nos primeiros instantes. Efetuar cálculos numéricos confrontando os resultados teóricos com aqueles obtidos experimentalmente.
 
 \section{Introdução teórica} % 5%
+O curto circuito ocorre quando não há carga conectada ao sistema, e, em um sistema real, os fios condutores possuem resistência, mesmo que pequena. Sob essas circunstâncias, tem-se potência elevada passando pelo fio condutor, que pode não suportar e danificar o equipamento. 
+
 \subsection{Potência em circuitos trifásicos}
 Num circuito trifásico (estrela equilibrado), a potência total é dada por $P_{T}=3P_{F}$. A corrente de cada fase do circuito é igual a corrente de linha do alimentador e tensão de fase do alimentador é a tensão de linha ($E_{L}$ - Neutro-Fase) dividida por $\sqrt{3}$. Assim a potência total será descrita como na Equação (\ref{potencia})\cite{irwin}.
 \begin{equation*}
@@ -51,7 +53,7 @@ P_{T}=\sqrt{3}\cdot E_{L} I_{L}
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
-\begin{enumerate}[1 - ]
+\begin{enumerate}[1 -]
 \item \emph{\textbf{Fonte:}}
 Alimentará todo o circuito.
 
@@ -71,7 +73,7 @@ Instrumento utilizado para acompanhar visualmente o aumento da corrente.
 \subsection{Montagem} % 2,5%
 \noindent\textbf{a.} Verifique se o interruptor está na posição desligada (\textit{OFF}).\\
 \textbf{b.} Certifique que o regulador de tensão, também conhecido como \textit{varivolt}, está desligado ou com tensão mínima do lado secundário.\\
-\textbf{c.} Alimente o lado primário do \textit{varivolt} usando a rede da CEMIG. Com um multímetro digital, anote o valor da tensão \textit{rms} em A’’N (Figura \ref{fig1}). Neste experimento obteu-se $V_{rms}=$.\\
+\textbf{c.} Alimente o lado primário do \textit{varivolt} usando a rede da CEMIG. Com um multímetro digital, anote o valor da tensão \textit{rms} em A’’N (Figura \ref{fig1}). Neste experimento obteu-se $V_{rms}=0,9V$.\\
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
@@ -93,11 +95,29 @@ Instrumento utilizado para acompanhar visualmente o aumento da corrente.
 \noindent\textbf{h.} NÃO ENERGIZE o circuito sem a autorização do professor para as próximas etapas. Neste momento, é fundamental chamá-lo para verificação passo-a-passo. \\
 \textbf{i.} Ajuste e ligue os medidores digitais, ligue a bancada. Preenchendo a tabela abaixo com seis valores espaçados, aumente BEM VAGAROSAMENTE a tensão no \textit{varivolt} até as correntes de curto circuito nos amperímetros indicar aproximadamente $I_{cc_max}$. Não deixe os medidores ligados por mais de 2 minutos para evitar aquecimento por efeito \textit{Joule}.  \\
 
-%TABELA
+\begin{table}[H]
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Dados experimentais de tensão e corrente.} \label{tab2}
+\begin{tabular}{|c|c|}
+\hline
+$I_{CC}$ & $V_{CC}$ \\ \hline
+1,300    & 0,260    \\ \hline
+1,500    & 0,320    \\ \hline
+1,923    & 0,488    \\ \hline
+2,199    & 0,498    \\ \hline
+3,012    & 0,612    \\ \hline
+4,36     & 0,881    \\ \hline
+5,054    & 1,029    \\ \hline
+5,190    & 1,054    \\ \hline
+5,959    & 1,208    \\ \hline
+\end{tabular}
+\end{table}
 
 A utilização de dois amperímetros é por questões de redundância, apenas. O amperímetro analógico é adequado para visualizar a velocidade da variação da corrente, enquanto no digital, o resultado é apresentado com maior quantidade de casas decimais. Todavia, o amperímetro digital apresenta uma barra gráfica analógica para proporcionar essa indicação visual. 
 
-\textbf{j.} Retorne a tensão no varivolt para o valor mínimo de tensão, desligue a bancada e os medidores digitais.\\
+\noindent\textbf{j.} Retorne a tensão no varivolt para o valor mínimo de tensão, desligue a bancada e os medidores digitais.\\
 
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
@@ -110,6 +130,15 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 O valor informado na placa do equipamento é de $8V$. Assim, há um erro percentual de $-0,7\%$.
 
 \item Trace um gráfico $f(V_{cc}\times I_{cc})$. Estime o valor de $V_{cc}$ quando $Icc=100\%$ de $I_n$ por meio de interpolação ou método dos mínimos quadrados.\\
+Pelo gráfico da Figura 1, tem-se a reta de regressão linear dada por $y=5,12x-0,22$. Para $x=8,0561$ tem-se $y=40,9875561$.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{graph}
+\caption{Gráfico $f(V_{cc}\times I_{cc})$ gerado em excel.}
+\label{graph}
+\end{figure}
 
 \item Determine o valor da impedância em condição de curto-circuito - $Z_{cc}$.\\
 
