@@ -1,0 +1,269 @@
+\documentclass[a4paper,12pt,oneside,openany,table,xcdraw]{article}
+
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{indentfirst}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, graphicx, enumerate}
+\usepackage{float, verbatim}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{makeidx} % Para o sumário
+\usepackage{geometry}
+
+\geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
+\setlength{\parindent}{1.0cm}
+
+\begin{document}
+\newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
+\newcommand{\thecourse}{FEELT}
+\newcommand{\thetitle}{LABORATÓRIO - CIRCUITOS EQUILIBRADOS}
+\newcommand{\thetype}{Relatório da Disciplina de Experimental de Circuitos Elétricos II}
+\newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
+\newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
+\centering11811ETE001}
+\newcommand{\theadvisor}{Prof. Wellington Maycon Santos Bernardes}
+\newcommand{\thecity}{Uberlândia}
+
+\thispagestyle{empty}\input{CapaABNT}
+
+%% Comeca o documento !
+
+\onehalfspacing
+\tableofcontents % sumário
+\newpage
+
+\section{Objetivos} % 2,5%
+Verificar experimentalmente os conceitos teóricos sobre as relações existentes entre tensões de fases $V_F$ e de linhas $V_L$ em cargas ligadas em estrela, e correntes de fases $I_F$ e de linhas $I_L$ em cargas ligadas em triângulo. Além disso, comparar os resultados com os valores obtidos utilizando uma análise teórica. 
+
+\section{Introdução teórica} % 5%
+As primeiras linhas de transmissão de energia elétrica, que surgiram no final do século XIX, destinavam-se exclusivamente ao suprimento do sistema de iluminação, pequenos motores e sistema de tração (railway) e operavam em corrente contínua a baixa magnitude de tensão. A geração e transmissão usando os mesmos níveis de tensão das diferentes cargas restringiu a distância entre a planta de geração e os consumidores e a tensão da geração em corrente contínua não podia ser facilmente aumentada para a transmissão a grandes distâncias \cite{ph}. 
+
+Para realizar uma transmissão de energia elétrica a grandes distâncias era necessário um nível elevado de magnitude de tensão, e essa tecnologia de conversão para corrente contínua não era viável naquela época. Por isso, foi necessária a mudança da transmissão de corrente continua para corrente alternada, devido principalmente aos seguintes motivos:
+
+\begin{itemize}
+\item O desenvolvimento e uso dos transformadores, permitindo a transmissão a grandes distâncias usando altos níveis de tensão, reduzindo as perdas elétricas dos sistemas e a queda de tensão.
+\item A elevação/redução da magnitude de tensão é realizado com uma alta eficiência e a baixo custo através dos transformadores.
+\item Surgimento de geradores e motores em corrente alternada, construtivamente mais simples, eficientes e baratos que as máquinas em corrente contínua
+\end{itemize}
+
+Assim, a corrente alternada seria a melhor alternativa para a transmissão de energia elétrica à grandes distâncias. Além disso, introduz-se o conceito de gerador trifásico, ilustrado pela Figura \ref{gerador}, no qual três bobinas defasadas em 120 graus elétricos no espaço geram um conjunto de três tensões de mesmo valor máximo, defasadas de 120 graus elétricos no tempo.
+
+Um gerador trifásico aproveita melhor o espaço físico, resultando em um gerador de tamanho reduzido e mais barato, comparado com os geradores monofásicos de igual potência, ademais são superiores aos motores monofásicos em rendimento, tamanho, fator de potência e capacidade de sobrecarga.
+Um sistema monofásico precisa de dois condutores; e um sistema trifásico (perfeitamente balanceado) precisa de três condutores, porém conduz três vezes mais potência. Na prática, devido a pequenos desequilíbrios inevitáveis, os sistemas trifásicos contam com um quarto condutor, o neutro.
+
+É possivel conectar as bobinas de gerador trifásicos em configuração estrela ou delta, assim como a carga em \emph{Conexão em estrela}(\ref{estrela}) ou  \emph{Conexão em delta/triângulo}(\ref{delta}).
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{motor3phi}
+\caption{Geração de tensão alternada trifásica.}
+\label{gerador}
+\end{figure}
+
+\subsection{Carga em conexão em estrela} \label{estrela}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{carga-estrela}
+\caption{Relação entre tensão de linha e fase numa carga em estrela.}
+\label{carga-estrela}
+\end{figure}
+
+\subsection{Carga em conexão em delta ou triângulo} \label{delta}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{carga-delta}
+\caption{Relação entre corrente de linha e fase numa carga em delta.}
+\label{carga-delta}
+\end{figure}
+
+\section{Preparação}
+\subsection{Materiais e ferramentas} % 2,5%
+\begin{enumerate}[1 -]
+\item \emph{\textbf{Fonte:}}
+Alimentará todo o circuito. Possui frequência de $60Hz$.
+
+\item \emph{\textbf{Regulador de tensão (Varivolt):}}
+Também chamado de autotransformador, permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
+
+\item \emph{\textbf{Conectores:}}
+Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
+
+\item \emph{\textbf{Medidor eletrônico KRON Mult K:}}
+Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q) e aparente (S) do circuito. Ele também possui função de cofasímetro, instrumento elétrico que mede o fator de potência (fp, $cos\theta$) ou o ângulo da impedância $\theta$ do circuito, para um circuito com a impedância $Z = Z\angle \theta$.
+
+\item \emph{\textbf{Amperímetro analógico AC:}}
+Instrumento utilizado para acompanhar visualmente o aumento da corrente.
+
+\item \emph{\textbf{Reatores de 160 mH:}}
+Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $L=160mH$ e $R_L=3,8\Omega$.
+
+\item \emph{\textbf{Resistores de $50\Omega$:}}
+Foram utilizados 3, para compor a carga do circuito trifásico.
+\end{enumerate}
+
+\subsection{Montagem} % 2,5%
+
+\subsubsection{Carga em estrela}
+Observe a montagem indicada na Figura \ref{fig1} abaixo, alimentando os pontos a b c n através de uma fonte alternada trifásica em seqüência de fases abc (ou direta), aplicando uma tensão entre linhas $V_L$ igual a 100 V, em frequência de 60 Hz.
+
+Os parâmetros da carga são: $R = 50\Omega$; $R_L = 3,8 \Omega$; $L = 160 mH$. Na Figura \ref{fig1}, $V_L$ representa um voltímetro conectado para medir a tensão entre linhas (fases ab); $V_F$ representa um voltímetro conectado para medir a tensão de fase (fases cn, por exemplo); $A_L$ representa um amperímetro conectado para medir a corrente de linha (igual a de fase) e; $A_N$ representa um amperímetro conectado para medir a corrente no fio neutro. 
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{fig1}
+\caption{Ligação em estrela em sequência de fases abc ($n = n’$).}
+\label{fig1}
+\end{figure}
+Observa-se pelo desenho que não é possível obter a tensão e corrente de todas as fases de forma simultânea, sendo necessária a mudança dos medidores $V_L$ e $V_F$ para a obtenção dos demais valores. Para isso, utilizaremos o medidor trifásico eletrônico \textit{Kron Mult-K} (wattímetro),  usando as entradas $V_A$, $V_B$, $V_C$, $V_N$ para as medidas de tensão e $I_A$, $I_B$ e $I_C$ para as medidas de corrente, assim sendo, realizando as ligações apropriadas. Como o \textit{Kron} não mede a corrente de neutro, então é necessário um amperímetro analógico AC entre $n$ e $n’$.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros1}
+\end{figure}
+
+Com o \textit{Kron Mult-K} configurado com os parâmetros acima, foi possível obter as grandezas das Tabelas \ref{tab1} e \ref{tab2}, sendo a primeira com neutro conectado e a segunda sem neutro conectado.
+
+\begin{table}[]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela com neutro conectado.} \label{tab1}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & \$V\_\{F\} (V) & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$       & $Q_{F} (Var)$ & $Q_{T} (Var)$     & $S_{F} (VA)$ & $S_{T} (VA)$      \\ \hline
+100,3       & 59,6           & 0,636       & \multirow{3}{*}{0} & 22,42       & \multirow{3}{*}{67,26} & 28,4          & \multirow{3}{*}{85,2} &  36,18            & \multirow{3}{*}{108,5} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,3       & 59,6           &  0,636           &                    & 22,42       &                   & 28,4              &                   &   36,18            &                   \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,3       & 59,6           &   0,636          &                    & 22,42       &                   &  28,4             &                   & 36,18              &                   \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela sem neutro conectado.} \label{tab2}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & \$V\_\{F\} (V) & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$       & $Q_{F} (Var)$ & $Q_{T} (Var)$     & $S_{F} (VA)$ & $S_{T} (VA)$      \\ \hline
+100,4       & 57,9           & 0,627       & \multirow{3}{*}{-} & 22,64       & \multirow{3}{*}{67,92} & 28,29         & \multirow{3}{*}{84,87} &  36,23            & \multirow{3}{*}{108,7} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,9           & 0,627              &                    & 22,64       &                   &  28,29             &                   &   36,23                      &                   \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,9           &  0,627             &                    & 22,64       &                   &  28,29             &                   &  36,23                       &                   \\ \hline
+\end{tabular}
+\end{table}
+
+Agora, conecte somente $I_A$, $V_A$ e $V_N$ do medidor eletrônico \emph{Kron Mult-K}, e encontre os valores da Tabela \ref{tab3} e \ref{tab4} com a seguinte configuração: 
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros2}
+\end{figure}
+
+
+\begin{table}[]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela com neutro conectado (0003 - sistema equilibrado).} \label{tab3}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & \$V\_\{F\} (V) & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$           \\ \hline
+100,4       & 57,96          & 0,636       & \multirow{3}{*}{0} & 67,38       & \multirow{3}{*}{202,14} & 87,46         & \multirow{3}{*}{262,38} & 110,7        & \multirow{3}{*}{332,1} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,96          & 0,636       &                    & 67,38       &                         & 87,46         &                         & 110,7        &                        \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,96          & 0,636       &                    & 67,38       &                         & 87,46         &                         & 110,7        &                        \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela sem neutro conectado (0003 - sistema equilibrado).} \label{tab4}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & \$V\_\{F\} (V) & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$           \\ \hline
+100,0       & 57,74          & 0,634       & \multirow{3}{*}{-} & 66,89       & \multirow{3}{*}{200,67} & 87,03         & \multirow{3}{*}{261,90} & 109,6        & \multirow{3}{*}{328,8} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,0       & 57,74          & 0,634       &                    & 66,89       &                         & 87,03         &                         & 109,6        &                        \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,0       & 57,74          & 0,634       &                    & 66,89       &                         & 87,03         &                         & 109,6        &                        \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Carga em delta}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{fig2}
+\caption{Ligação em triângulo em sequência de fases abc (convencional).}
+\label{fig2}
+\end{figure}
+
+\section{Análise sobre segurança} % 2,5%
+Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
+É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
+Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
+
+\section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
+\begin{enumerate}[1)]
+\item Verifique a relação entre as tensões de fase (VF)  e de linha (VL) obtidas a partir da montagem da Figura \ref{fig1}\\
+\textbf{Resposta.} Da primeira montagem tem-se $V_L=100,3$ e $V_F=59,06$, do que se confirma a relação $V_L=V_F\cdot\sqrt{3}$ da Figura \ref{carga-estrela}.
+
+\item Para o sistema equilibrado da Figura \ref{fig1}, a soma das correntes no ponto “n” deveria ser igual ou muito próximo a zero para as tensões senoidais aplicadas. Isto aconteceu? Explique. \\
+\textbf{Resposta.} Na primeira montagem, o amperímetro analógico constatou-se que a corrente que vai para o neutro $A_N\sim 0$. 
+
+\end{enumerate}
+\section{Simulação computacional} % (10%);
+\subsection{Carga em conexão estrela}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{sim1}
+\caption{Circuito da carga em conexão estrela.}
+\label{sim1}
+\end{figure}
+
+\subsection{Carga em conexão delta}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{sim2}
+\caption{Circuito da carga em conexão delta.}
+\label{sim2}
+\end{figure}
+
+\section{Conclusões} % (no mínimo 10 linhas) (5%);
+
+
+\newpage
+\begin{thebibliography}{9} 
+% Introdução
+\bibitem{ph}
+    P. H. O. Rezende,
+    "Circuitos Polifásicos Equilibrados", 2018.
+
+\bibitem{irwin}
+    J. D. Irwin,
+    “Análise de Circuitos Em Engenharia”, Pearson, $4^a$ Ed., 2000.
+
+\bibitem{boylestad}
+    R. L. Boylestad,
+    “Introdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
+
+\bibitem{safe}
+    SafetyTrabi,
+    “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
+ Disponível em:
+ \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
+
+
+\end{thebibliography}
+\end{document}
