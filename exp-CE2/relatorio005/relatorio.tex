@@ -1,0 +1,339 @@
+\documentclass[a4paper,12pt,oneside,openany,table,xcdraw]{article}
+
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{indentfirst}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, graphicx, enumerate}
+\usepackage{float, verbatim}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{makeidx} % Para o sumário
+\usepackage{geometry}
+
+\geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
+\setlength{\parindent}{1.0cm}
+
+\begin{document}
+\newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
+\newcommand{\thecourse}{FEELT}
+\newcommand{\thetitle}{CIRCUITOS TRIFÁSICOS EQUILIBRADOS - MEDIDA DE POTÊNCIA COM 2 WATTÍMETROS }
+\newcommand{\thetype}{Relatório da Disciplina de Experimental de Circuitos Elétricos II}
+\newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
+\newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
+\centering11811ETE001}
+\newcommand{\theadvisor}{Prof. Wellington Maycon Santos Bernardes}
+\newcommand{\thecity}{Uberlândia}
+
+\thispagestyle{empty}\input{CapaABNT}
+
+%% Comeca o documento !
+
+\onehalfspacing
+\tableofcontents % sumário
+\newpage
+
+\section{Objetivos} % 2,5%
+ Verificar experimentalmente os conceitos teóricos sobre os métodos utilizados para medir a potência ativa trifásica das cargas. Além disso, comparar os resultados com os valores obtidos utilizando uma análise teórica. 
+
+\section{Introdução teórica} % 5%
+As primeiras linhas de transmissão de energia elétrica, que surgiram no final do século XIX, destinavam-se exclusivamente ao suprimento do sistema de iluminação, pequenos motores e sistema de tração (railway) e operavam em corrente contínua a baixa magnitude de tensão. A geração e transmissão usando os mesmos níveis de tensão das diferentes cargas restringiu a distância entre a planta de geração e os consumidores e a tensão da geração em corrente contínua não podia ser facilmente aumentada para a transmissão a grandes distâncias \cite{ph}. 
+
+Para realizar uma transmissão de energia elétrica a grandes distâncias era necessário um nível elevado de magnitude de tensão, e essa tecnologia de conversão para corrente contínua não era viável naquela época. Por isso, foi necessária a mudança da transmissão de corrente continua para corrente alternada, devido principalmente aos seguintes motivos:
+
+\begin{itemize}
+\item O desenvolvimento e uso dos transformadores, permitindo a transmissão a grandes distâncias usando altos níveis de tensão, reduzindo as perdas elétricas dos sistemas e a queda de tensão.
+\item A elevação/redução da magnitude de tensão é realizado com uma alta eficiência e a baixo custo através dos transformadores.
+\item Surgimento de geradores e motores em corrente alternada, construtivamente mais simples, eficientes e baratos que as máquinas em corrente contínua
+\end{itemize}
+
+Assim, a corrente alternada seria a melhor alternativa para a transmissão de energia elétrica à grandes distâncias. Além disso, introduz-se o conceito de gerador trifásico, ilustrado pela Figura \ref{gerador}, no qual três bobinas defasadas em 120 graus elétricos no espaço geram um conjunto de três tensões de mesmo valor máximo, defasadas de 120 graus elétricos no tempo.
+
+Um gerador trifásico aproveita melhor o espaço físico, resultando em um gerador de tamanho reduzido e mais barato, comparado com os geradores monofásicos de igual potência, ademais são superiores aos motores monofásicos em rendimento, tamanho, fator de potência e capacidade de sobrecarga.
+Um sistema monofásico precisa de dois condutores; e um sistema trifásico (perfeitamente balanceado) precisa de três condutores, porém conduz três vezes mais potência. Na prática, devido a pequenos desequilíbrios inevitáveis, os sistemas trifásicos contam com um quarto condutor, o neutro.
+
+É possivel conectar as bobinas de gerador trifásicos em configuração estrela ou delta, assim como a carga em \emph{Conexão em estrela} (\ref{estrela}) ou  \emph{Conexão em delta/triângulo} (\ref{delta}).
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{motor3phi}
+\caption{Geração de tensão alternada trifásica.}
+\label{gerador}
+\end{figure}
+
+\subsection{Carga em conexão em estrela} \label{estrela}
+A carga na configuração estrela é caracterizada por ter uma tensão fase-neutro entre seus terminais e corrente de linha igual à corrente de fase ($I_L=I_F$). Ainda é possível determinar a tensão fase-fase ou de linha pela relação descrita na Figura \ref{carga-estrela} \cite{irwin}. 
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{carga-estrela}
+\caption{Relação entre tensão de linha e fase numa carga em estrela.}
+\label{carga-estrela}
+\end{figure}
+
+\subsection{Carga em conexão em delta ou triângulo} \label{delta}
+Já para a carga na configuração delta, ou triângulo, em seus terminais há uma tensão de linha igual a tensão de fase \cite{irwin}. Nesse caso, a relação entre linha e fase ocorre para a corrente, conforme descrito na Figura \ref{carga-delta}.
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{carga-delta}
+\caption{Relação entre corrente de linha e fase numa carga em delta.}
+\label{carga-delta}
+\end{figure}
+
+\section{Preparação}
+\subsection{Materiais e ferramentas} % 2,5%
+\begin{enumerate}[1 -]
+\item \emph{\textbf{Fonte:}}
+Alimentará todo o circuito. Possui frequência de $60Hz$.
+
+\item \emph{\textbf{Regulador de tensão (Varivolt):}}
+Também chamado de autotransformador, permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
+
+\item \emph{\textbf{Conectores:}}
+Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
+
+\item \emph{\textbf{Medidor eletrônico KRON Mult K:}}
+Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q) e aparente (S) do circuito. Ele também possui função de cofasímetro, instrumento elétrico que mede o fator de potência (fp, $cos\theta$) ou o ângulo da impedância $\theta$ do circuito, para um circuito com a impedância $Z = Z\angle \theta$.
+
+\item \emph{\textbf{Amperímetro analógico AC:}}
+Instrumento utilizado para acompanhar visualmente o aumento da corrente.
+
+\item \emph{\textbf{Reatores de 160 mH:}}
+Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $L=160mH$ e $R_L=3,8\Omega$.
+
+\item \emph{\textbf{Resistores de $50\Omega$:}}
+Foram utilizados 3, para compor a carga do circuito trifásico.
+\end{enumerate}
+
+\subsection{Montagem} % 2,5%
+
+\subsubsection{Carga em estrela}
+ Efetue a montagem indicada na Figura 1 abaixo, alimentando os pontos \textbf{a b c n} através de uma fonte alternada trifásica em seqüência de fases \textbf{abc} (ou \textbf{direta}), aplicando uma tensão entre linhas $V_L$ igual a $100 V$, em frequência de 60 Hz. Os parâmetros da carga são: $R = 50 \Omega$; $R_L = 3,8\Omega$; $L = 160 mH$. Na figura \ref{fig1}, $V_L$ representa um voltímetro conectado para medir a tensão entre linhas; $A_L$ representa um amperímetro conectado para medir a corrente de linha (igual a de fase); $W_i$ representa um wattímetro analógico conectado para medir a potência ativa da carga. Os valores dos instrumentos devem ser anotados na Tabela \ref{tab1}.  
+
+Utilize os medidores digitais \emph{Kron} para medida de corrente e tensão ($TL = 0048 – 3\phi$ sem Neutro). Além disso, compare os valores das potências entre \emph{Kron} e os wattímetros analógicos. \textbf{Atente-se a escala do wattímetro (corrente e tensão)}. 
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{fig1}
+\caption{Ligação em estrela em sequência de fases abc.}
+\label{fig1}
+\end{figure}
+Observa-se pelo desenho que não é possível obter a tensão e corrente de todas as fases de forma simultânea, sendo necessária a mudança dos medidores $V_L$ e $V_F$ para a obtenção dos demais valores. Para isso, utilizaremos o medidor trifásico eletrônico \textit{Kron Mult-K} (wattímetro),  usando as entradas $V_A$, $V_B$, $V_C$, $V_N$ para as medidas de tensão e $I_A$, $I_B$ e $I_C$ para as medidas de corrente, assim sendo, realizando as ligações apropriadas. Como o \textit{Kron} não mede a corrente de neutro, então é necessário um amperímetro analógico AC entre $n$ e $n’$.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros1}
+\end{figure}
+
+Com o \textit{Kron Mult-K} configurado com os parâmetros acima, foi possível obter as grandezas das Tabelas \ref{tab1} e \ref{tab2}, sendo a primeira com neutro conectado e a segunda sem neutro conectado.
+
+%% TABELA %%
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela com neutro conectado.} \label{tab1}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $V_{F} (V)$ & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$       & $Q_{F} (Var)$ & $Q_{T} (Var)$     & $S_{F} (VA)$ & $S_{T} (VA)$      \\ \hline
+100,3       & 59,6           & 0,636       & \multirow{3}{*}{0} & 22,42       & \multirow{3}{*}{67,26} & 28,4          & \multirow{3}{*}{85,2} &  36,18            & \multirow{3}{*}{108,5} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,3       & 59,6           &  0,636           &                    & 22,42       &                   & 28,4              &                   &   36,18            &                   \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,3       & 59,6           &   0,636          &                    & 22,42       &                   &  28,4             &                   & 36,18              &                   \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela sem neutro conectado.} \label{tab2}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $V_{F} (V)$  & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$       & $Q_{F} (Var)$ & $Q_{T} (Var)$     & $S_{F} (VA)$ & $S_{T} (VA)$      \\ \hline
+100,4       & 57,9           & 0,627       & \multirow{3}{*}{-} & 22,64       & \multirow{3}{*}{67,92} & 28,29         & \multirow{3}{*}{84,87} &  36,23            & \multirow{3}{*}{108,7} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,9           & 0,627              &                    & 22,64       &                   &  28,29             &                   &   36,23                      &                   \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,9           &  0,627             &                    & 22,64       &                   &  28,29             &                   &  36,23                       &                   \\ \hline
+\end{tabular}
+\end{table}
+
+Agora, conecte somente $I_A$, $V_A$ e $V_N$ do medidor eletrônico \emph{Kron Mult-K}, e encontre os valores da Tabela \ref{tab3} e \ref{tab4} com a seguinte configuração: 
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros2}
+\end{figure}
+
+
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela com neutro conectado (0003 - sistema equilibrado).} \label{tab3}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $V_{F} (V)$ & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$           \\ \hline
+100,4       & 57,96          & 0,636       & \multirow{3}{*}{0} & 67,38       & \multirow{3}{*}{202,14} & 87,46         & \multirow{3}{*}{262,38} & 110,7        & \multirow{3}{*}{332,1} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,96          & 0,636       &                    & 67,38       &                         & 87,46         &                         & 110,7        &                        \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,4       & 57,96          & 0,636       &                    & 67,38       &                         & 87,46         &                         & 110,7        &                        \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em estrela sem neutro conectado (0003 - sistema equilibrado).} \label{tab4}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $V_{F} (V)$ & $I_{L} (A)$ & $I_{N} (A)$        & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$           \\ \hline
+100,0       & 57,74          & 0,634       & \multirow{3}{*}{-} & 66,89       & \multirow{3}{*}{200,67} & 87,03         & \multirow{3}{*}{261,90} & 109,6        & \multirow{3}{*}{328,8} \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,0       & 57,74          & 0,634       &                    & 66,89       &                         & 87,03         &                         & 109,6        &                        \\ \cline{1-3} \cline{5-5} \cline{7-7} \cline{9-9}
+100,0       & 57,74          & 0,634       &                    & 66,89       &                         & 87,03         &                         & 109,6        &                        \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Carga em delta}
+Agora observe a montagem indicada na Figura \ref{fig2} abaixo, com a mesma
+impedância anterior, só que agora com a carga conectada em triângulo. Na Figura \ref{fig2}, $V_L$
+representa um voltímetro conectado para medir a tensão entre linhas; $A_F$ representa um
+amperímetro conectado para medir a corrente de fase; $A_L$ representa um amperímetro
+conectado para medir a corrente de linha.
+
+Observa-se também, como no caso anterior, é necessária a mudança dos
+medidores $V_L$ para a obtenção dos demais valores de tensão de linha. Para isso,
+utilizaremos o medidor trifásico eletrônico \emph{Kron Mult-K}, sendo as entradas $V_A$, $V_B$ e $V_C$
+para as medidas de tensão e $I_A$, $I_B$ e $I_C$ para as medidas de corrente, realizando as
+ligações apropriadas. A corrente $A_F$ será obtida usando o amperímetro analógico.
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros3}
+\end{figure}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{fig2}
+\caption{Ligação em triângulo em sequência de fases abc (convencional).}
+\label{fig2}
+\end{figure}
+
+Os valores dos instrumentos devem ser anotados na Tabela \ref{tab5}.
+
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em delta ($TL=0048$ - Trifásico sem neutro).} \label{tab5}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $I_{F} (A)$           & $I_{L} (A)$ & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$            & Fator de potência \\ \hline
+100,20      & \multirow{3}{*}{1,10} & 1,897       & 67,70       & \multirow{3}{*}{201,20} & 85,75         & \multirow{3}{*}{256,80} & 109,20       & \multirow{3}{*}{326,40} & 0,619             \\ \cline{1-1} \cline{3-4} \cline{6-6} \cline{8-8} \cline{10-10} 
+100,00       &                       & 1,889       & 66,44       &                         & 86,20         &                         & 108,90       &                         & 0,610             \\ \cline{1-1} \cline{3-4} \cline{6-6} \cline{8-8} \cline{10-10} 
+100,30      &                       & 1,879       & 67,10       &                         & 84,80         &                         & 108,30       &                         & 0,621             \\ \hline
+\end{tabular}
+\end{table}
+
+Agora, conecte somente $I_A$, $I_C$, $V_A$, $V_B$ e $V_C$ (desconecte $I_B$) do medidor
+eletrônico \emph{Kron Mult-K}, e encontre os valores da Tabela \ref{tab6} com a seguinte
+configuração:
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=13.5cm]{parametros4}
+\end{figure}
+
+\begin{table}[H]\scriptsize
+\centering
+\def\arraystretch{1.35}
+\captionsetup{font=scriptsize}
+\captionof{table}{Conexão em delta ($TL=0049$ - Trifásico sem neutro - equilibrado).} \label{tab6}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{L} (V)$ & $I_{F} (A)$           & $I_{L} (A)$ & $P_{F} (W)$ & $P_{T} (W)$             & $Q_{F} (Var)$ & $Q_{T} (Var)$           & $S_{F} (VA)$ & $S_{T} (VA)$            & Fator de potência \\ \hline
+100,20      & \multirow{3}{*}{1,10} & 1,895       & 67,65       & \multirow{3}{*}{201,00} & 85,76         & \multirow{3}{*}{256,80} & 109,20       & \multirow{3}{*}{326,10} & 0,617             \\ \cline{1-1} \cline{3-4} \cline{6-6} \cline{8-8} \cline{10-10} 
+99,85       &                       & 1,885       & 66,22       &                         & 86,14         &                         & 108,70       &                         & 0,609             \\ \cline{1-1} \cline{3-4} \cline{6-6} \cline{8-8} \cline{10-10} 
+100,00      &                       & 1,873       & 67,09       &                         & 84,88         &                         & 108,20       &                         & 0,622             \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Análise sobre segurança} % 2,5%
+Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
+É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
+Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
+
+\section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
+\begin{enumerate}[1)]
+\item Para os sistemas das figuras 1 e 2, ao ser ligado, o que aconteceu com os wattímetros W1 e W2 quando a sequência de fases foi invertida? Algum deles marcou valor negativo? Explique. Encontre as potências usando as leituras. \\
+\textbf{Resposta.} 
+
+\item  Encontre o valor das leituras dos wattímetros usando as expressões analíticas. \\
+\textbf{Resposta.} 
+
+\item  Mostre através de um diagrama fasorial que de acordo com as polaridades das bobinas de corrente e de potencial a leitura do wattímetro analógico é positiva para um ângulo $| \theta_Z| < 60^\circ$. Mostre que a leitura será negativa se $| \theta_Z| > 60^\circ$. \\
+\textbf{Resposta.} 
+
+\item  Mostre através de um diagrama fasorial que se a polaridade de uma das bobinas não for seguida a leitura terá um sinal oposto ao correto.  \\
+\textbf{Resposta.} 
+
+\end{enumerate}
+
+\newpage
+\section{Simulação computacional} % (10%);
+\subsection{Carga em conexão estrela}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{sim1}
+\caption{Circuito da carga em conexão estrela.}
+\label{sim1}
+\end{figure}
+
+\subsection{Carga em conexão delta}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14cm]{sim2}
+\caption{Circuito da carga em conexão delta.}
+\label{sim2}
+\end{figure}
+
+\section{Conclusões} % (no mínimo 10 linhas) (5%);
+Neste experimento investiga-se as acerca de circuitos trifásicos equilibrados e suas particularidades em configuração delta e estrela. A análise experimental permitiu confirmar relações teóricas como $V_L=V_F\cdot\sqrt{3}$ para uma carga em estrela e $I_L = \sqrt{3}\cdot I_F$ para uma carga em delta. Além de verificar que para ambas configurações as potências (real e reativa) são as mesmas, devido as às duas relações teóricas já mencionadas apresentarem certa simetria.
+
+Outro ponto importante verificado neste experimento é a inexistência de corrente no neutro para um circuito equilibrado. Assim, não é correto conferir corrente de curto-circuito pela corrente no neutro, já que idelamente tem valor nulo. As principais causas para a existência de corrente no neutro são: circuito em desequilíbrio, ou seja, as cargas possuem distintos valores de impedância e a LKC indica que haverá corrente no neutro; mal contato numa das fases ou rompimento dos conectores, nesse caso aparece corrente no neutro que será a soma fasorial das correntes nas fases que restaram, logo de módulo $I_F$, pois estão defasadas de $120^\circ$.  
+
+\newpage
+\begin{thebibliography}{9} 
+% Introdução
+\bibitem{ph}
+    P. H. O. Rezende,
+    "Circuitos Polifásicos Equilibrados", 2018.
+
+\bibitem{irwin}
+    J. D. Irwin,
+    “Análise de Circuitos Em Engenharia”, Pearson, $4^a$ Ed., 2000.
+
+\bibitem{boylestad}
+    R. L. Boylestad,
+    “Introdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
+
+\bibitem{safe}
+    SafetyTrabi,
+    “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
+ Disponível em:
+ \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
+
+
+\end{thebibliography}
+\end{document}
