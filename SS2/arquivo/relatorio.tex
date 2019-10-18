@@ -1,169 +1,52 @@
-\documentclass{article}[a4paper,12pt,twoside]
-\usepackage[utf8]{inputenc}
-\usepackage[brazil]{babel}
-\usepackage{mathtools}
-\usepackage{graphicx}
-\usepackage{float}
+\documentclass[a4paper,12pt,oneside,openany,table,xcdraw]{article}
+
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{indentfirst}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, graphicx, enumerate}
+\usepackage{float, verbatim}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{makeidx} % Para o sumário
 \usepackage{geometry}
-\usepackage{listings}
 
-\title{Trabalho Sinais e Sistemas 2}
-\author{Miguel Ravagnani de Carvalho, Vinícius Freitas Rodrigues}
-\date{}
+\usepackage{mathtools,listings}
 
-\newgeometry{textwidth=15cm,textheight=(22cm)}
+\geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
+\setlength{\parindent}{1.0cm}
 
 \begin{document}
+\newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
+\newcommand{\thecourse}{FEELT}
+\newcommand{\thetitle}{LISTA DE EXERCÍCIOS EXTRAS}
+\newcommand{\thetype}{Relatório da Disciplina de Sinais e Sistemas 2}
+\newcommand{\theproftitle}{Doutor em Engenharia Elétrica com ênfase em Telecomunicações}
+\newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
+\centering11811ETE001}
+\newcommand{\theadvisor}{Prof. Alan Petrônio Pinheiro}
+\newcommand{\thecity}{Uberlândia}
 
-\begin{titlepage}
-    \begin{center}
-        {\large Universidade Federal de Uberlândia}\\[0.2cm]
-        {\large Faculdade de Engenharia Elétrica}\\[0.2cm]
-        {\large Sinais e Sistemas 2}\\[5.5cm]
-        {\bf \huge TRABALHO DE SSIS 2}\\[5.1cm]
-    \end{center}
-    {\large Alunos: Miguel Ravagnani de Carvalho e Vinícius Freitas Rodrigues}\\
-    {\large Professor: Éderson Rosa da Silva}\\[5.1cm]
-    \begin{center}
-        {\large Uberlândia}\\
-        {\large 2019}
-    \end{center}
-\end{titlepage}
+\thispagestyle{empty}\input{CapaABNT}
 
+%% Comeca o documento !
 
-\maketitle
-\tableofcontents
+\onehalfspacing
+\tableofcontents % sumário
 \newpage
 
 \section{Exercício 1}
-Para a resolução do exercício 1 foram usados os códigos implementados pelo professor no \\MATLAB. Finalmemente, foram implementados comandos para obter o que foi pedido no exercício.
-\newline
-Os códigos usados para os cáculos das Transformadas de Fourier, de suas magnitude e fases, e as transformadas inversas estão exibidas abaixo:\newline
-
-\begin{lstlisting}[language=Matlab]
-clear all;
-close all;
-clf;
-
-I = imread('lena.bmp');
-image = rgb2gray(imread('lena.bmp'));
-
-F = fftn(image);
-F_Mag = abs(F);
-Im = log(1+fftshift(F));
-F_Fase = angle(F);
-
-mag = ifftshift(ifftn(F_Mag));
-fase = ifftn(exp(1i*F_Fase));
-
-Zmag = mean(mean(F_Mag))*ones(length(F_Mag)).*exp(i*F_Fase);
-Zin1 = ifftn(Zmag);
-
-Zfas = F_Mag.*exp(i*0);
-Zin2 = ifftn(Zfas);
-
-I2 = imread('sailboat.bmp');
-image2 = rgb2gray(imread('sailboat.bmp'));
-
-F2 = fftn(image2);
-F2_Mag = abs(F2);
-F2_Fase = angle(F2);
-
-Zmag = F_Mag.*exp(i*F2_Fase);
-Zinmag = ifftn(Zmag);
-
-Zfase = F2_Mag.*exp(i*F_Fase);
-Zinfase = ifftn(Zfase);
-\end{lstlisting}
-
-\vspace{0.4cm}
-As imagens também foram exibidas conforme comandos contidos nos arquivos:
-
-\begin{lstlisting}[language = Matlab]
-
-figure(1)
-imshow(I), title('Imagem lena.bmp Original');
-figure(2)
-
-subplot(2,2,1), imshow(image), title('Imagem lena.bmp em 
-escala de cinza');
-
-subplot(2,2,2), imshow(real(Im),[]), title('Magnitude da TF
-da Imagem lena.bmp');
-
-subplot(2,2,3), imshow(uint8(mag)), title('Reconstrucao
-somente pela magnitude');
-
-subplot(2,2,4), imshow(real(fase),[]), title('Reconstrucao
-da imagem somente pela fase');
-\end{lstlisting}
+A resolução do item \textbf{a} visualiza-se na Figura \ref{scan:1a}.
 
 \begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[scale = 0.35]{a}}
-    \caption{Imagens construídas com o código disponibilizado nos arquivos do professor.}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{0.5cm}
-Para Obter as imagens foi apenas necessário usar os valores calculados pelos comandos que ja foram realizados no exercício. Para exibir as imagens foi implementado o seguinte método:
-
-\begin{lstlisting}[language=Matlab]
-    imshow(Zin1)
-    imshow(Zin2)
-    imshow(Zinmag)
-    imshow(Zinfase)
-\end{lstlisting}
-
-\newpage
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width=0.7\textwidth]{a}}
-    \caption{Reconstrução 1.}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width = 0.7\textwidth]{a}}
-    \caption{Reconstrução 2}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width = 0.7\textwidth]{a}}
-    \caption{Reconstrução 3}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width = 0.7\textwidth]{a}}
-    \caption{Reconstrução 4}
-    \label{fig:my_label}
-\end{figure}
-
-\section{Exercício 2}
-\subsection{a)}
-A partir da figura fornecida, foi possível determinar uma sequência de impulsos resultantes do processo de amostragem, de $x_p(t)$ para um período de amostragem de $T = 2ms$
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{a}
-    \caption{Gráficos de Amostragem}.
-    \label{fig:my_label}
-\end{figure}
-
-\subsection{b)}
-Sinal obtido a partir de um retentor de ordem zero (ZOH)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{a}
-    \caption{Sinal obtido a partir de um retentor}.
-    \label{fig:my_label}
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{1a}
+\caption{Resolução do item \textbf{a}.}
+\label{scan:1a}
 \end{figure}
 
 
