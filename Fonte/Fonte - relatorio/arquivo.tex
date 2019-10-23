@@ -16,6 +16,7 @@
 
 \geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
 \setlength{\parindent}{1.0cm}
+\graphicspath{{img/}}
 
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
@@ -57,7 +58,7 @@ Em fontes de alimentação chaveadas em alta frequência, a tensão de entrada t
 A seguir estão dispostas as primeiras considerações para a realização do projeto, desde a análise do circuito base por meio de simulações, até à escolha dos componentes a serem utilizados na confecção do circuito impresso.
 
 \subsection{Circuito esquemático}
-A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extraída de \cite{amp}. Ademais, para melhor comprenssão do circuito tem-se o esquemático em \ref{multsim}, do qual é posssível obter dados de simulação.
+A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extraída de \cite{amp}. Ademais, para melhor comprenssão do circuito tem-se o esquemático em \ref{sim1}, do qual é posssível obter dados de simulação. Vale ressaltar que a explicação prévia do professor foi importante para melhor entendimento do procedimento a ser realizado, sendo na Figura \ref{quadro} comtemplado parte de sua explanação.
 
 \begin{figure}[H]
 \centering
@@ -70,16 +71,24 @@ A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extra�
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{fonte}
+\includegraphics[width=16cm]{sim1}
 \caption{Circuito da fonte de alimentação em MULTSIM.}
-\label{circuito}
+\label{sim1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=16cm]{quadro}
+\caption{Explicação prévia em sala de aula.}
+\label{quadro}
 \end{figure}
 
 \subsection{Componentes}
 \begin{enumerate}[1 -]
     \item \textbf{\emph{Ponte retificadora:}} Optou-se pela ponte retificadora GBJ606, pois possui corrente máxima de 6A.
-    \item \textbf{\emph{Capacitores:}}
-    \item \textbf{\emph{Resistores:}}
+    \item \textbf{\emph{Capacitores:}} De acordo com a disponbilidade de capacitores nos principais pontos de venda de eletrônicos em Uberlândia, conseguiu-se dois capacitores de $4700\mu F$ - 100V e um capacitor de $470\mu F$ - 200V.
+    \item \textbf{\emph{Resistores:}} Foram utilizados dois resistores de 1K para re
     \item \textbf{\emph{Diodo Zener:}}
     \item \textbf{\emph{Transistores:}}
     \item \textbf{\emph{Fusíveis:}}
@@ -88,21 +97,29 @@ A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extra�
     
 \end{enumerate}
 
-\subsection{Projeto}
+\subsection{Sobre o projeto}
  
-   Ao projetar uma fonte  de forma  eficiente, alguns cuidados são necessários. Tendo como base o projeto original alguns ajustes foram realizados para modernizá-lo, como a substituição dos diodos e a sua constituição,trocando o germânio pelo silício, e os modelos de transistor utilizados. Seguindo as orientções do professor, também foram acrescentados alguns componentes.
-   Devido as mudanças realizadas no circuito, a etapa de simulação  do circuito é essencial, para verificar seu funcionamento,antes da montagem, logo também uma nova análise matematica deve ser feita para verificar o funcionamento da fonte.
-
+   Ao projetar uma fonte  de forma  eficiente, alguns cuidados são necessários. Tendo como base o projeto original, alguns ajustes foram realizados para modernizá-lo, como a substituição dos diodos e a sua constituição, trocando o germânio pelo silício, e os modelos de transistor utilizados. Seguindo as orientações do professor, também foram acrescentados alguns componentes.
    
-
-
+   Além disso, devido a mudanças realizadas no circuito, a etapa de simulação  do circuito é essencial, para verificar seu funcionamento, antes da montagem. Assim, é ideal que uma nova análise matemática seja realizada a fim de verificar o funcionamento da fonte com parâmetros reais, já que na engenharia quase nenhum processo é exato e depende de fatores ambientais e humanos.
+ 
 \subsection{Orçamento}
 
 Para realizar a construção da fonte, vários componentes foram necessarios, a maioria desses sendo adquirida no centrida no Centro  Eletronico , com exceção dos capacitores de 4700 uF , ambos aquisicionados em diferentes lojas em Uberlândia , além do diodo Zener.
 Todas as despesas totalizam , oq eu se encontra dentro do orçamento simulado pelo professor durante a primeira  as primeiras orientações para o projeto.
+
 \newpage
 \section{Simulação}
-%MULTSIM tbm pode ser
+Para a realização de cada etapa foi essencial a verificação de tensão e correntes máximas sobre os componentes a fim de evitar um curto-circuito.
+Por exemplo, antes de realizar a compra dos capacitores foi necessária a verificação da tensão máxima que este deveria suportar, a qual observa-se na Figura \ref{sim2}. Assim, verificou-se que seriam necessários capacitores que suportassem 80V ou mais, porém devido à disponibilidade escassa de capacitores na medida à risca, optou-se por dois capacitores 100V ($4700\mu F$) e um, 200V ($470\mu F$). Note que, já que a fonte não possui carga conectada, foi suposota uma carga de valor baixo de $0,5 \Omega$.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=16cm]{sim2}
+\caption{Tensões máximas sobre os capacitores.}
+\label{sim2}
+\end{figure}
 
 \newpage
 \section{Funcionamento do circuito}
@@ -154,6 +171,8 @@ Regualação para 62 V, PARAMETROS DO DIODO ZENER.
 
 De linha e de carga.
 
+\section{Testes e ensaios}
+Não foi possível ainda a realização desta etapa, devido a diversos imprevistos e falta de organização.
 
 
 \newpage
