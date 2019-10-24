@@ -21,7 +21,7 @@
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
-\newcommand{\thetitle}{FONTE DE ALIMENTAÇÃO LINEAR REGULADA}
+\newcommand{\thetitle}{FONTE DE ALIMENTAÇÃO LINEAR REGULADA + AMPLIFICADOR}
 \newcommand{\thetype}{Relatório da Disciplina de Eletrônica Analógica I}
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
 \newcommand{\thestudent}{Ana Júlia Costa Santana \_ 
@@ -63,7 +63,7 @@ A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extra�
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{fonte}
+\includegraphics[width=15cm]{fonte}
 \caption{Circuito da fonte de alimentação \cite{amp}.}
 \label{circuito}
 \end{figure}
@@ -71,7 +71,7 @@ A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extra�
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{sim1}
+\includegraphics[width=15cm]{sim1}
 \caption{Circuito da fonte de alimentação em MULTSIM.}
 \label{sim1}
 \end{figure}
@@ -79,7 +79,7 @@ A Figura \ref{circuito} mostra o circuito no qual este projeto se baseia, extra�
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{quadro}
+\includegraphics[width=15cm]{quadro}
 \caption{Explicação prévia em sala de aula.}
 \label{quadro}
 \end{figure}
@@ -115,7 +115,7 @@ Por exemplo, antes de realizar a compra dos capacitores foi necessária a verifi
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{sim2}
+\includegraphics[width=15cm]{sim2}
 \caption{Tensões máximas sobre os capacitores.}
 \label{sim2}
 \end{figure}
@@ -125,7 +125,7 @@ Agora pensando numa carga de $8 \Omega$ (do amplificador a ser conectado) obtem-
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{com-carga}
+\includegraphics[width=15cm]{com-carga}
 \caption{Tensões e correntes para uma carga de $8\Omega$.}
 \label{com-carga}
 \end{figure}
@@ -136,7 +136,7 @@ Para isso, foi pensado num valor de resistência que conferisse pequeno tempo de
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{sim3}
+\includegraphics[width=15cm]{sim3}
 \caption{Tensões e correntes com resistores de descarga de capacitor conectados.}
 \label{sim3}
 \end{figure}
@@ -191,16 +191,31 @@ Considerndo os capacitores de 4700uF e um tempo de descarga de 10 s, para uma te
 
 \subsection{Regulação}
 
-Regulação para 62 V, PARAMETROS DO DIODO ZENER.
+Após a retificação e a filtragem,ocorre a etapa de regulação, objetivando manter uma tensão de saída constnate,mesmo com uma carga variável.O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
 
-De linha e de carga.
+O comportamento do zener é observado para dois processos, a regulação de linha, que mostra acapacidade da fonte de manter a tensão de saída diante de variações na tensão de entrada.
+
+Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcioandas ao resistor limitador, mostrando serem válidas as equações abaixo.
+
+\begin{equation}
+I_{S}  = I_{Z} +I_{R}  
+\end{equation}
+\begin{equation}
+V_{S}  = V_{in} - V_{Z}
+\end{equation}
+
+Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de sída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
+\begin{equation}
+I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
+\end{equation}
+Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
 
 \section{Finalização da construção da PCB}
 Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{isis}
+\includegraphics[width=15cm]{isis}
 \caption{Projeto ISIS da fonte.}
 \label{isis}
 \end{figure}
@@ -208,7 +223,7 @@ Utilizando todos os conceitos já descritos foi possível organizar os component
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{ares}
+\includegraphics[width=15cm]{ares}
 \caption{Projeto ARES da fonte.}
 \label{ares}
 \end{figure}
@@ -216,7 +231,7 @@ Utilizando todos os conceitos já descritos foi possível organizar os component
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{bottom}
+\includegraphics[width=15cm]{bottom}
 \caption{Parte inferior do placa.}
 \label{bottom}
 \end{figure}
@@ -224,7 +239,7 @@ Utilizando todos os conceitos já descritos foi possível organizar os component
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=16cm]{top}
+\includegraphics[width=15cm]{top}
 \caption{Parte superior da placa.}
 \label{top}
 \end{figure}
