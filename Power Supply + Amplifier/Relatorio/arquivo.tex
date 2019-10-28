@@ -113,7 +113,91 @@ Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e �
 Transforma a tensão contínua pulsante em uma tensão contínua quase perfeita. Mas essa tensão contínua apresenta, quando a fonte é ligada a uma carga, uma oscilação chamada Tensão de Ripple. Essa etapa é realizada pelos capacitores encontrados eno circuito que devido a sua composição, ao sofrer o processo de carga e descarga diminuem a oscilação da tensão já que a tensão fornecida ao circuito agora nos momentos de pulso é suprida pela descarga do capacitor. Porém como abprdado anteriormente, resta ainda o riplle e para eliminar esse fator incômodo existe ainda outra etapa...
 
 \subsubsection{Regulação}
-Esta última etapa tem por objetivo eliminar por completo a tensão de oscilação.  É claro que não elimina totalmente, mas remove boa parte. Esta última etapa consiste em regulação com diodo zener, com emissor zener, existem também alguns circuitos com transistores e, por último, reguladores em CI, como a família 78XX para tensões positivas e 79XX para tensões negativas.
+Após a retificação e a filtragem,ocorre a etapa de regulação, com o objetivo de eliminar definitivamente a tensão de oscilação, mesmo com uma carga variável. O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
+
+O comportamento do zener é observado para dois processos, a regulação de linha, que mostra acapacidade da fonte de manter a tensão de saída diante de variações na tensão de entrada.
+
+Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcioandas ao resistor limitador, mostrando serem válidas as equações abaixo.
+
+\begin{equation}
+I_{S}  = I_{Z} +I_{R}  
+\end{equation}
+\begin{equation}
+V_{S}  = V_{in} - V_{Z}
+\end{equation}
+
+Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de sída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
+\begin{equation}
+I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
+\end{equation}
+Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
+
+
+\subsubsection{Resistor para descarga do capacitor} \label{descarga}
+Para segurança do circuito,e daqueles que forem manejá-lo, resistores foram acrescentados em paralelo com os capacitores, para que, ao efetuar o desligamento da placa os capacitores pudessem ser descarregados em segurança.
+Para projetar a resistência necessária nos capacitores, as equações conhecidas para descarga num capacitor foram aplicadas.
+
+\begin{equation}
+t= RC \cdot ln\bigg( 1 - \frac{V_{C}}{V_{in}} \bigg) 
+\end{equation}
+
+Considerndo os capacitores de 4700uF e um tempo de descarga de 10 s, para uma tensão média entre os dois capacitores, $V_{C}$ de $64,85 V$ (de acordo com simulação) e $V_{in}$ de 80 $V_{pp}$, a resitência mínima necessária é de $1,3 k\Omega$, para suprir esses requisitos mínimos, foi utilizado um reistor de $1,8 k\Omega$ de $5W$. 
+
+
+\subsection{Finalização e considerações sobre a PCB}
+
+\subsubsection{Espessura da linha}
+Ao projetar a plca de circuito impresso. Um cuidado maior com relação as trilhas precisa ser tomado, para que não haja problemas quanto a passagem de corrente, e para otimizar a dissipção do calor na placa. 
+Para escolher uma espessura de linha que cumprisse tais propósitos, utilizamos o equacionamento de acordo com a norma IPC-2221, que através de sua curva define as constantes k, b e c que são utilizadas no cálculo da espessura da trilha mais adequada.
+Iniciando pelo cálculo da área temos:
+\begin{equation}
+A [\mathit{th^{2}}] = \Bigg(\dfrac{I}{k \cdot (Temp-Rise [deg. C])^{b}}\Bigg)^{\frac{1}{c}}
+ \end{equation}
+ \vspace{0.3cm}
+
+E em sequência a largura é dada:
+
+\begin{equation}
+L [\mathit{th}] = \dfrac{A}{Espessura [oz] \cdot 1,378}
+ \end{equation}
+\vspace{0.3cm}
+
+Considerando  $k = 0,048$, $b = 0,44$, $c = 0,725$ e a placa de fenolite de \emph{1 OZ}, e uma variação de temperatura de aproximadamente $10^{\circ}C$, descobriu-se um valor para a espessura das linhas de aproximadamente $90 th$, o qual foi utilizado na maioria das trilhas do projeto.
+
+
+\subsubsection{Projeto final no \emph{PROTEUS}}
+Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{isis}
+\caption{Projeto ISIS da fonte.}
+\label{isis}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{ares}
+\caption{Projeto ARES da fonte.}
+\label{ares}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{bottom}
+\caption{Parte inferior do placa.}
+\label{bottom}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{top}
+\caption{Parte superior da placa.}
+\label{top}
+\end{figure}
 
 \subsection{Testes e ensaios} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fazer!
 \subsubsection{Regulação de linha}
@@ -177,6 +261,15 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
 }
 \end{table}
 
+\newpage
+\section{Finalização do projeto: Fonte + Circuito amplificador}
+%%%% ideia: chave liga e desliga e caixinha
+
+\newpage
+\section{Conclusões}
+%%%% ideia: chave liga e desliga e caixinha
+
+
 
 \begin{comment}
 \section{Circuito esquemático}
@@ -189,9 +282,7 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
     \item \textbf{\emph{Diodo Zener:}} Utlizado na regulação foi optado pelo diodo zener 1N4759.
     \item \textbf{\emph{Transistores:}} Foram utilizados TIP35C (100V) \cite{TIP35} e BD139 \cite{BD139}.
     \item \textbf{\emph{Fusível:}} Foi deduzido pela simulação que seria adequado um fusível de 4A ou até 2A nessa fase inicial, uma vez que já que não há carga conectada a corrente é nula, pois não é exigida pela carga. 
-
 \end{enumerate}
-
 
 
 \section{Simulação}
@@ -228,96 +319,6 @@ Para isso, foi pensado num valor de resistência que conferisse pequeno tempo de
 \section{Funcionamento do circuito}
 A tensão de entrada é primeiramente rebaixada de $220V/127V$ para $56V$ com auxílio do regulador de tensão (também chamado de \emph{varivolt}). Assim, obter-se-á uma tensão senoidal de menor amplitude que ainda será convertida em contínua com intuito de ser utilizada para alimentar o amplificador.
 \end{comment}
-
-\newpage
-\section{Memória de Cálculo}
-
-\subsection{Espessura da linha}
-
-Ao projetar a plca de circuito impresso. Um cuidado maior com relação as trilhas precisa ser tomado, para que não haja problemas quanto a passagem de corrente, e para otimizar a dissipção do calor na placa. 
-Para escolher uma espessura de linha que cumprisse tais propósitos, utilizamos o equacionamento de acordo com a norma IPC-2221, que através de sua curva define as constantes k, b e c que são utilizadas no cálculo da espessura da trilha mais adequada.
-Iniciando pelo cálculo da área temos:
-\begin{equation}
-A [\mathit{th^{2}}] = \Bigg(\dfrac{I}{k \cdot (Temp-Rise [deg. C])^{b}}\Bigg)^{\frac{1}{c}}
- \end{equation}
- \vspace{0.3cm}
-
-E em sequência a largura é dada:
-
-\begin{equation}
-L [\mathit{th}] = \dfrac{A}{Espessura [oz] \cdot 1,378}
- \end{equation}
-\vspace{0.3cm}
-
-Considerando  $k = 0,048$, $b = 0,44$, $c = 0,725$ e a placa de fenolite de \emph{1 OZ}, e uma variação de temperatura de aproximadamente $10^{\circ}C$ , descobriu-se um valor para a espessura das linhas de aproximadamente $90 th$, o qual foi utilizado na maioria das trilhas do projeto.
-
-
-\subsection{Resistor de Descarga} \label{descarga}
-
-Para segurança do circuito,e daqueles que forem manejá-lo, resistores foram acrescentados em paralelo com os capacitores, para que, ao efetuar o desligamento da placa os capacitores pudessem ser descarregados em segurança.
-Para projetar a resistência necessária nos capacitores, as equações conhecidas para descarga num capacitor foram aplicadas.
-
-\begin{equation}
-t= RC \cdot ln\bigg( 1 - \frac{V_{C}}{V_{in}} \bigg) 
-\end{equation}
-
-Considerndo os capacitores de 4700uF e um tempo de descarga de 10 s, para uma tensão média entre os dois capacitores, $V_{C}$ de $64,85 V$ (de acordo com simulação) e $V_{in}$ de 80 $V_{pp}$, a resitência mínima necessária é de $1,3 k\Omega$, para suprir esses requisitos mínimos, foi utilizado um reistor de $1,8 k\Omega$ de $5W$. 
-
-
-\subsection{Regulação}
-
-Após a retificação e a filtragem,ocorre a etapa de regulação, objetivando manter uma tensão de saída constnate,mesmo com uma carga variável.O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
-
-O comportamento do zener é observado para dois processos, a regulação de linha, que mostra acapacidade da fonte de manter a tensão de saída diante de variações na tensão de entrada.
-
-Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcioandas ao resistor limitador, mostrando serem válidas as equações abaixo.
-
-\begin{equation}
-I_{S}  = I_{Z} +I_{R}  
-\end{equation}
-\begin{equation}
-V_{S}  = V_{in} - V_{Z}
-\end{equation}
-
-Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de sída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
-\begin{equation}
-I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
-\end{equation}
-Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
-
-\section{Finalização da construção da PCB}
-Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{isis}
-\caption{Projeto ISIS da fonte.}
-\label{isis}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{ares}
-\caption{Projeto ARES da fonte.}
-\label{ares}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{bottom}
-\caption{Parte inferior do placa.}
-\label{bottom}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{top}
-\caption{Parte superior da placa.}
-\label{top}
-\end{figure}
 
 
 \newpage
