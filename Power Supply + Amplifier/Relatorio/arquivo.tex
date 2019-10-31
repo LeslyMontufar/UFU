@@ -22,7 +22,7 @@
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
-\newcommand{\thetitle}{FONTE LINEAR REGULADA + AMPLIFICADOR}
+\newcommand{\thetitle}{FONTE LINEAR REGULADA + CIRCUITO AMPLIFICADOR}
 \newcommand{\thetype}{Relatório da Disciplina de Eletrônica Analógica I}
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
 \newcommand{\thestudent}{Ana Júlia Costa Santana \_ 
@@ -49,8 +49,8 @@ O projeto a ser destrinchado em cálculos e demostrações é retirado do materi
 
 Já o \textbf{\textit{circuito amplificador}}, discutido na Seção \ref{amp}, pode e deve ser realizado com maior empenho, devido à experiência adquirida durante a realização da fonte. 
 
-Na seção 
-% A importancia da fonte
+Na Seção \ref{fonte} são discutidos as características da fonte: componentes, memória de cálculo, simulação ...
+A Seção \ref{amp} é subdividida de forma análoga ... 
 
 \newpage
 \section{Fonte de Alimentação Linear Regulada} \label{fonte}
@@ -67,14 +67,11 @@ Com intuito de realizar primeiramente o circuito que alimentará o circuito ampl
 \end{figure}
 \vspace{0.4cm}
 
-A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análise do circuito mediante um simulador, visto que devem ser projetados para uma tensão suficientemente alta.
+A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análise do circuito mediante um simulador ou análise do circuito, seja por malhas ou nodal, visto que devem ser projetados para uma tensão suficientemente alta. Para todo componente, existe essa limitação intrínseca do material, por exemplo a ponte retificadora escolhida foi a GBJ606, dado que suporta uma corrente máxima de 6A e tensão máxima de ...
 
-Dúvidas:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{itemize}
-\item Diferença entre séries GBJ e KBPC
-\item Existe de especificação de tensão máxima no datasheet, para as pontes retificadoras?
-\item O resistor de descarga só é necessário para fonte sem carga, entao retiro do orcamento? (Mas preciso dos resistores de for querer uma fonte independente, certo? Para mim, que eu possa regular a tensao de saida e corrente) 
-\end{itemize}
+%\item Existe de especificação de tensão máxima no datasheet, para as pontes retificadoras?
+%\item O resistor de descarga só é necessário para fonte sem carga, entao retiro do orcamento? (Mas preciso dos resistores de for querer uma fonte independente, certo? Para mim, que eu possa regular a tensao de saida e corrente) 
+
 
 \begin{table}[H]
 \def\arraystretch{1.28}
@@ -164,7 +161,7 @@ L [\mathit{th}] = \dfrac{A}{Espessura [oz] \cdot 1,378}
 
 Considerando  $k = 0,048$, $b = 0,44$, $c = 0,725$ e a placa de fenolite de \emph{1 OZ}, e uma variação de temperatura de aproximadamente $10^{\circ}C$, descobriu-se um valor para a espessura das linhas de aproximadamente $90 th$, o qual foi utilizado na maioria das trilhas do projeto.
 
-
+\vspace{0.2cm}
 \subsubsection{Projeto final no \emph{PROTEUS}}
 Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
 \begin{figure}[H]
