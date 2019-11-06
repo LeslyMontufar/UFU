@@ -17,6 +17,7 @@
 \graphicspath{{img/}}
 \geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
 \setlength{\parindent}{1.0cm}
+\captionsetup{font=small}
 
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
@@ -79,14 +80,31 @@ A montagem utilizada observa-se na Figura \ref{montagem1:esquema}. Pretende-se c
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=14cm]{montagem1}
+\includegraphics[width=14cm]{m1-esquema}
 \caption{}
 \label{montagem1:esquema}
 \end{figure}
 
-\subsection{Dados Experimentais}
+\section{Dados Experimentais}
 
-\subsection{}
+\subsection{Carga em estrela com neutro conectado}
+
+\begin{table}[H]
+\centering
+\caption{Dados experimentais referentes à primeira montagem: carga em estrela com neutro conectado.}
+\label{m1:dados:abc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
+\cline{2-10}
+                        & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & fp    & $A_N$ (A)             & $V_{N'N}$  (V)        \\ \hline
+\multicolumn{1}{|c|}{A} & 96,10     & 55,89     & 1,13      & 63,84 & 0,30    & 64,16  & 1     & \multirow{3}{*}{0,21} & \multirow{3}{*}{0} \\ \cline{1-8}
+\multicolumn{1}{|c|}{B} & 10,07     & 56,57     & 0,62      & 22,12 & 27,68   & 35,58  & 0,625 &                       &                    \\ \cline{1-8}
+\multicolumn{1}{|c|}{C} & 99,69     & 58,82     & 0,76      & 29,54 & 33,44   & 44,50  & 0,659 &                       &                    \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Análise teórica do circuito}
 
 
 \section{Análise sobre segurança} % 2,5%
