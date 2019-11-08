@@ -90,10 +90,21 @@ A medição de potência por meio de dois wattímetros analógicos possui o esqu
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=13.5cm]{watt}
+\includegraphics[width=13cm]{watt}
 \caption{Esquema de ligação para medição de potência com 2 wattímetros.}
 \label{watt:ligacao}
 \end{figure}
+Tem-se que para uma fase ABC, $W_A=W_2$ e $W_B=W_1$, uma vez que é usada a convenção das Equações (\ref{w1}) e (\ref{w2}).
+\begin{gather}
+W_1 = V_L \times I_L \times cos(\theta - 30^\circ)\label{w1}\\
+W_2 = V_L \times I_L \times cos(\theta + 30^\circ)\label{w2}
+\end{gather}
+Assim, obtém-se as potências totais reativa e ativa, a partir da medição dos wattímetros, como observa-se em (\ref{PT}) e (\ref{QT}). Consequentemente é possível calcular outros parâmetros como defasagem tensão-corrente ou fator de potência, do que se percebe a facilidade desse método na prática.
+\begin{gather}
+P_{3\phi} = W_1 + W_2\label{PT}\\
+Q_{3\phi} = \sqrt{3}(W_1 - W_2)\label{QT}
+\end{gather}
+
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -120,7 +131,7 @@ Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $L=160mH$ 
 Foram utilizados 3, para compor a carga do circuito trifásico.
 
 \item \emph{\textbf{Capacitores de $45,9\mu F$:}}
-Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $C= 45,9\mu F$. %%%%%%%%%%%Resistencia dos capacitores? 
+Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $C= 45,9\mu F$.
 
 \end{enumerate}
 
@@ -246,19 +257,42 @@ Correspondente à primeira montagem mostratada na Figura \ref{fig1} tem o circui
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=13.5cm]{sim1}
+\includegraphics[width=13.5cm]{m1-esquema}
 \caption{Circuito referente à montagem em estrela.}
 \label{estrela:circuito}
 \end{figure}
-Ainda fazendo os cálculos, de tensão e corrente tem-se a Figura \ref{estrela:calculo}.
+Do circuito esquemático Figura \ref{estrela:calculo}, considera-se primeiro sequência de fases positiva (abc), com $V_{AB}$ na referência tem-se os resultados mostrados a seguir.
 
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=13.5cm]{sim1}
-\caption{Circuito referente à montagem em estrela com cálculos.}
-\label{estrela:calculo}
-\end{figure}
+\begin{gather*}
+\begin{bmatrix}
+V_{AB}\\
+V_{BC}\\
+V_{CA}
+\end{bmatrix} =100V\ \begin{bmatrix}
+1\\
+\alpha ^{2}\\
+\alpha 
+\end{bmatrix}\\
+V_{L} =V_{F}\sqrt{3} \ \angle 30^{\circ }\\
+\begin{bmatrix}
+V_{AN}\\
+V_{BN}\\
+V_{CN}
+\end{bmatrix} =57,74V\ \angle -30^{\circ } \ \begin{bmatrix}
+1\\
+\alpha ^{2}\\
+\alpha 
+\end{bmatrix}\\
+Z_{Y} =53,8+j\cdotp 1,04\ =82,53\angle 49,31^{\circ }\\
+\theta _{Z} =49,31^{\circ }\\
+fp=cos\ \theta _{Z} =cos\left( 49,31^{\circ }\right) =0,652\\
+\\
+W_{B} =W_{1} =100\cdotp 0,7\cdotp cos\left( 49,31^{\circ } -30^{\circ }\right) =66,06W\\
+W_{A} =W_{2} =100\cdotp 0,7\cdotp cos\left( 49,31^{\circ } +30^{\circ }\right) =12,98W\\
+P_{T} =W_{1} +W_{2} =66,06+12,98=79,04W\\
+Q_{T} =\sqrt{3} \ ( W_{1} -W_{2}) =\sqrt{3} \ ( 66,06-12,98) =91,94 [VAr]\\
+S_{T} =P_{T} +j\ Q_{T} =79,04+j\ 91,94=121,2\ \angle 49,31 [VA]\\
+\end{gather*}
 
 \subsection{Carga em delta}
 
@@ -271,7 +305,7 @@ Ainda fazendo os cálculos, de tensão e corrente tem-se a Figura \ref{estrela:c
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=13.5cm]{fp}
+\includegraphics[width=13cm]{fp}
 \caption{Curva das Relações de Potência no Método dos Dois Wattímetros \cite{ph}.}
 \label{fp}
 \end{figure}
@@ -308,7 +342,7 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
 \begin{tabular}{cc|c|c|c|c|c|c|c|c|}
 \cline{3-10}
                                                &                & $V_{L} (V)$ & $I_{L} (A)$ & $cos \theta$ & $\theta\, (^\circ)$ & $cos (\theta - 30^\circ)$ & $cos (\theta + 30^\circ)$ & $W_{1} (W)$ & $W_{2} (W)$ \\ \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Estrela}} & ABC ($V_{AB}$) & 99,46       & 0,501       & 0,543        & 57,11               & 0,890                     & 0,504                     & 44,35       & 25,114      \\ \cline{2-10} 
+\multicolumn{1}{|c|}{\multirow{2}{*}{Estrela}} & ABC ($V_{AB}$) & 99,46       & 0,501       & 0,543        & 57,11               & 0,890                     & 0,050                     & 44,35       & 25,114      \\ \cline{2-10} 
 \multicolumn{1}{|c|}{}                         & CBA ($V_{CB}$) & 100,70      & 0,499       & 0,550        & 56,63               & 0,894                     & 0,588                     & 44,92       & 29,547      \\ \hline
 \multicolumn{1}{|c|}{\multirow{2}{*}{Delta}}   & ABC            & 79,53       & 1,782       & 0,673        & 47,70               & 0,953                     & 0,213                     & 135,06      & 30,187      \\ \cline{2-10} 
 \multicolumn{1}{|c|}{}                         & CBA            & 80,18       & 1,789       & 0,665        & 48.32               & 0,949                     & 0,202                     & 136,13      & 28,975      \\ \hline
@@ -318,8 +352,6 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
 \label{w}
 \end{table}
 
-Não sei porque $W_2$ não bate com a teoria nem com o experimento.  %%%%%%%%%%%%%%%%%%%%%%%
-
 \item  Mostre através de um diagrama fasorial que de acordo com as polaridades das bobinas de corrente e de potencial a leitura do wattímetro analógico é positiva para um ângulo $| \theta_Z| < 60^\circ$. Mostre que a leitura será negativa se $| \theta_Z| > 60^\circ$. \vspace{0.8mm}
 
 \textbf{Resposta.} 
@@ -328,7 +360,6 @@ Não sei porque $W_2$ não bate com a teoria nem com o experimento.  %%%%%%%%%%%
 
 \textbf{Resposta.} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Como extamente quer-se o diagrama fasorial? 
 
 \end{enumerate}
 
