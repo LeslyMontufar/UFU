@@ -261,7 +261,7 @@ Correspondente à primeira montagem mostratada na Figura \ref{fig1} tem o circui
 \caption{Circuito referente à montagem em estrela.}
 \label{estrela:circuito}
 \end{figure}
-Do circuito esquemático Figura \ref{estrela:calculo}, considera-se primeiro sequência de fases positiva (abc), com $V_{AB}$ na referência tem-se os resultados mostrados a seguir.
+Do circuito esquemático Figura \ref{estrela:circuito}, considera-se primeiro sequência de fases positiva (abc), com $V_{AB}$ na referência tem-se os resultados mostrados a seguir.
 
 \begin{gather*}
 \begin{bmatrix}
@@ -293,6 +293,8 @@ P_{T} =W_{1} +W_{2} =66,06+12,98=79,04W\\
 Q_{T} =\sqrt{3} \ ( W_{1} -W_{2}) =\sqrt{3} \ ( 66,06-12,98) =91,94 [VAr]\\
 S_{T} =P_{T} +j\ Q_{T} =79,04+j\ 91,94=121,2\ \angle 49,31 [VA]\\
 \end{gather*}
+
+Para inversão de fase o cálculo é semelhante, havendo somente a permuta na medição de $W_A$ e $W_B$.
 
 \subsection{Carga em delta}
 
@@ -373,6 +375,19 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
 \caption{Circuito da carga em conexão estrela.}
 \label{sim1}
 \end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\subfloat[]{\includegraphics[width=0.8\textwidth]{m1-tensao}}
+
+\subfloat[]{\includegraphics[width=0.8\textwidth]{m1-tensao-fase}}
+
+\subfloat[]{\includegraphics[width=0.8\textwidth]{m1-correntes}}
+\caption{Comparação das potências obtidas no caso estrela (a) teórico, (b) \textbf{abc} experimental, (c) \textbf{cba} experimental.}
+\label{pot-tab1}
+\end{figure}
+
 
 \subsection{Carga em conexão delta}
 \begin{figure}[H]
