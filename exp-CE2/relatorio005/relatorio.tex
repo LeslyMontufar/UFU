@@ -60,38 +60,37 @@ Um sistema monofásico precisa de dois condutores; e um sistema trifásico (perf
 É possivel conectar as bobinas de gerador trifásicos em configuração estrela ou delta, assim como a carga em \emph{Conexão em estrela} (\ref{estrela}) ou  \emph{Conexão em delta/triângulo} (\ref{delta}).
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=14.5cm]{motor3phi}
 \caption{Geração de tensão alternada trifásica.}
 \label{gerador}
 \end{figure}
 
 \subsection{Carga em conexão em estrela} \label{estrela}
-A carga na configuração estrela é caracterizada por ter uma tensão fase-neutro entre seus terminais e corrente de linha igual à corrente de fase ($I_L=I_F$). Ainda é possível determinar a tensão fase-fase ou de linha pela relação descrita na Figura \ref{carga-estrela} \cite{irwin}. 
+A carga em configuração estrela é caracterizada por uma tensão fase-neutro entre seus terminais e corrente de linha igual à corrente de fase ($I_L=I_F$). Ademais, determina-se a tensão fase-fase ou de linha pela relação descrita na Figura \ref{carga-estrela} \cite{irwin}. 
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=14.5cm]{carga-estrela}
+\includegraphics[width=14cm]{carga-estrela}
 \caption{Relação entre tensão de linha e fase numa carga em estrela.}
 \label{carga-estrela}
 \end{figure}
 
 \subsection{Carga em conexão em delta ou triângulo} \label{delta}
 Já para a carga na configuração delta, ou triângulo, em seus terminais há uma tensão de linha igual a tensão de fase \cite{irwin}. Nesse caso, a relação entre linha e fase ocorre para a corrente, conforme descrito na Figura \ref{carga-delta}.
+
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=14.5cm]{carga-delta}
+\includegraphics[width=14cm]{carga-delta}
 \caption{Relação entre corrente de linha e fase numa carga em delta.}
 \label{carga-delta}
 \end{figure}
 
+\vspace{0.5cm}
 \subsection{Medição de potência pelo método dos 2 wattímetros} \label{potencias}
-A medição de potência por meio de dois wattímetros analógicos possui o esquema de ligação mostrado na Figura \ref{watt:ligacao}.
+A medição de potência por meio de dois wattímetros analógicos possui o esquema de ligação mostrado na Figura \ref{watt:ligacao}. A facilidade deste método advém da possibilidade de obter potências ativas e reativas a partir de um recurso menos sofisticado quando comparado com o medidor \emph{Kron}.
+
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=13cm]{watt}
+\includegraphics[width=12cm]{watt}
 \caption{Esquema de ligação para medição de potência com 2 wattímetros.}
 \label{watt:ligacao}
 \end{figure}
@@ -100,6 +99,7 @@ Tem-se que para uma fase ABC, $W_A=W_2$ e $W_B=W_1$, uma vez que é usada a conv
 W_1 = V_L \times I_L \times cos(\theta - 30^\circ)\label{w1}\\
 W_2 = V_L \times I_L \times cos(\theta + 30^\circ)\label{w2}
 \end{gather}
+
 Assim, obtém-se as potências totais reativa e ativa, a partir da medição dos wattímetros, como observa-se em (\ref{PT}) e (\ref{QT}). Consequentemente é possível calcular outros parâmetros como defasagem tensão-corrente ou fator de potência, do que se percebe a facilidade desse método na prática.
 \begin{gather}
 P_{3\phi} = W_1 + W_2\label{PT}\\
@@ -151,7 +151,7 @@ Utilize os medidores digitais \emph{Kron} para medida de corrente e tensão ($TL
 \end{figure}
 Observa-se pelo desenho que não é possível obter a tensão e corrente de todas as fases de forma simultânea, sendo necessária a mudança dos medidores $V_L$ e $V_F$ para a obtenção dos demais valores. Para isso, utilizaremos o medidor trifásico eletrônico \textit{Kron Mult-K} (wattímetro),  usando as entradas $V_A$, $V_B$, $V_C$, $V_N$ para as medidas de tensão e $I_A$, $I_B$ e $I_C$ para as medidas de corrente, assim sendo, realizando as ligações apropriadas. Como o \textit{Kron} não mede a corrente de neutro, então é necessário um amperímetro analógico $A_C$ entre $n$ e $n’$.
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
@@ -170,7 +170,7 @@ $V_{L} (V)$ & $I_{L} (A)$ & $W_{1} (W)$           & $W_{2} (W)$            & $P_
 
 Agora, troque duas fases na saída do \textit{varivolt} para obter a \textbf{sequência cba} da conexão acima. Anote os valores na Tabela \ref{tab2}.
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
@@ -209,7 +209,7 @@ wattímetros analógicos. Atente-se a escala do wattímetro (corrente e tensão)
 \label{fig2}
 \end{figure}
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
@@ -229,7 +229,7 @@ $V_{L} (V)$ & $I_{L} (A)$ & $I_{A_F} (A)$        & $W_{1} (W)$             & $W_
 Agora, troque duas fases na saída do \textit{varivolt} para obter a \textbf{sequência cba} da conexão acima. Anote os valores na Tabela \ref{tab4}.
 
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
 \captionsetup{font=scriptsize}
@@ -247,6 +247,7 @@ $V_{L} (V)$ & $I_{L} (A)$ & $I_{A_F} (A)$        & $W_{1} (W)$            & $W_{
 
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
+
 É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
 Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
 
@@ -255,7 +256,6 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 Correspondente à primeira montagem mostratada na Figura \ref{fig1} tem o circuito da Figura \ref{estrela:circuito}, o qual também será utilizado na simulação.
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=13.5cm]{m1-esquema}
 \caption{Circuito referente à montagem em estrela.}
 \label{estrela:circuito}
@@ -294,9 +294,9 @@ S_{T} =P_{T} +j\ Q_{T} =79,04+j\ 91,94=121,2\ \angle 49,31 [VA]\\
 \end{gather*}
 
 Para inversão de fase o cálculo é semelhante, havendo somente a permuta na medição de $W_A$ e $W_B$. Ademais, ccomo no experimento foi trocado somente a alimentação nas fases A e B, o wattímetro A continuou medindo $W_2$ de acordo com a convenção adotada, pois estará sobre a tensão $V_{CB}$. 
-Abaixo, nas Tabelas \ref{comparacao corrente}, é visto um comparativo das informações obtidas.
+Abaixo, nas Tabelas \ref{m1:comp:IL}, \ref{m1:comp:potencias} e \ref{m1:comp:potencias:w}, é visto um comparativo das informações obtidas.
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \caption{Comparação das correntes na configuração estrela ABC.}
 \label{m1:comp:IL}
@@ -309,22 +309,45 @@ C     & 0,532                                                            &      
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[H]\small
 \centering
-\caption{Comparativo de potências experimentais (\textbackslash{}emph\{Kron\}) e teórico, na configuração estrela ABC.}
+\caption{Comparativo de potências experimentais (\emph{Kron}) e teórico, na configuração estrela ABC.}
 \label{m1:comp:potencias}
-\begin{tabular}{ccccc}
-            & $P_{T}$ (W) & $Q_{T}$ (VAr) & $S_{T}$ (VA) & FP     \\
-Experimento & 51,44       & 75,93         & 90,96        & 0,565  \\
-Teórico     & 79,04       & 91,94         & 121,20       & 0,652  \\
-Erro (\%)   & -34,92      & -17,41        & -24,95       & -13,34
+\begin{tabular}{c|c|c|c|c|}
+\cline{2-5}
+                                  & $P_{T}$ (W) & $Q_{T}$ (VAr) & $S_{T}$ (VA) & FP     \\ \hline
+\multicolumn{1}{|c|}{Experimento} & 51,44       & 75,93         & 90,96        & 0,565  \\ \hline
+\multicolumn{1}{|c|}{Teórico}     & 79,04       & 91,94         & 121,20       & 0,652  \\ \hline
+\multicolumn{1}{|c|}{Erro (\%)}   & -34,92      & -17,41        & -24,95       & -13,34 \\ \hline
 \end{tabular}
 \end{table}
 
-Observe 
+\begin{table}[H]\small
+\centering
+\caption{Comparativo entre potências experimentais a partir medições nos wattímetros e experimental no \emph{Kron} e teórico, na configuração estrela ABC.}
+\label{m1:comp:potencias:w}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+                                                                                                       & $P_{T}$ (W) & $Q_{T}$ (VAr) \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Experimento\\ com $W_1$ e $W_2$\end{tabular}}          & 55,00       & 77,94         \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Erro (\%)\\ Teórico\end{tabular}}                      & -30,41      & -15,23        \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Erro (\%)\\ \emph{Kron} \end{tabular}}& 6,92        & 2,65          \\ \hline
+\end{tabular}
+\end{table}
+Observe da Tabela \ref{m1:comp:IL} que o erro é elevado entre o valor teórico encontrado e o obtido experimentalmente, o que pode ter sido ocasionado por variação no valor da impedância nos componentes. Desconsidera-se um sistema desequilibrado por perda de contato em um dos conectores, uma vez que a corrente foi relativamente regular em cada fase. Entretanto, o incidente não demostrou muitas mudanças a nível de entendimento do experimento com dois wattímetros, dado que as potências obtidas a partir da medição nos wattímetros pode ser comparada com as lidas no medidor \emph{Kron}. 
+
+Como mostra a Tabela \ref{m1:comp:potencias:w} é pequeno o erro das medições com o wattímetro analógico, quando comparadas às obtidas no medidor \emph{Kron}, o que demonstra a confiabilidade nos valores obtidos, mesmo em condições diferentes das ideais. Esse erro deve-se principalmente ao fato do instrumento analógico aumentar a chance de o erro humano durante observação da grandeza.  
 
 
 \subsection{Carga em delta}
+Correspondente à primeira montagem mostrada na Figura \ref{fig2} tem o circuito da Figura \ref{delta:circuito}, o qual também será utilizado na simulação.
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m2-esquema}
+\caption{Circuito referente à montagem em delta.}
+\label{delta:circuito}
+\end{figure}
+Do circuito esquemático Figura \ref{delta:circuito}, considera-se primeiro sequência de fases positiva (abc), com $V_{AB}$ na referência tem-se os resultados mostrados a seguir.
 
 \section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
 \begin{enumerate}[1)]
@@ -361,12 +384,11 @@ W_1 = V_L \times I_L \times cos(\theta - 30^\circ)\label{w1}\\
 W_2 = V_L \times I_L \times cos(\theta + 30^\circ)\label{w2}
 \end{gather}
 
-Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
+Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{comp:w}, um comparativo dos resultados obtidos.
 
-\begin{table}[H]\scriptsize
+\begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
-\captionsetup{font=scriptsize}
 \caption{Cálculo de $W_1$ e $W_2$ analiticamente.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{cc|c|c|c|c|c|c|c|c|}
@@ -379,6 +401,20 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
 \end{tabular}%
 }
 \label{w}
+\end{table}
+
+\begin{table}[H]\small
+\centering
+\caption{Comparação dos medições obtidas analiticamente nos wattímetros com às lidas e sujeitas à erro do olho humano.}
+\label{comp:w}
+\begin{tabular}{cc|c|c|c|}
+\cline{3-5}
+\multicolumn{1}{l}{}                       &             & \begin{tabular}[c]{@{}c@{}}Experimento\\ analítico\end{tabular} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Experimento\\ prático\end{tabular}} & Erro (\%) \\ \hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{ABC}} & $W_{1}$ (W) & 44,35                                                           & 50                                                                                 & 12,74     \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                     & $W_{2}$ (W) & 2,51                                                            & 5                                                                                  & 99,20     \\ \hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{CBA}} & $W_{1}$ (W) & 44,92                                                           & 50                                                                                 & 11,3      \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                     & $W_{2}$ (W) & 2,95                                                            & 5                                                                                  & 65,49     \\ \hline
+\end{tabular}
 \end{table}
 
 \item  Mostre através de um diagrama fasorial que de acordo com as polaridades das bobinas de corrente e de potencial a leitura do wattímetro analógico é positiva para um ângulo $| \theta_Z| < 60^\circ$. Mostre que a leitura será negativa se $| \theta_Z| > 60^\circ$. \vspace{0.8mm}
@@ -419,16 +455,14 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w}.
 \subsection{Carga em conexão delta}
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=14cm]{sim2}
 \caption{Circuito da carga em conexão delta.}
 \label{sim2}
 \end{figure}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-Neste experimento investiga-se as acerca de circuitos trifásicos equilibrados e suas particularidades em configuração delta e estrela. A análise experimental permitiu confirmar relações teóricas como $V_L=V_F\cdot\sqrt{3}$ para uma carga em estrela e $I_L = \sqrt{3}\cdot I_F$ para uma carga em delta. Além de verificar que para ambas configurações as potências (real e reativa) são as mesmas, devido as às duas relações teóricas já mencionadas apresentarem certa simetria.
+Neste experimento investiga-se as acerca da medição de potências ativas e reativas a partir dois wattímetros analógicos. O método dos dois wattímetros facilita o cálculo quando não se dispõe de equipamentos mais sofisticados, além de ser uma otimização do método com 3 wattímetros, no qual é exigido mais em recursos. Para isso, é proposta a análise de dois circuitos equilibrados
 
-Outro ponto importante verificado neste experimento é a inexistência de corrente no neutro para um circuito equilibrado. Assim, não é correto conferir corrente de curto-circuito pela corrente no neutro, já que idelamente tem valor nulo. As principais causas para a existência de corrente no neutro são: circuito em desequilíbrio, ou seja, as cargas possuem distintos valores de impedância e a LKC indica que haverá corrente no neutro; mal contato numa das fases ou rompimento dos conectores, nesse caso aparece corrente no neutro que será a soma fasorial das correntes nas fases que restaram, logo de módulo $I_F$, pois estão defasadas de $120^\circ$.  
 
 \newpage
 \begin{thebibliography}{9} 
