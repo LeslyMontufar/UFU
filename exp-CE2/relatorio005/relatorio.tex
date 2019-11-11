@@ -144,7 +144,6 @@ Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $C= 45,9\m
 Utilize os medidores digitais \emph{Kron} para medida de corrente e tensão ($TL = 0048$ – $3\phi$ sem Neutro). Além disso, compare os valores das potências entre \emph{Kron} e os wattímetros analógicos. \textbf{Atente-se a escala do wattímetro (corrente e tensão)}. 
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=14cm]{fig1}
 \caption{Ligação em estrela em sequência de fases abc.}
 \label{fig1}
@@ -154,7 +153,6 @@ Observa-se pelo desenho que não é possível obter a tensão e corrente de toda
 \begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
-\captionsetup{font=scriptsize}
 \captionof{table}{Ligação em triângulo em seqüência de fases abc.} \label{tab1}
 \resizebox{\textwidth}{!}{ %
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
@@ -167,13 +165,13 @@ $V_{L} (V)$ & $I_{L} (A)$ & $W_{A} (W)$           & $W_{B} (W)$            & $P_
 }
 \end{table}
 
-
+\vspace{0.1cm}
 Agora, troque duas fases na saída do \textit{varivolt} para obter a \textbf{sequência cba} da conexão acima. Anote os valores na Tabela \ref{tab2}.
+\vspace{0.1cm}
 
 \begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
-\captionsetup{font=scriptsize}
 \captionof{table}{Ligação em triângulo em seqüência de fases abc.} \label{tab2}
 \resizebox{\textwidth}{!}{ %
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
@@ -186,7 +184,7 @@ $V_{L} (V)$ & $I_{L} (A)$ & $W_{A} (W)$            & $W_{B} (W)$           & $P_
 }
 \end{table}
 
-
+\vspace{0.3cm}
 \subsubsection{Carga em triângulo}
 Efetue a montagem indicada na Figura \ref{fig2} abaixo, alimentando os pontos \textbf{a b c}
 através de uma fonte alternada trifásica em sequência de fases \textbf{abc} (ou \textit{direta}),
@@ -203,7 +201,6 @@ sem Neutro). Além disso, compare os valores das potências entre \emph{Kron} e 
 wattímetros analógicos. Atente-se a escala do wattímetro (corrente e tensão).
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=14cm]{fig2}
 \caption{Ligação em estrela em sequência de fases abc.}
 \label{fig2}
@@ -212,7 +209,6 @@ wattímetros analógicos. Atente-se a escala do wattímetro (corrente e tensão)
 \begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
-\captionsetup{font=scriptsize}
 \captionof{table}{Ligação em triângulo em seqüência de fases abc.} \label{tab3}
 \resizebox{\textwidth}{!}{ %
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -232,7 +228,6 @@ Agora, troque duas fases na saída do \textit{varivolt} para obter a \textbf{seq
 \begin{table}[H]\small
 \centering
 \def\arraystretch{1.35}
-\captionsetup{font=scriptsize}
 \captionof{table}{Ligação em triângulo em seqüência de fases cba.} \label{tab4}
 \resizebox{\textwidth}{!}{ %
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -413,6 +408,11 @@ S_{T} =P_{T} +j\ Q_{T} =164,28-j\ 189,87=251,07\ \angle -49,13\ [ VA]
 \end{array}
 \end{gather*}
 
+\vspace{0.5cm}
+Abaixo, as Tabelas \ref{m2:comp:IL}, \ref{m2:comp:potencias} e \ref{m2:comp:potencias:w} mostram um comparativo entre os resultados obtidos experimentalmente, no medidor \emph{Kron} e nos waatímetros analógicos, e na teoria, também com o cálculo de $W_1$ e $W_2$, mas desprezando incertezas na obtenção das medidas ou condições dos componentes e equipamentos utilizados. Percebe-se que o erro entre as 3 possibilidades de cálculo das potências ativas e reativas é pequeno, o que indica que o experimento foi realizado com sucesso e foi somente interferido, provavelmente, por erro humano na leitura do dispositivo analógico. 
+
+A mesma análise ocorre para a sequência de fases CBA, havendo somente permuta na medição dos wattímetros $W_A$ e $W_B$. Devido à proximidade dos valores obtidos, conclui-se também que o erro foi mínimo.
+
 \begin{table}[H]\small
 \centering
 \caption{Comparação das correntes na configuração delta ABC.}
@@ -441,8 +441,8 @@ C     & 1,787                                                            &      
 
 \begin{table}[H]\small
 \centering
-\caption{Comparativo entre potências experimentais a partir das medições nos wattímetros, e experimental no \emph{Kron} e teórico, para configuração delta ABC.}
-\label{m1:comp:potencias:w}
+\caption{Comparativo entre potências experimentais a partir das medições nos wattímetros, e experimental no \emph{Kron} e teórico}
+\label{m2:comp:potencias:w}
 \begin{tabular}{c|c|c|}
 \cline{2-3}
                                                                                                        & $P_{T}$ (W) & $Q_{T}$ (VAr) \\ \hline
@@ -452,12 +452,13 @@ C     & 1,787                                                            &      
 \end{tabular}
 \end{table}
 
+\vspace{0.5cm}
 \section{Cálculos, análise dos resultados e questões} % (quando houver) (70%)
 \begin{enumerate}[1)]
-\item Para os sistemas das Figuras 1 e 2, ao ser ligado, o que aconteceu com os wattímetros $W_1$ e $W_2$ quando a sequência de fases foi invertida? Algum deles marcou valor negativo? Explique. Encontre as potências usando as leituras. 
+\item Para os sistemas das Figuras 1 e 2, ao ser ligado, o que aconteceu com os wattímetros $W_A$ e $W_B$ quando a sequência de fases foi invertida? Algum deles marcou valor negativo? Explique. Encontre as potências usando as leituras. 
 
 \vspace{0.8mm}
-\textbf{Resposta.} Quando  a sequência de fases foi invertida, houve uma permuta entre as leituras dos wattímetros $W_1$ e $W_2$, uma vez que o sistema é equilibrado, e, no caso deste experimento em especial, não foi marcado nenhum valor negativo. Daria negativo no caso em que o fator de potência $cos \theta <0,5$, conforme mostrado na Figura \ref{fp}.
+\textbf{Resposta.} Quando  a sequência de fases foi invertida, houve uma permuta entre as leituras dos wattímetros $W_A$ e $W_B$, uma vez que o sistema é equilibrado, e, no caso deste experimento em especial, não foi marcado nenhum valor negativo. Daria negativo no caso em que o fator de potência $cos \theta <0,5$, conforme mostrado na Figura \ref{fp}.
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
@@ -470,24 +471,23 @@ Para o cálculo das potências utilizando-se as leituras dos wattímetros tem-se
 
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \subfloat[]{\includegraphics[width=0.33\textwidth]{pot-teorico1}}\hfill
 \subfloat[]{\includegraphics[width=0.33\textwidth]{pot-exp1}}\hfill
 \subfloat[]{\includegraphics[width=0.33\textwidth]{pot-exp2}}
-\caption{Comparação das potências obtidas no caso estrela (a) teórico, (b) \textbf{abc} experimental, (c) \textbf{cba} experimental.}
+\caption{Comparação das potências obtidas no caso estrela (a) teórico usando $W_1$ e $W_2$ do experimento, (b) \textbf{abc} experimental, (c) \textbf{cba} experimental.}
 \label{pot-tab1}
 \end{figure}
 
 
 \item  Encontre o valor das leituras dos wattímetros usando as expressões analíticas. \vspace{0.8mm}
 
-\textbf{Resposta.} A leitura dos wattímetros dos wattímetros $W_1$ e $W_2$ analiticamente são descritas pelas Equações (\ref{w1}) e (\ref{w2}), conforme na Seção \ref{potencias}.
+\textbf{Resposta.} A leitura de $W_1$ e $W_2$ analiticamente são descritas pelas Equações (\ref{w1}) e (\ref{w2}), conforme na Seção \ref{potencias}.
 \begin{gather}
 W_1 = V_L \times I_L \times cos(\theta - 30^\circ)\label{w1}\\
 W_2 = V_L \times I_L \times cos(\theta + 30^\circ)\label{w2}
 \end{gather}
 
-Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{comp:w}, um comparativo dos resultados obtidos.
+Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{comp:w}, um comparativo dos resultados obtidos. Recorda-se que para a sequência de fases ABC, $W_A$ lê $W_2$ e $W_B$ lê $W_1$, e para CBA, $W_A$ lê $W_1$ e $W_B$ lê $W_2$.
 
 \begin{table}[H]\small
 \centering
@@ -522,12 +522,27 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{co
 
 \item  Mostre através de um diagrama fasorial que de acordo com as polaridades das bobinas de corrente e de potencial a leitura do wattímetro analógico é positiva para um ângulo $| \theta_Z| < 60^\circ$. Mostre que a leitura será negativa se $| \theta_Z| > 60^\circ$. \vspace{0.8mm}
 
-\textbf{Resposta.} 
+\textbf{Resposta.} Para uma carga em configuração estrela tem-se os diagramas fasoriais da Figura \ref{fasor:w}, no qual percebe-se que para uma defasagem de $| \theta_Z| < 60^\circ$, por exemplo, em (b), o vetor resultante dessa multiplicação terá componente sobre o eixo de $I_A$ no mesmo sentido de $I_A$, o que indica uma leitura positiva no wattímetro. No entanto, fazendo a mesma análise para uma defasagem entre $V_{AN}$ e $I_A$ maior que $60^\circ$, perbece-se que haverá que a projeção de $V_AB$ sobre $I_A$ resulta em uma componente no sentido contrário de $I_A$, o que resulta numa leitura negativa.
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.5\textwidth]{Fasores-w1}}\hfill
+\subfloat[]{\includegraphics[width=0.5\textwidth]{Fasores-w2}}
+\caption{Diagrama fasorial com polaridades das bobinas de corrente e de potencial lida pelo wattímetro conectado à (a) $W_1$ e (b) $W_2$.}
+\label{fasor:w}
+\end{figure}
 
 \item  Mostre através de um diagrama fasorial que se a polaridade de uma das bobinas não for seguida a leitura terá um sinal oposto ao correto.  \vspace{0.8mm}
 
-\textbf{Resposta.} 
+\textbf{Resposta.} No caso de conexão incorreta, a defasagem entre tensão $V_{AN}$ e $I_A$ se vê afetada em $180^\circ$. Portanto considere uma nova defasagem $\theta_{errado} = 180^\circ - \theta$, o que resulta em uma defasagem entre $I_A$ e $V_{AB}$ de $\theta_{errado}-30^\circ = 180^\circ - \theta-30^\circ$. Logo, como a projeção em $V_{AB}$ se dá a partir do cosseno do ângulo entre eles e a função cosseno é periódica de período $360^\circ$ o resultado lido no wattímetro se verá afetado somente em sinal. O mesmo ocorre para $V_AB$ defasado em $+180^\circ$.
 
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.48\textwidth]{Fasores-errado-corrente}}\hfill
+\subfloat[]{\includegraphics[width=0.43\textwidth]{Fasores-errado-tensao}}
+\caption{Diagrama fasorial com polaridades invertida na (a) corrente e (b) tensão.}
+\label{fasor:errado}
+\end{figure}
 
 \end{enumerate}
 
@@ -536,11 +551,12 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{co
 \subsection{Carga em conexão estrela}
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
 \includegraphics[width=14cm]{sim1}
 \caption{Circuito da carga em conexão estrela.}
 \label{sim1}
 \end{figure}
+
+A partir da esquema da Figura \ref{sim1}, no \emph{Multsim}, foi possível confirmar os dados na teoria e gerar as formas de onda das tensões e correntes no circuito.
 
 \begin{figure}[H]
 \centering
@@ -574,7 +590,9 @@ Assim, analiticamente tem-se os resultados da Tabela \ref{w} e na Tabela \ref{co
 \end{figure}
 
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-Neste experimento investiga-se as acerca da medição de potências ativas e reativas a partir dois wattímetros analógicos. O método dos dois wattímetros facilita o cálculo quando não se dispõe de equipamentos mais sofisticados, além de ser uma otimização do método com 3 wattímetros, no qual é exigido mais em recursos. Para isso, é proposta a análise de dois circuitos equilibrados
+Neste experimento investiga-se as acerca da medição de potências ativas e reativas a partir dois wattímetros analógicos. O método dos dois wattímetros facilita o cálculo quando não se dispõe de equipamentos mais sofisticados, além de ser uma otimização do método com 3 wattímetros, no qual é exigido mais em recursos. Para isso, é proposta a análise de dois circuitos equilibrados com configurações na carga distintas.
+
+A principal contribuição deste experimento está no entendimento de como se dá a obtenção do valor lido no wattímetro. Para isso, foi de interesse recordar de experimentos anteriores que a corrente de linha ou de fase $I_A$, na configuração estrela, possui desafagem $\theta_Z$ com relação à $V_{AN}$, a qual ainda é defasada de $-30^\circ$ de $V_{AB}$. Essa análise foi ainda importante para verificar a mudança de sinal no caso de conexão incorreta, ou seja polaridade das bobinas invertidas.
 
 
 \newpage
