@@ -245,7 +245,7 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 \subsection{Análise teórica do circuito}
 Como o circuito é desequilibrado, a análise deve ser feita fase por fase. No entanto, há uma certeza: as tensões da fonte são equilibradas em módulo e ângulo. Assim, sabendo-se que $\mathrm{V_{L} =V_{F}\sqrt{3} \ \angle 30^{\circ }}$, tem-se os seguintes dados:
 
-\vspace{-0.35cm}
+\vspace{-0.4cm}
 \begin{equation*}
 \begin{array}{ c c c }
 \mathrm{\begin{bmatrix}
@@ -268,11 +268,11 @@ V_{CN}
 \end{array}
 \end{equation*}
 
-
+\vspace{0.2cm}
 \subsubsection{Carga em estrela com neutro conectado} \label{m1:teoria}
 Primeiramente, é possível descrever as impedâncias como abaixo:
 
-\vspace{-0.3cm}
+\vspace{-0.5cm}
 \begin{equation*}
 \begin{aligned}
 \begin{cases}
@@ -287,6 +287,8 @@ Y_{C} =0,0131\ \angle \ 49,13\ [ S]
 \end{aligned}
 \end{equation*}
 
+Como os neutros da fonte e da carga estão conectados, não há deslocamento de neutro, $V_{n'n}=0$. Portanto, a tensão na carga é a mesma da fonte, como consequência da presença do neutro.
+
 \subsubsection{Carga em estrela com neutro isolado} \label{m2:teoria}
 
 \subsubsection{Carga em triângulo desequilibrado} \label{m3:teoria}
@@ -294,6 +296,7 @@ Y_{C} =0,0131\ \angle \ 49,13\ [ S]
 \subsection{Análise comparativa: experimento \emph{vs.} teoria}
 \subsubsection{Sobre a presença do neutro no circuito desequilibrado}
 % - Como se manifestou o desequilíbrio do sistema com a presença do fio neutro?
+Como visto na análise teorica e experimental, a ligação do neutro da fonte com o da carga provocou $V_{n'n}=0$, fazendo com que a tensão fornecida pela fonte seja completamente recaída sobre a carga. Entretanto, o fio neutro tbm funciona como fuga para a corrente resultante, sendo $I_N=I_A+I_B+I_C$, já que no circuito desequilibrado as correntes não se anularão. 
 
 \subsubsection{Sobre a ausência do neutro no circuito desequilibrado}
 % - Como se manifestou o desequilíbrio do sistema com a ausência do fio neutro?
@@ -307,7 +310,22 @@ Y_{C} =0,0131\ \angle \ 49,13\ [ S]
 % - Dois tipos de ligações existentes no kron são: a) TL = 0003 (3ø com Neutro) e; b) TL = 0049
 % (3ø sem Neutro). A primeira configuração poderia ser usada na seção 2.1? E a segunda
 % configuração, poderia ser usada nas seções 2.2 e 2.3? Justifique as respostas.
+Na Figura \ref{conf:kron}
 
+\vspace{0.15cm}
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=\textwidth]{TL00}}\hfill
+
+\subfloat[]{\includegraphics[width=\textwidth]{TL03}}\hfill
+
+\subfloat[]{\includegraphics[width=\textwidth]{TL48}}
+
+\subfloat[]{\includegraphics[width=\textwidth]{TL49}}
+\caption{Informação do manual do usuário do medidor \emph{Kron} para as configurações de Tipo de Ligação (a) TL00, (b) TL03, (c) TL48 e (d) TL49 \cite{Kron}.}
+\label{conf:kron}
+\end{figure}
+\vspace{0.2cm}
 
 
 \newpage
@@ -334,15 +352,10 @@ Y_{C} =0,0131\ \angle \ 49,13\ [ S]
     P. H. O. Rezende,
     "Circuitos Polifásicos Desequilibrados", 2018.
 
-\begin{comment}
-\bibitem{irwin}
-    J. D. Irwin,
-    “Análise de Circuitos Em Engenharia”, Pearson, $4^a$ Ed., 2000.
+\bibitem{Kron}
+    KRON Instrumentos Elétricos,
+    “Mult-K 05 e Mult-K 120: Medidores de Energia e Transdutores Digitais de Grandezas Elétricas”, Kron Medidores., 2018.
 
-\bibitem{boylestad}
-    R. L. Boylestad,
-    “Introdução À Análise de Circuitos”, Pearson, $10^a$ Ed., 2004.
-\end{comment}
 
 \bibitem{safe}
     SafetyTrabi,
