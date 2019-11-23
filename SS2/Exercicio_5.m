@@ -5,15 +5,17 @@ close all;
 clear all;
 
 % Recebe os dados
-[filename path] = uigetfile('*', 'Select voice file');
-voice.path = strcat(path, filename);
+% [filename path] = uigetfile('*', 'Select voice file');
+% voice.path = strcat(path, filename);
+voice.path = 'vogal_sustentada.wav';
 [voice.audiodata, voice.Fs] = audioread(voice.path);
 voice.player = audioplayer(voice.audiodata, voice.Fs);
 
-[filename path] = uigetfile('*', 'Select voice file');
-music.path = strcat(path, filename);
+% [filename path] = uigetfile('*', 'Select voice file');
+% music.path = strcat(path, filename);
+music.path= 'Howls Moving Castle.wav';
 [music.audiodata, music.Fs] = audioread(music.path); % audiodata is the a matrix mxn where n is the number of channels
-music.player = audioplayer(music.audiodata, music.Fs);
+music.player = audioplayer(music.audiodata(:, 1), music.Fs);
 
 % Dados dos sinais
 voice = signal_audio_info(voice);
@@ -29,7 +31,7 @@ signal_audio_plot(music,'Time vs. Freq');
 signal_audio_plot(voice,'Hz vs. Espectro de Freq', 3.3, 3.4);
 signal_audio_plot(music,'Hz vs. Espectro de Freq');
 
-% Espande no tempo para análise espeífica
+% Espande no tempo para análise espeífica (Câmera lenta)
 n = 1;
 ii = 1;
 while n <= voice.number_of_samples
@@ -40,6 +42,18 @@ while n <= voice.number_of_samples
         voice.expanded(ii) = 0;
     end
     ii=ii+1;
+end
+
+% Trecho maior
+voice_trecho.audiodata = voice.audiodata(1*voice.Fs: 4*voice.Fs);
+if voice.Fs == music.Fs
+    voice_trecho.Fs = voice.Fs;
+    voice_trecho = signal_audio_info(voice_trecho);
+    res.Fs = voice_trecho.Fs;
+    res.audiodata = voice_trecho.audiodata + music.audiodata(1*music.Fs: 4*music.Fs);
+    res = signal_audio_info(res);
+    
+    voice_trecho.player = audioplayer(voice_trecho.audiodata, voice_trecho.Fs);
 end
 
 function info(title, audio)
@@ -55,7 +69,7 @@ function [audio] = signal_audio_info(audio)
     audio.t = audio.n/audio.Fs; % tempo tem o mesmo tam que audiodata matrix
     audio.espectro = fft(audio.audiodata);
     audio.espectro_abs = abs(audio.espectro);
-    audio.espectro_abcissa_em_Hz = audio.n * audio.Fs * (1/audio.number_of_samples); % só audio.n é vetor, cujp length é importante para manter o padrao dos outros vet 
+    audio.espectro_abcissa_em_Hz = audio.n * audio.Fs * (1/audio.number_of_samples); % só audio.n é vetor, cujo length é importante para manter o padrao dos outros vet 
 end
 function signal_audio_plot(audio, type, ti, tf)
 	if nargin <= 2
@@ -65,8 +79,8 @@ function signal_audio_plot(audio, type, ti, tf)
         figure('Name', 'Sound'); plot(audio.t(ti*audio.Fs:tf*audio.Fs), audio.audiodata(ti*audio.Fs:tf*audio.Fs));
     elseif strcmp(type,'Hz vs. Espectro de Freq')
         if nargin > 2
-        figure('Name', 'Sound'); plot(audio.espectro_abcissa_em_Hz(double(ti*audio.Fs):double(tf*audio.Fs)), ...
-            audio.espectro_abs(int64(ti*audio.Fs):int64(tf*audio.Fs)));
+            figure('Name', 'Sound'); plot(audio.espectro_abcissa_em_Hz(ti*audio.Fs:tf*audio.Fs), ...
+            audio.espectro_abs(ti*audio.Fs:tf*audio.Fs));
         else
             figure('Name', 'Sound'); plot(audio.espectro_abcissa_em_Hz, audio.espectro_abs);
         end
