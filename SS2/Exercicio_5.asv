@@ -15,19 +15,33 @@ music.path = strcat(path, filename);
 [music.audiodata, music.Fs] = audioread(music.path); % audiodata is the a matrix mxn where n is the number of channels
 music.player = audioplayer(music.audiodata, music.Fs);
 
-% Quero o histograma
-figure('Name', 'Voice: Histogram of AudioData');
-hist(voice.audiodata);
-figure('Name', 'Music: Histogram of AudioData');
-hist(music.audiodata);
+% Dados dos sinais
+voice.number_of_samples = size(voice.audiodata, 1);
+f
+fprintf('Tempo de duração: %g\n')
+music.number_of_samples = size(music.audiodata, 1);
+
 
 % Entrada de sons
-fprintf('SELECT')
-while 1:
-    switch(input('choice: '))
-play(voice.player);
-pause(voice.player);
-pause(voice.player);
-stop(voice.player);
+fprintf('SELECT\nG - Play\nP - Pause\nR - Resume\nS - Stop\n\n')
+while 1
+    switch input('choice: ', 's')
+        case 'G'
+            play(voice.player);
+        case 'P'
+            pause(voice.player);
+        case 'R'
+            resume(voice.player);
+        case 'S'
+            stop(voice.player);
+            break;
+    end
+end
 
 
+function info(title, audio)
+    fprintf('%s', title);
+    fprintf('\tNúmero de amostras no audio: ', amostras = length(audio.audiodata));
+    fprintf('\tTaxa de amostragem em Hz: ', audio.Fs); % a cada 1 segundo tem Fs amostras -> amostras/seg
+    fprintf('\tTempo de duração', a); %(amostras)*(seg/amostras) = seg -> amostras*1/Fs
+end

@@ -15,49 +15,35 @@ music.path = strcat(path, filename);
 [music.audiodata, music.Fs] = audioread(music.path); % audiodata is the a matrix mxn where n is the number of channels
 music.player = audioplayer(music.audiodata, music.Fs);
 
-% Quero o histograma
-% figure('Name', 'Voice: Histogram of AudioData');
-% hist(voice.audiodata);
-% figure('Name', 'Music: Histogram of AudioData');
-% hist(music.audiodata);
-
-fig = uifigure;
-btn = uibutton(fig);
+% Dados dos sinais
+voice.number_of_samples = size(voice.audiodata, 1);
+voice.maxtime = voice.number_of_samples/voice.Fs;
+voice.t = 0:voice.number_of_samples - 1; %discreto;
+info('Minha voz', voice);
+music.number_of_samples = size(music.audiodata, 1);
+info('Música', music);
 
 % Entrada de sons
-fprintf('SELECT\nG - Play\nP - Pause\nR - Resume\nS - Stop\n\n')
-while 1
-    switch input('choice: ', 's')
-        case 'G'
-            play(voice.player);
-        case 'P'
-            pause(voice.player);
-        case 'R'
-            resume(voice.player);
-        case 'S'
-            stop(voice.player);
-    end
-end
+% fprintf('SELECT\nG - Play\nP - Pause\nR - Resume\nS - Stop\n\n')
+% while 1
+%     switch input('choice: ', 's')
+%         case 'G'
+%             play(voice.player);
+%         case 'P'
+%             pause(voice.player);
+%         case 'R'
+%             resume(voice.player);
+%         case 'S'
+%             stop(voice.player);
+%             break;
+%     end
+% end
 
 
-function buttonPlot()
-% Create a figure window
-fig = uifigure;
-
-% Create a UI axes
-ax = uiaxes('Parent',fig,...
-            'Units','pixels',...
-            'Position', [104, 123, 300, 201]);   
-
-% Create a push button
-btn = uibutton(fig,'push',...
-               'Position',[420, 218, 100, 22],...
-               'ButtonPushedFcn', @(btn,event) Play(btn,ax));
-end
-
-% Create the function for the ButtonPushedFcn callback
-function Play(btn,ax)
-        x = linspace(0,2*pi,100);
-        y = sin(x);
-        plot(ax,x,y)
+function info(title, audio)
+    fprintf('%s\n', title);
+    amostras = length(audio.audiodata);
+    fprintf('\tNúmero de amostras no audio: %g\n', amostras);
+    fprintf('\tTaxa de amostragem em Hz: %g\n', audio.Fs); % a cada 1 segundo tem Fs amostras -> amostras/seg
+    fprintf('\tTempo de duração: %g segundos\n\n', amostras/audio.Fs); %(amostras)*(seg/amostras) = seg -> amostras*1/Fs
 end
