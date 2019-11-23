@@ -1,14 +1,22 @@
-%filename = 'sinal_questao3a.wav';
+% Rse
+clear sound; 
+
+% Recebe os dados
 [filename path] = uigetfile('*', 'Select voice file');
 voice.path = strcat(path, filename);
-[y,Fs] = audioread(voice.path);
-sound(y, Fs);
+[voice.audiodata, voice.Fs] = audioread(voice.path);
 
 [filename path] = uigetfile('*', 'Select voice file');
 music.path = strcat(path, filename);
-[y,Fs] = audioread(filename);
-sound(y, Fs);
+[music.audiodata, music.Fs] = audioread(music.path);
 
-t = 0:1/Fs:1;
-figure;
-plot(t(1:length(y)), y);
+% Quero o histograma
+figure('Name', 'Voice: Histogram of AudioData');
+hist(voice.audiodata);
+figure('Name', 'Music: Histogram of AudioData');
+hist(music.audiodata);
+
+% Entrada de sons
+sound(voice.audiodata, voice.Fs);
+sound(music.audiodata, music.Fs);
+
