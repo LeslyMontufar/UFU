@@ -16,13 +16,14 @@ music.path = strcat(path, filename);
 music.player = audioplayer(music.audiodata, music.Fs);
 
 % Dados dos sinais
-voice = signal_audio_plot(voice, 'Time vs. Freq');
+voice = signal_audio_info(voice);
 info('Minha voz', voice);
-music = signal_audio_plot(music, 'Time vs. Freq');
+music = signal_audio_info(music);
 info('Música', music);
 
 % Plot de parte especifica
-
+signal_audio_plot(voice,'Time vs. Freq', 3.2, 3.6);
+signal_audio_plot(music,'Time vs. Freq');
 
 function info(title, audio)
     fprintf('%s\n', title);
@@ -31,16 +32,15 @@ function info(title, audio)
     fprintf('\tTaxa de amostragem em Hz: %g\n', audio.Fs); % a cada 1 segundo tem Fs amostras -> amostras/seg
     fprintf('\tTempo de duração: %g segundos\n\n', amostras/audio.Fs); %(amostras)*(seg/amostras) = seg -> amostras*1/Fs
 end
-function [audio] = signal_audio_plot(audio)
+function [audio] = signal_audio_info(audio)
     audio.number_of_samples = size(audio.audiodata, 1);
     audio.n = 0:audio.number_of_samples - 1; % discreto;
     audio.t = audio.n/audio.Fs; % tempo tem o mesmo tam que audiodata matrix
 end
 function signal_audio_plot(audio, type, ti, tf)
-	if nargin > 2
+	if nargin <= 2
         figure('Name', 'Sound'); plot(audio.t, audio.audiodata);
     elseif strcmp(type,'Time vs. Freq')
-        figure('Name', 'Sound'); plot(audio.t(ti:tf), audio.audiodata(ti*audio.Fs:tf*audio.Fs));
+        figure('Name', 'Sound'); plot(audio.t(ti*audio.Fs:tf*audio.Fs), audio.audiodata(ti*audio.Fs:tf*audio.Fs));
     end
-    
 end
