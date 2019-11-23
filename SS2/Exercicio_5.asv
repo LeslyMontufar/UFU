@@ -1,0 +1,14 @@
+%filename = 'sinal_questao3a.wav';
+[filename path] = uigetfile('*', 'Select voice file');
+voice.path = strcat(path, filename);
+[y,Fs] = audioread(voice.path);
+sound(y, Fs);
+
+[filename path] = uigetfile('*', 'Select voice file');
+music.path = strcat(path, filename);
+[y,Fs] = audioread(filename);
+sound(y, Fs);
+
+t = 0:1/Fs:1;
+figure;
+plot(t(1:length(y)), y);
