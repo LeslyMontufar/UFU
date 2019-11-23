@@ -154,7 +154,7 @@ Dos dados da Tabela \ref{m1:dados:abc}, ainda tem-se $P_T = 115,5$W, $Q_T = 61,4
 \cline{2-10}
                         & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP    & $A_N$ (A)             & $V_{N'N}$  (V)        \\ \hline
 \multicolumn{1}{|c|}{A} & 96,10     & 55,89     & 1,13      & 63,84 & 0,30    & 64,16  & 1     & \multirow{3}{*}{0,21} & \multirow{3}{*}{0} \\ \cline{1-8}
-\multicolumn{1}{|c|}{B} & 10,07     & 56,57     & 0,62      & 22,12 & 27,68   & 35,58  & 0,625 &                       &                    \\ \cline{1-8}
+\multicolumn{1}{|c|}{B} & 100,07     & 56,57     & 0,62      & 22,12 & 27,68   & 35,58  & 0,625 &                       &                    \\ \cline{1-8}
 \multicolumn{1}{|c|}{C} & 99,69     & 58,82     & 0,76      & 29,54 & 33,44   & 44,50  & 0,659 &                       &                    \\ \hline
 \end{tabular}%
 }
@@ -168,9 +168,9 @@ Dos dados da Tabela \ref{m1:dados:abc}, ainda tem-se $P_T = 115,5$W, $Q_T = 61,4
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
 \cline{2-10}
                         & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP    & $A_N$ (A)            & $V_{N'N}$  (V)     \\ \hline
-\multicolumn{1}{|c|}{C} & 100,50    & 57,60     & 1,096     & 63,25 & 0,24    & 63,51  & 1     & \multirow{3}{*}{1,6} & \multirow{3}{*}{0} \\ \cline{1-8}
+\multicolumn{1}{|c|}{C} & 100,70    & 58,34     & 0,767     & 30,57 & 32,61   & 55,52  & 0,683    & \multirow{3}{*}{1,6} & \multirow{3}{*}{0} \\ \cline{1-8}
 \multicolumn{1}{|c|}{B} & 99,25     & 57,45     & 0,641     & 23,94 & 27,85   & 36,76  & 0,652 &                      &                    \\ \cline{1-8}
-\multicolumn{1}{|c|}{A} & 100,70    & 58,34     & 0,767     & 30,57 & 32,61   & 55,52  & 0,683 &                      &                    \\ \hline
+\multicolumn{1}{|c|}{A} & 100,50    & 57,60     & 1,096     & 63,25 & 0,24    & 63,51  & 1     &                      &                    \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -310,7 +310,9 @@ Como visto na análise teorica e experimental, a ligação do neutro da fonte co
 % - Dois tipos de ligações existentes no kron são: a) TL = 0003 (3ø com Neutro) e; b) TL = 0049
 % (3ø sem Neutro). A primeira configuração poderia ser usada na seção 2.1? E a segunda
 % configuração, poderia ser usada nas seções 2.2 e 2.3? Justifique as respostas.
-Na Figura \ref{conf:kron}
+Na Figura \ref{conf:kron} tem-se a aplicação apropriada para cada configuração TL, logo se a configuração TL=0003 tivesse sido usada na montagem 1, ou seja, em um circuito desequilibrado, não se obteria os valores de interesse, já que o medidor \emph{Kron} assume que a carga seja trifásica e procede os cálculos das grandezas trifásicas, por meio de somente os sinais de tensão e uma corrente. Assim, a impedância de uma fase qualquer é facilmente calculada pela Lei de Ohm, a qual o \emph{Kron} considerará erroneamente como a mesma impedância para as outras duas fases.
+
+Com relação a segunda configuração (TL=0049), para as outras duas montagem, também não é possível, já que nessa configuração assume-se cargas equilibradas, assim o \emph{Kron} fará o cálculo da  terceira a partir da aritmética das outras duas obrtidas medainte, o que é erróneo, pois dado que as cargas são desenquilidadas, as corrente tbm deveriam ser, à tensão de linha deseqyulibra.  
 
 \vspace{0.15cm}
 \begin{figure}[H]
