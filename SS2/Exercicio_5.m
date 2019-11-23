@@ -21,9 +21,26 @@ info('Minha voz', voice);
 music = signal_audio_info(music);
 info('Música', music);
 
-% Plot de parte especifica
-signal_audio_plot(voice,'Time vs. Freq', 3.2, 3.6);
+% Plot de tempo específico
+signal_audio_plot(voice,'Time vs. Freq', 3.3, 3.4);
 signal_audio_plot(music,'Time vs. Freq');
+
+% Plot do espectro
+signal_audio_plot(voice,'Hz vs. Espectro de Freq', 3.3, 3.4);
+signal_audio_plot(music,'Hz vs. Espectro de Freq');
+
+% Espande no tempo para análise espeífica
+n = 1;
+ii = 1;
+while n <= voice.number_of_samples
+    if mod(ii, 2)==1
+        voice.expanded(ii) = voice.audiodata(n);
+        n = n + 1;
+    else
+        voice.expanded(ii) = 0;
+    end
+    ii=ii+1;
+end
 
 function info(title, audio)
     fprintf('%s\n', title);
@@ -34,13 +51,24 @@ function info(title, audio)
 end
 function [audio] = signal_audio_info(audio)
     audio.number_of_samples = size(audio.audiodata, 1);
-    audio.n = 0:audio.number_of_samples - 1; % discreto;
+    audio.n = 0:audio.number_of_samples - 1; % discreto; % para simplesmente passar para vetor
     audio.t = audio.n/audio.Fs; % tempo tem o mesmo tam que audiodata matrix
+    audio.espectro = fft(audio.audiodata);
+    audio.espectro_abs = abs(audio.espectro);
+    audio.espectro_abcissa_em_Hz = audio.n * audio.Fs * (1/audio.number_of_samples); % só audio.n é vetor, cujp length é importante para manter o padrao dos outros vet 
 end
 function signal_audio_plot(audio, type, ti, tf)
 	if nargin <= 2
-        figure('Name', 'Sound'); plot(audio.t, audio.audiodata);
-    elseif strcmp(type,'Time vs. Freq')
+        ti=1/audio.Fs; tf=(audio.number_of_samples)/audio.Fs; % no matlab vet comeca em 1
+    end
+    if strcmp(type,'Time vs. Freq')
         figure('Name', 'Sound'); plot(audio.t(ti*audio.Fs:tf*audio.Fs), audio.audiodata(ti*audio.Fs:tf*audio.Fs));
+    elseif strcmp(type,'Hz vs. Espectro de Freq')
+        if nargin > 2
+        figure('Name', 'Sound'); plot(audio.espectro_abcissa_em_Hz(double(ti*audio.Fs):double(tf*audio.Fs)), ...
+            audio.espectro_abs(int64(ti*audio.Fs):int64(tf*audio.Fs)));
+        else
+            figure('Name', 'Sound'); plot(audio.espectro_abcissa_em_Hz, audio.espectro_abs);
+        end
     end
 end
