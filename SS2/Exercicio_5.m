@@ -4,14 +4,13 @@ close all;
 clearvars
 
 % Recebe os dados
-% [filename path] = uigetfile('*', 'Select voice file');
-% voice.path = strcat(path, filename);
-voice.path = 'vogal_sustentada.wav';
+[filename path] = uigetfile('*', 'Select voice file');
+voice.path = strcat(path, filename);
 [voice.audiodata, voice.Fs] = audioread(voice.path);
 voice.player = audioplayer(voice.audiodata, voice.Fs);
 
-% [filename path] = uigetfile('*', 'Select voice file');
-% music.path = strcat(path, filename);
+[filename path] = uigetfile('*', 'Select voice file');
+music.path = strcat(path, filename);
 music.path= 'Howls Moving Castle.wav';
 [music.audiodata, music.Fs] = audioread(music.path); % audiodata is the a matrix mxn where n is the number of channels
 music.player = audioplayer(music.audiodata(:, 1), music.Fs);
@@ -29,19 +28,6 @@ signal_audio_plot(music,'Time vs. Freq');
 % Plot do espectro
 signal_audio_plot(voice,'Hz vs. Espectro de Freq', 3.2, 3.4);
 signal_audio_plot(music,'Hz vs. Espectro de Freq');
-
-% Espande no tempo para análise espeífica (Câmera lenta)
-n = 1;
-ii = 1; grau_de_expansao = 2;
-while n <= voice.number_of_samples
-    if mod(ii, grau_de_expansao)==1
-        voice.expanded(ii) = voice.audiodata(n);
-        n = n + 1;
-    else
-        voice.expanded(ii) = 0;
-    end
-    ii=ii+1;
-end
 
 % Trecho maior
 voice_trecho.audiodata = voice.audiodata(1*voice.Fs: 4*voice.Fs); %minha grav
