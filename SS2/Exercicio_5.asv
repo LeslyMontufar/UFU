@@ -1,7 +1,7 @@
 % Reset sounds
 clc;
 close all;
-clearvars
+clear all;
 
 % Recebe os dados
 % [filename path] = uigetfile('*', 'Select voice file');
@@ -49,25 +49,20 @@ if voice.Fs == music.Fs
     voice_trecho.Fs = voice.Fs;
     voice_trecho = signal_audio_info(voice_trecho);
     res.Fs = voice_trecho.Fs;
-    res.audiodata = ones(voice_trecho.number_of_samples, 1); 
-    for n = 1:voice_trecho.number_of_samples
-        res.audiodata(n) = voice_trecho.audiodata(n) + music.audiodata(5*music.Fs+n);
-    end
+    res.audiodata(1:length(voice_trecho.audiodata)) = voice_trecho.audiodata(1:end) + music.audiodata(5*music.Fs:5*music.Fs+lea);
     res = signal_audio_info(res);
     res.player = audioplayer(res.audiodata, res.Fs);
     voice_trecho.player = audioplayer(voice_trecho.audiodata, voice_trecho.Fs);
 end
 
+% Plot do sinal resultante
+%signal_audio_plot(res,'Time vs. Freq');
+%signal_audio_plot(res,'Hz vs. Espectro de Freq');
+
 % Hora de ouvir
 if input('ouvir tudo? (0/1)')
     %play(voice.player);
     play(res.player);
-end
-
-% Plot do sinal resultante
-if input('mostrar espectro? (0/1)')
-    %signal_audio_plot(res,'Time vs. Freq');
-    signal_audio_plot(res,'Hz vs. Espectro de Freq');
 end
 
 function info(title, audio)
