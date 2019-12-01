@@ -6,6 +6,8 @@
 \usepackage{caption}
 \usepackage{indentfirst}
 \usepackage{tikz} %% fasores
+\usetikzlibrary{arrows,arrows.meta,quotes,angles}
+\usepackage{siunitx}
 
 \usepackage[brazilian]{babel}
 \usepackage[utf8x]{inputenc}
@@ -534,41 +536,113 @@ Na ausência do fio neutro a corrente resultante da soma das correntes de linha 
 \subsubsection{Ilustrando as medidas de tensão e corrente na forma de fasores}
 % - Usando os módulos das tensões e correntes medidas, obtenha os fasores correspondentes
 % e faça um diagrama fasorial de cada caso, em ambas as sequências
-A partir do resultado teórico, é interessante verficar a disposição de grandezas de tensão e corrente num diagrama fasorial, assim constatar o desequílibrio visualmente (Figura \ref{fasores}).
+A partir do resultado teórico, é interessante verficar a disposição de grandezas de tensão e corrente num diagrama fasorial, assim constatar o desequílibrio visualmente (Figuras \ref{m1:fasores}, \ref{m2:fasores} e \ref{m3:fasores}).
 
-\begin{figure}
+\begin{figure}[H]
+\centering \hspace{0.5cm}
+    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
+
+    % coordinates
+    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
+    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+
+    % phasors
+    \draw[phasor, red] (0,0) -- (0:1.065*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (-169.3:0.613*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (169.1:0.746*2.1) coordinate (ic)  node[right] {$I_C$};
+    \draw[phasor, black] (0,0) -- (177.3:0.125*2.1) coordinate (ic)  node[right] {$I_N$};
+
+    \draw[phasor, blue] (0,0) -- (0:54.63/16) coordinate (va)  node[right] {$V_{AN}$};
+    \draw[phasor, blue] (0,0) -- (-120:57.09/16) coordinate (vb)  node[right] {$V_{BN}$};
+    \draw[phasor, blue] (0,0) -- (120:57.33/16) coordinate (vc)  node[right] {$V_{CN}$};
+    %\draw[phasor, black] (0,0) -- (0:1.38/16) coordinate (vc)  node[right] {$V_{CN}$};
+
+    \end{tikzpicture}\qquad
+     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
+
+    % coordinates
+    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
+    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+
+    % phasors
+    \draw[phasor, red] (0,0) -- (0:1.089*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (70.69:0.612*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (-70.87:0.758*2.1) coordinate (ic)  node[right] {$I_C$};
+    \draw[phasor, black] (0,0) -- (-1.807:1.6*2.1) coordinate (ic)  node[right] {$I_N$};
+
+    \draw[phasor, blue] (0,0) -- (0:56.68/16) coordinate (va)  node[right] {$V_{AN}$};
+    \draw[phasor, blue] (0,0) -- (120:56.54/16) coordinate (vb)  node[right] {$V_{BN}$};
+    \draw[phasor, blue] (0,0) -- (-120:58.01/16) coordinate (vc)  node[right] {$V_{CN}$};
+    %\draw[phasor, black] (0,0) -- (0:2.23/16) coordinate (vc)  node[right] {$V_{CN}$};
+
+    \end{tikzpicture}
+\caption{Diagrama fasorial para a montagem 1 em fase ABC e CBA respectivamente.}
+\label{m1:fasores}
+\end{figure}
+\vspace{0.2cm}
+
+\begin{figure}[H]
 \centering
     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
 
     % coordinates
-    \draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
-    \draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
+    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+
     % phasors
-    \draw[phasor] (0,0) -- (300:1.5) coordinate (i)  node[right] {I};
-    \draw[phasor] (0,0) -- ( 30:2.5) coordinate (v)  node[right] {V};
+    \draw[phasor, red] (0,0) -- (-0.410:1.221*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (-162.1:0.6*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (162.3:0.684*2.1) coordinate (ic)  node[right] {$I_C$};
 
+    \draw[phasor, blue] (0,0) -- (0:61.05/16) coordinate (va)  node[right] {$V_{AN}$};
+    \draw[phasor, blue] (0,0) -- (-120:47.01/16) coordinate (vb)  node[right] {$V_{BN}$};
+    \draw[phasor, blue] (0,0) -- (120:52.27/16) coordinate (vc)  node[right] {$V_{CN}$};
+    \draw[phasor, black] (0,0) -- (0:8.25/16) coordinate (vnn)  node[right] {$V_{N'N}$};
+    
+    \end{tikzpicture}\qquad
+     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
+
+    % coordinates
+    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
+    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+
+    % phasors
+    \draw[phasor, red] (0,0) -- (10.4:0.275*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (95.59:0.994*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (-98.17:1.137*2.1) coordinate (ic)  node[right] {$I_C$};
+
+    \draw[phasor, blue] (0,0) -- (10.4:61.05/16) coordinate (va)  node[right] {$V_{AN}$};
+    \draw[phasor, blue] (0,0) -- (144.9:47.01/16) coordinate (vb)  node[right] {$V_{BN}$};
+    \draw[phasor, blue] (0,0) -- (-147.3:52.27/16) coordinate (vc)  node[right] {$V_{CN}$};
+    \draw[phasor, black] (0,0) -- (0:45/16) coordinate (vnn)  node[right] {$V_{N'N}$};
 
     \end{tikzpicture}
-    \begin{tikzpicture}[>=latex]
-    \draw[style=help lines] (0,0) (3,2);
+\caption{Diagrama fasorial para a montagem 2 em fase ABC e CBA respectivamente.}
+\label{m2:fasores}
+\end{figure}
+\vspace{0.2cm}
 
-    \coordinate (vec1) at (-30:1.5); 
-    \coordinate (vec2) at (30:2.5);
-    \coordinate (vec3) at (0:2.5);
-    \coordinate (vec4) at (90:2);
-    \coordinate (vec5) at (270:2);
-    \coordinate (vec6) at (180:2);
+\begin{figure}[H]
+\centering
+\hspace{-0.5cm}
+    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
 
-    \draw[->,thick,red] (0,0) -- (vec1);
-    \draw[->,thick,red] (0,0) -- (vec2);
-    \draw[->,thick,red] (0,0) -- (vec3);
-    \draw[->,thick,black] (0,0) -- (vec4);
-    \draw[->,thick,black] (0,0) -- (vec5);
-    \draw[->,thick,black] (0,0) -- (vec6);
+    % phasors
+    \draw[phasor, red] (0,0) -- (-4.307:1.571*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (-176:1.470*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (101.2:0.240*2.1) coordinate (ic)  node[right] {$I_C$};
+    
+    \end{tikzpicture}\quad
+     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
+
+    % phasors
+    \draw[phasor, red] (0,0) -- (38.18:0.971*2.1) coordinate (ia)  node[right] {$I_A$};
+    \draw[phasor, red] (0,0) -- (122.5:0.899*2.1) coordinate (ib)  node[right] {$I_B$};
+    \draw[phasor, red] (0,0) -- (-101.5:1.098*2.1) coordinate (ic)  node[right] {$I_C$};
 
     \end{tikzpicture}
-\caption{Diagrama fasorial das montagens 1-3 em (a)-(c).}
-\label{fasores}
+\caption{Diagrama fasorial para a montagem 3 em fase ABC e CBA respectivamente.}
+\label{m3:fasores}
 \end{figure}
 \vspace{0.2cm}
 
@@ -604,78 +678,83 @@ Para sequência de fases ABC tem-se:
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m1-esquema-abc-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 1 em sequência de fases ABC.}
 \label{m1:IL}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m1-esquema-abc-vf}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Tensões de fase da montagem 1 em sequência de fases ABC.}
 \label{m1:VF}
 \end{figure}
 
+\newpage
 Para sequência de fases CBA tem-se: 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m1-esquema-cba-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 1 em sequência de fases CBA.}
 \label{m2:IL}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m1-esquema-cba-vf}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Tensões de fase da montagem 1 em sequência de fases CBA.}
 \label{m2:VF}
 \end{figure}
 
+\newpage
 \subsection{Carga em estrela com neutro isolado}
 Para sequência de fases ABC tem-se: 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m2-esquema-abc-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 2 em sequência de fases ABC.}
 \label{m2:IL}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m2-esquema-abc-vf}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Tensões de fase da montagem 2 em sequência de fases ABC.}
 \label{m1:VF}
 \end{figure}
 
+\newpage
 Para sequência de fases CBA tem-se: 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m2-esquema-cba-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 2 em sequência de fases CBA.}
 \label{m2:IL}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m2-esquema-cba-vf}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Tensões de fase da montagem 2 em sequência de fases CBA.}
 \label{m1:VF}
 \end{figure}
 
+\newpage
 \subsection{Carga em triângulo desequilibrado}
 Para sequência de fases ABC tem-se: 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m3-esquema-abc-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 3 em sequência de fases ABC.}
 \label{m2:IL}
 \end{figure}
 
+\vspace{0.3cm}
 Para sequência de fases CBA tem-se: 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=13.5cm]{m3-esquema-cba-correntes}
-\caption{Circuito esquemático da montagem 1.}
+\caption{Correntes de linha da montagem 3 em sequência de fases CBA.}
 \label{m2:IL}
 \end{figure}
 
