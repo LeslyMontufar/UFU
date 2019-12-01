@@ -19,8 +19,10 @@
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 
+\graphicspath{{img/}}
 \geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
 \setlength{\parindent}{1.0cm}
+\captionsetup{font=small}
 
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
@@ -60,18 +62,92 @@
 \newpage
 
 \section{Exercício 1}
-A resolução do item \textbf{a} visualiza-se na Figura \ref{scan:1a}.
+Os cálculos são observados abaixo.
 
 \begin{figure}[H]
 \centering
 \captionsetup{font=scriptsize}
-\includegraphics[width=14.5cm]{1a}
-\caption{Resolução do item \textbf{a}.}
-\label{scan:1a}
+\includegraphics[width=14.5cm]{scan1}
+\caption{Resolução do exercício 1.}
+\label{scan:1}
 \end{figure}
 
-Para o item (b), utilizou o código abaixo, para assim plotar os gráficos das Figura \ref{bode:h1}, \ref{bode:h2} e \ref{bode:htotal}.
-\lstinputlisting{../questao2.m}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{scan2}
+\caption{Resolução do exercício 1.}
+\label{scan:1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{scan3}
+\caption{Resolução do exercício 1.}
+\label{scan:1}
+\end{figure}
+
+\vspace{1cm}
+Para o item (b), utilizou o código abaixo, para assim plotar os gráficos das Figuras \ref{bode:h1}, \ref{bode:h2} e \ref{bode:htotal}. Na escala linear, tem-se os gráficos das Figuras \ref{bode:h1:linear}, \ref{bode:h2:linear} e \ref{bode:htotal:linear}.
+\lstinputlisting{../Ex1.m}
+\vspace{1cm}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_b1}
+\caption{Resolução do exercício 1.}
+\label{bode:h1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_b2}
+\caption{Resolução do exercício 1.}
+\label{bode:h2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_btot}
+\caption{Resolução do exercício 1.}
+\label{bode:htotal}
+\end{figure}
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_c1}
+\caption{Resolução do exercício 1.}
+\label{bode:h1:linear}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_c2}
+\caption{Resolução do exercício 1.}
+\label{bode:h2:linear}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=14.5cm]{Ex1_ctot}
+\caption{Resolução do exercício 1.}
+\label{bode:htotal:linear}
+\end{figure}
+
+\vspace{1cm}
+Fazendo $\omega=2\pi \cdot f$, para $f=1Hz$ e $f=60Hz$, tem-se respectivamente um ganho de 0.0618486 (atenuação) e $4.50114e-05$ (atenuação).
+\lstinputlisting{../polos_zeros.m}
+\vspace{1cm}
+
+\section{Exercício 2}
+
+
 
 
 \end{document}
