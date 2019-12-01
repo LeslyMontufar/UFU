@@ -25,7 +25,7 @@
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
-\newcommand{\thetitle}{CIRCUITOS TRIFÁSICOS DESEQUILIBRADOS}
+\newcommand{\thetitle}{VERIFICAÇÃO DA SEQUÊNCIA DE FASES DAS TENSÕES}
 \newcommand{\thetype}{Relatório da Disciplina de Experimental de Circuitos Elétricos II}
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
 \newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
@@ -42,39 +42,23 @@
 \newpage
 
 \section{Objetivos} % 2,5%
-Pretende-se investigar experimentalmente acerca do efeito da presença do fio neutro em circuitos trifásicos desequilibrados, ligados em estrela.
+Pretende-se verificar experimentalmente conceitos teóricos de como encontrar a correta sequência de
+fase diante da ausência de um sequencímetro (método do voltímetro).
 
 \section{Introdução teórica} % 5%
 
-Um sistema trifásico equilibrado é o ideal para geração, transmissão e distribuição de energia elétrica em corrente alternada. O uso de tensões e correntes trifásicas igualmente defasadas permite uma transferência de potência de forma igualitária e evita sobrecargas na rede. Entretanto, o desequilíbrio em cirucitos polifásicos é comum e podem ocorrer devido a prensença de cargas trifásicas desequílibradas, distribuição de cargas monofásicas sem planejamento e pela variação nos ciclos de demanda de cada fase, como observa-se na Figura \ref{intro:fig1}.
+O sequencímetro é um instrumento de medida elétrica analógica ou digital que tem por  finalidade a verificação da sequência de fases de um motor trifásico (circuito alimentado por corrente alternada), ou seja, indica a fase aberta e o sentido de rotação do motor. Na Figura \ref{intro:fig1}, é observado um fasímetro, que possui a mesma função, havendo poucas diferenças, entre elas, estão a tensão de entrada e a faixa de frequência. Sobre seu funcionamento diz-se que, a partir do momento em que o sequencímetro detecta a passagem por zero (pulso positivo de curta duração) de cada fase é aplicado em um circuito sequencial feito com flip-flop e indica a sequencia da rede \cite{UNIR}.
+
+Circuitos desequilibrados podem ser utilizados para a verificação de sequência de fases em certo sistema elétrico, na ausência de um sequencímetro. Para isso
 
 \vspace{0.3cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=13cm]{DISTRIBUICAO-DESUNIFORME}
-\caption{Distribuição desuniforme de cargas entre as fases \cite{PH}.}
+\includegraphics[width=13cm]{fasimetro}
+\caption{Fasímetro com indicador led 690 volts - MFA-862 \cite{fig1}.}
 \label{intro:fig1}
 \end{figure}
 \vspace{0.3cm}
-
-Nesse contexto, é de interesse estudar circuitos elétricos desequilibrados, com o intuito de verficar os efeitos do deslocamento do neutro na rede elétrica. 
-
-\vspace{0.2cm}
-\subsection{Método dos 3 Wattímetros}
-O método dos 3 wattímetros, no qual é conectado um wattímetro por fase, é pouco comum, a menos que se deseje as potências de cada fase. É aplicável em circuitos onde o fator de potência varia continuamente como, por exemplo, no caso da obtenção das características de um motor síncrono, que graças a seu fator de potência elevado e variável são usados na correção de fator de
-potência e precisam de uma fonte de corrente contínua ou retificada para sua excitação, além de
-exigirem um complexo equipamento de controle. 
-
-Para circuitos elétricos a 4 Fios ($\mathrm{Y}$ com neutro) necessariamente, deve-se utilizar esse método, como no circuito da primeira montagem desse experimento (Figura \ref{m1:esquema}). A medição de potência de cada wattímetro por fase referente a um ponto $\mathbf{P}$, como mostrado na Figura \ref{intro:fig2}. Ainda é possível provar a indepência da medição de cada wattímetro com o ponto $\mathbf{P}$, que pode ligar-se a qualquer uma das fases caso não haja neutro (sistema a 3 fios). Assim, o wattímetro correspondente à fase ligada ao ponto P será desnecessário para a medição da potência trifásica pois medirá com $V_L=0V$, recaindo se, portanto, no método dos dois wattímetros
-
-\vspace{0.3cm}
-\begin{figure}[H]
-\centering
-\includegraphics[width=13cm]{3Watt}
-\caption{Ligação de wattímetros no sistema trifásico \cite{PH}.}
-\label{intro:fig2}
-\end{figure}
-\vspace{0.2cm}
 
 
 \section{Preparação}
@@ -95,14 +79,11 @@ Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q
 \item \emph{\textbf{Amperímetro analógico AC:}}
 Instrumento utilizado para acompanhar visualmente o aumento da corrente.
 
-\item \emph{\textbf{Reatores de 200 mH:}}
-Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $L=200mH$ e $R_L=3,8\Omega$.
+\item \emph{\textbf{Resistor de $50\Omega$:}}
+Carga resistiva para compor a carga do circuito trifásico.
 
-\item \emph{\textbf{Resistores de $50\Omega$:}}
-Foram utilizados 3, para compor a carga do circuito trifásico.
-
-\item \emph{\textbf{Capacitores de $45,9\mu F$:}}
-Foram utilizados 3, para compor a carga do circuito trifásico. Sendo $C= 45,9\mu F$. Sendo sua resistência quase nula, portanto desprezível nessa aplicação (Esquenta pouco, logo dissipa menos energia).
+\item \emph{\textbf{Capacitor de $45,9\mu F$:}}
+Sendo sua resistência quase nula, portanto desprezível nessa aplicação (Esquenta pouco, logo dissipa menos energia).
 \end{enumerate}
 
 \vspace{0.2cm}
@@ -524,221 +505,18 @@ C & 1,429 & 27,36 & -30,9 & 41,26 & 0,663 \\ \hline
 
 \vspace{0.2cm}
 
-\subsection{Análise comparativa: experimento \emph{vs.} teoria}
-\subsubsection{Sobre a presença do neutro no circuito desequilibrado}
-% - Como se manifestou o desequilíbrio do sistema com a presença do fio neutro?
-Como visto na análise teorica e experimental, a ligação do neutro da fonte com o da carga provocou $V_{n'n}=0$, fazendo com que a tensão fornecida pela fonte seja completamente recaída sobre a carga. Entretanto, o fio neutro tbm funciona como fuga para a corrente resultante, sendo $I_N=I_A+I_B+I_C$, já que no circuito desequilibrado as correntes não se anularão. 
+\subsection{Reflexão}
+\subsubsection{E na ausência de um voltímetro? ...}
+% - Na impossibilidade de ter voltímetros, amperímetros e sequencímetro, como você poderia encontrar a solução desse problema (abc ou cba)?
+ 
 
-\subsubsection{Sobre a ausência do neutro no circuito desequilibrado}
-% - Como se manifestou o desequilíbrio do sistema com a ausência do fio neutro?
-Na ausência do fio neutro a corrente resultante da soma das correntes de linha $I_A$, $I_B$ e $I_C$ não tem como fugir pelo neutro, além disso manisfesta-se por meio de uma diferença de potencial $V_{n'n}$, uma vez que o neutro da carga não estará mais conectado ao da fonte (referencial), que neste momento está isolado.
+\subsubsection{Mas porque encontrar a correta sequência de fase em um circuito elétrico? }
+% - Aponte a importância de encontrar a correta sequência de fase em um circuito elétrico.
 
-\subsubsection{Ilustrando as medidas de tensão e corrente na forma de fasores}
-% - Usando os módulos das tensões e correntes medidas, obtenha os fasores correspondentes
-% e faça um diagrama fasorial de cada caso, em ambas as sequências
-A partir do resultado teórico, é interessante verficar a disposição de grandezas de tensão e corrente num diagrama fasorial, assim constatar o desequílibrio visualmente (Figuras \ref{m1:fasores}, \ref{m2:fasores} e \ref{m3:fasores}).
-
-\begin{figure}[H]
-\centering \hspace{0.5cm}
-    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % coordinates
-    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
-    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (0:1.065*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (-169.3:0.613*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (169.1:0.746*2.1) coordinate (ic)  node[right] {$I_C$};
-    \draw[phasor, black] (0,0) -- (177.3:0.125*2.1) coordinate (ic)  node[right] {$I_N$};
-
-    \draw[phasor, blue] (0,0) -- (0:54.63/16) coordinate (va)  node[right] {$V_{AN}$};
-    \draw[phasor, blue] (0,0) -- (-120:57.09/16) coordinate (vb)  node[right] {$V_{BN}$};
-    \draw[phasor, blue] (0,0) -- (120:57.33/16) coordinate (vc)  node[right] {$V_{CN}$};
-    %\draw[phasor, black] (0,0) -- (0:1.38/16) coordinate (vc)  node[right] {$V_{CN}$};
-
-    \end{tikzpicture}\qquad
-     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % coordinates
-    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
-    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (0:1.089*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (70.69:0.612*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (-70.87:0.758*2.1) coordinate (ic)  node[right] {$I_C$};
-    \draw[phasor, black] (0,0) -- (-1.807:1.6*2.1) coordinate (ic)  node[right] {$I_N$};
-
-    \draw[phasor, blue] (0,0) -- (0:56.68/16) coordinate (va)  node[right] {$V_{AN}$};
-    \draw[phasor, blue] (0,0) -- (120:56.54/16) coordinate (vb)  node[right] {$V_{BN}$};
-    \draw[phasor, blue] (0,0) -- (-120:58.01/16) coordinate (vc)  node[right] {$V_{CN}$};
-    %\draw[phasor, black] (0,0) -- (0:2.23/16) coordinate (vc)  node[right] {$V_{CN}$};
-
-    \end{tikzpicture}
-\caption{Diagrama fasorial para a montagem 1 em fase ABC e CBA respectivamente.}
-\label{m1:fasores}
-\end{figure}
-\vspace{0.2cm}
-
-\begin{figure}[H]
-\centering
-    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % coordinates
-    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
-    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (-0.410:1.221*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (-162.1:0.6*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (162.3:0.684*2.1) coordinate (ic)  node[right] {$I_C$};
-
-    \draw[phasor, blue] (0,0) -- (0:61.05/16) coordinate (va)  node[right] {$V_{AN}$};
-    \draw[phasor, blue] (0,0) -- (-120:47.01/16) coordinate (vb)  node[right] {$V_{BN}$};
-    \draw[phasor, blue] (0,0) -- (120:52.27/16) coordinate (vc)  node[right] {$V_{CN}$};
-    \draw[phasor, black] (0,0) -- (0:8.25/16) coordinate (vnn)  node[right] {$V_{N'N}$};
-    
-    \end{tikzpicture}\qquad
-     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % coordinates
-    %\draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
-    %\draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (10.4:0.275*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (95.59:0.994*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (-98.17:1.137*2.1) coordinate (ic)  node[right] {$I_C$};
-
-    \draw[phasor, blue] (0,0) -- (10.4:61.05/16) coordinate (va)  node[right] {$V_{AN}$};
-    \draw[phasor, blue] (0,0) -- (144.9:47.01/16) coordinate (vb)  node[right] {$V_{BN}$};
-    \draw[phasor, blue] (0,0) -- (-147.3:52.27/16) coordinate (vc)  node[right] {$V_{CN}$};
-    \draw[phasor, black] (0,0) -- (0:45/16) coordinate (vnn)  node[right] {$V_{N'N}$};
-
-    \end{tikzpicture}
-\caption{Diagrama fasorial para a montagem 2 em fase ABC e CBA respectivamente.}
-\label{m2:fasores}
-\end{figure}
-\vspace{0.2cm}
-
-\begin{figure}[H]
-\centering
-\hspace{-0.5cm}
-    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (-4.307:1.571*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (-176:1.470*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (101.2:0.240*2.1) coordinate (ic)  node[right] {$I_C$};
-    
-    \end{tikzpicture}\quad
-     \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
-
-    % phasors
-    \draw[phasor, red] (0,0) -- (38.18:0.971*2.1) coordinate (ia)  node[right] {$I_A$};
-    \draw[phasor, red] (0,0) -- (122.5:0.899*2.1) coordinate (ib)  node[right] {$I_B$};
-    \draw[phasor, red] (0,0) -- (-101.5:1.098*2.1) coordinate (ic)  node[right] {$I_C$};
-
-    \end{tikzpicture}
-\caption{Diagrama fasorial para a montagem 3 em fase ABC e CBA respectivamente.}
-\label{m3:fasores}
-\end{figure}
-\vspace{0.2cm}
-
-\subsubsection{Sobre a configuração no medidor \emph{Kron}}
-% - Dois tipos de ligações existentes no kron são: a) TL = 0003 (3ø com Neutro) e; b) TL = 0049
-% (3ø sem Neutro). A primeira configuração poderia ser usada na seção 2.1? E a segunda
-% configuração, poderia ser usada nas seções 2.2 e 2.3? Justifique as respostas.
-Na Figura \ref{conf:kron} tem-se a aplicação apropriada para cada configuração TL, logo se a configuração TL=0003 tivesse sido usada na montagem 1, ou seja, em um circuito desequilibrado, não se obteria os valores de interesse, já que o medidor \emph{Kron} assume que a carga seja trifásica e procede os cálculos das grandezas trifásicas, por meio de somente os sinais de tensão e uma corrente. Assim, a impedância de uma fase qualquer é facilmente calculada pela Lei de Ohm, a qual o \emph{Kron} considerará erroneamente como a mesma impedância para as outras duas fases.
-
-Com relação a segunda configuração (TL=0049), para as outras duas montagem, também não é possível, já que nessa configuração assume-se cargas equilibradas, assim o \emph{Kron} fará o cálculo da  terceira a partir da aritmética das outras duas obrtidas medainte, o que é erróneo, pois dado que as cargas são desenquilidadas, as corrente também deveriam ser, à tensão de linha equilibrada.  
-
-\vspace{0.15cm}
-\begin{figure}[H]
-\centering
-\subfloat[]{\includegraphics[width=\textwidth]{TL00}}\hfill
-
-\subfloat[]{\includegraphics[width=\textwidth]{TL03}}\hfill
-
-\subfloat[]{\includegraphics[width=\textwidth]{TL48}}
-
-\subfloat[]{\includegraphics[width=\textwidth]{TL49}}
-\caption{Informação do manual do usuário do medidor \emph{Kron} para as configurações de Tipo de Ligação (a) TL00, (b) TL03, (c) TL48 e (d) TL49 \cite{Kron}.}
-\label{conf:kron}
-\end{figure}
-\vspace{0.2cm}
 
 
 \newpage
 \section{Simulação computacional} % (10%);
-\subsection{Carga em estrela com neutro conectado}
-Para sequência de fases ABC tem-se: 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m1-esquema-abc-correntes}
-\caption{Correntes de linha da montagem 1 em sequência de fases ABC.}
-\label{m1:IL}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m1-esquema-abc-vf}
-\caption{Tensões de fase da montagem 1 em sequência de fases ABC.}
-\label{m1:VF}
-\end{figure}
-
-\newpage
-Para sequência de fases CBA tem-se: 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m1-esquema-cba-correntes}
-\caption{Correntes de linha da montagem 1 em sequência de fases CBA.}
-\label{m2:IL}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m1-esquema-cba-vf}
-\caption{Tensões de fase da montagem 1 em sequência de fases CBA.}
-\label{m2:VF}
-\end{figure}
-
-\newpage
-\subsection{Carga em estrela com neutro isolado}
-Para sequência de fases ABC tem-se: 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m2-esquema-abc-correntes}
-\caption{Correntes de linha da montagem 2 em sequência de fases ABC.}
-\label{m2:IL}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m2-esquema-abc-vf}
-\caption{Tensões de fase da montagem 2 em sequência de fases ABC.}
-\label{m1:VF}
-\end{figure}
-
-\newpage
-Para sequência de fases CBA tem-se: 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m2-esquema-cba-correntes}
-\caption{Correntes de linha da montagem 2 em sequência de fases CBA.}
-\label{m2:IL}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=13.5cm]{m2-esquema-cba-vf}
-\caption{Tensões de fase da montagem 2 em sequência de fases CBA.}
-\label{m1:VF}
-\end{figure}
-
-\newpage
-\subsection{Carga em triângulo desequilibrado}
 Para sequência de fases ABC tem-se: 
 
 \begin{figure}[H]
@@ -761,9 +539,6 @@ Para sequência de fases CBA tem-se:
 
 \newpage
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-A presença do fio em circuito equilibrados, como visto em experimentos anteriores, não era de grande efeito, dado que as correntes se anulavam no ponto de encontro $n'$ da carga em estrela equilibrada, resultando em $I_N=0$. Entretanto, para circuitos desequilibrados isso não ocorre, como verificado neste experimento.
-
-Dada uma carga trifásica desequilibrada em configuração estrela, investigou-se teóricamente e experimentalmente acerca de 2 situações: neutro conectado e neutro isolado. No caso do neutro conectado, o fio neutro serve como fuga para corrente resultante da interação das 3 correntes de cada fase, sendo notável que $V_{n'n}=0$. Já no caso do neutro isolado, o desequilíbrio manifesta-se no deslocamento de neutro, logo $V_{n'n}\ne 0$. 
 
 \newpage
 \begin{thebibliography}{9} 
@@ -772,16 +547,22 @@ Dada uma carga trifásica desequilibrada em configuração estrela, investigou-s
     P. H. O. Rezende,
     "Circuitos Polifásicos Desequilibrados", 2018.
 
-\bibitem{Kron}
-    KRON Instrumentos Elétricos,
-    “Mult-K 05 e Mult-K 120: Medidores de Energia e Transdutores Digitais de Grandezas Elétricas”, Kron Medidores., 2018.
-
-
 \bibitem{safe}
     SafetyTrabi,
     “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
  Disponível em:
  \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
+
+\bibitem{UNIR}
+    B. M. Nascimento, J. Carneiro, P. Viecilli,
+    “Sequencímetro de Baixo Custo”, Fundação Universidade Federal de Rondônia - UNIR.
+ Disponível em:
+ \url{https://brunomarquesunir.wixsite.com/sequencimetro}. Acesso em: dez. 2019.
+
+\bibitem{fig1}
+    Dutra Máquinas.
+ Disponível em:
+ \url{https://m.dutramaquinas.com.br/p/fasimetro-com-indicador-led-690-volts-mfa-862-mfa-862}. Acesso em: dez. 2019.
 
 
 \end{thebibliography}
