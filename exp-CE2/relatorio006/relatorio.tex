@@ -5,13 +5,14 @@
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{indentfirst}
+\usepackage{tikz} %% fasores
 
 \usepackage[brazilian]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath, graphicx, subfig, enumerate}
 \usepackage{float, verbatim}
 \usepackage[colorinlistoftodos]{todonotes}
-\usepackage{makeidx} % Para o sumário
+\usepackage{makeidx}
 \usepackage{geometry}
 
 \graphicspath{{img/}}
@@ -39,7 +40,7 @@
 \newpage
 
 \section{Objetivos} % 2,5%
-Pretende-se investigar-se experimentalmente acerca do efeito da presença do fio neutro em circuitos trifásicos desequilibrados, ligados em estrela.
+Pretende-se investigar experimentalmente acerca do efeito da presença do fio neutro em circuitos trifásicos desequilibrados, ligados em estrela.
 
 \section{Introdução teórica} % 5%
 
@@ -286,12 +287,240 @@ Y_{C} =0,0131\ \angle \ 49,13\ [ S]
 \end{cases}
 \end{aligned}
 \end{equation*}
+\vspace{0.2cm}
 
 Como os neutros da fonte e da carga estão conectados, não há deslocamento de neutro, $V_{n'n}=0$. Portanto, a tensão na carga é a mesma da fonte, como consequência da presença do neutro.
+\vspace{0.5cm}
+
+\begin{equation*}
+\begin{array}{l}
+P_{A} =\Re e\left\{I_{A}^{*} \cdotp V_{AN}\right\} =I_{A} V_{AN} \cdotp cos\theta _{A}\\
+Q_{A} =\operatorname{Im} \left\{I_{A} \ ^{*} \cdotp V_{AN}\right\} =I_{A} V_{AN} \cdotp sen\theta _{A}\\
+S_{A} =I_{A} \ ^{*} \cdotp V_{AN}\\
+\\
+\text{Cálculo de corrente:}\ V=R\cdotp I\\
+\left( 57,74\angle 0\mathrm{^{\circ }}\right) =Z_{A} \cdotp I_{A} \Rightarrow I_{A} =1,155\angle 0\mathrm{^{\circ }}[ A]\\
+\left( 57,74\angle -120\mathrm{^{\circ }}\right) =Z_{B} \cdotp I_{B} \Rightarrow I_{B} =0,6997\angle -169,3\mathrm{^{\circ }} \ [ A]\\
+\left( 57,74\angle 120\mathrm{^{\circ }}\right) =Z_{C} \cdotp I_{C} \Rightarrow I_{C} =0,756\angle 169,1\mathrm{^{\circ }}[ A]\\
+\\
+\begin{array}{l}
+I_{N} =I_{B} +I_{C}\\
+I_{N} =1,155\angle 0\mathrm{^{\circ }} +0,6997\angle -169,3\mathrm{^{\circ }} +0,756\angle 169,1\mathrm{^{\circ }}\\
+I_{N} =0,275\angle 177,3\mathrm{^{\circ }}
+\end{array}\\
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{l}
+\mathrm{\begin{bmatrix}
+I_{A}\\
+I_{B}\\
+I_{C}
+\end{bmatrix}} =\mathrm{\begin{bmatrix}
+1,155\angle 0\mathrm{^{\circ }}\\
+0,6997\angle -169,3\mathrm{^{\circ }}\\
+0,756\angle 169,1\mathrm{^{\circ }}
+\end{bmatrix}}\\
+\\
+S_{A} =I_{A} \ ^{*} \cdotp V_{AN} =1,155\angle 0\mathrm{^{\circ }} \cdotp 57,74\angle 0\mathrm{^{\circ }} =66,69\angle 0\mathrm{^{\circ }}[ VA]\\
+S_{B} =I_{B} \ ^{*} \cdotp V_{BN} =0,6997\angle -169,3^{\circ } \cdotp 57,74\angle 120^{\circ } =40,4\angle 70,7^{\circ }[ VA]\\
+S_{C} =I_{C} \ ^{*} \cdotp V_{CN} =0,756\angle 169,1^{\circ } \cdotp 57,74\angle 120^{\circ } =43,65\angle -70,9^{\circ }[ VA]\\
+\\
+cos\theta _{A} =cos0^{\circ } =1\\
+cos\theta _{B} =cos70,7^{\circ } =0,331\\
+cos\theta _{C} =cos\left( -70,9^{\circ }\right) =0,327
+\end{array}
+\end{equation*}
+
+\vspace{0.5cm}
+A partir dos cálculos acima é possível montar uma tabela (Tabela \ref{m1:teorico:abc}) com os dados teóricos das grandezas de tensão e corrente no circuito. O cálculo é análogo para sequências de fases CBA, e os resultados são comtemplados pela Tabela \ref{m1:teorico:cba}.
+\vspace{0.4cm}
+
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 1, em sequência ABC.}
+\label{m1:teorico:abc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP & $A_N$(A) & $V_{N'N}$ (V) \\ \hline
+A & 100,0 & 57,74 & 1,155 & 66,69 & 0 & 66,69 & 1 & \multirow{3}{*}{0,275} & \multirow{3}{*}{0} \\ \cline{1-8}
+B & 100,0 & 57,74 & 0,699 & 13,37 & 38,13 & 40,4 & 0,331 &  &  \\ \cline{1-8}
+C & 100,0 & 57,74 & 0,756 & 14,27 & 41,25 & 43,65 & 0,327 &  &  \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 1, em sequência CBA.}
+\label{m1:teorico:cba}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP & $A_N$ (A) & $V_{N'N}$ (V) \\ \hline
+A & 100,0 & 57,74 & 1,155 & 66,69 & 0 & 66,69 & 1 & \multirow{3}{*}{1,610} & \multirow{3}{*}{0} \\ \cline{1-8}
+B & 100,0 & 57,74 & 0,663 & 24,96 & 29,03 & 38,28 & 0,652 &  &  \\ \cline{1-8}
+C & 100,0 & 57,74 & 0,716 & 27,04 & 31,26 & 41,34 & 0,654 &  &  \\ \hline
+\end{tabular}%
+}
+\end{table}
+\vspace{0.3cm}
 
 \subsubsection{Carga em estrela com neutro isolado} \label{m2:teoria}
+Para esta montagem, como não há presença do fio neutro, haverá deslocamento de neutro, ou seja $V_{n'n}\ne 0$, como é mostrado nos cálculos abaixo. 
+
+\begin{equation*}
+\begin{array}{l}
+V_{N'N} =\dfrac{E_{AN} \cdotp Y_{A} +E_{BN} +Y_{B} +E_{CN} \cdotp Y_{C}}{Y_{A} +Y_{B} +Y_{C}}\\
+\\
+V_{N'N} =\dfrac{57,74\angle 0\mathrm{^{\circ }} \cdotp 0,02+57,74\angle -120\mathrm{^{\circ }} \cdotp 0,0122\angle -49,31+57,74\angle 120\mathrm{^{\circ }} \cdotp 0,0131\angle 49,13\mathrm{^{\circ }}}{0,02+0,0122\angle -49,31\mathrm{^{\circ }} +0,0131\angle 49,13\mathrm{^{\circ }}}\\
+\\
+V_{N'N} =7,678\angle 176,5\mathrm{^{\circ }}
+\end{array}
+\end{equation*}
+
+Assim, é possível realizar o cálculos das grandezas de tensão e corrente para sequências de fase ABC. A Tabela \ref{m2:teorico:abc} comtempla os resultados teóricos obtidos.
+\vspace{0.3cm}
+
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 2, em sequência ABC.}
+\label{m2:teorico:abc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP & $V_{N'N}$ (V) \\ \hline
+A & 100,0 & 65,41 & 1,308 & 85,56 & 0 & 85,56 & 1 & \multirow{3}{*}{7,678} \\ \cline{1-8}
+B & 100,0 & 54,75 & 0,668 & 23,84 & 27,73 & 36,57 & 0,652 &  \\ \cline{1-8}
+C & 100,0 & 53,88 & 0,706 & 24,88 & 28,77 & 38,04 & 0,654 &  \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\vspace{0.3cm}
+Analogamente, faz-se os cálculo para sequência de fases CBA, e obtém-se os resultados da Tabela \ref{m2:teorico:cba}.
+
+\begin{equation*}
+\begin{array}{l}
+V_{N'N} =\dfrac{E_{AN} \cdotp Y_{A} +E_{BN} +Y_{B} +E_{CN} \cdotp Y_{C}}{Y_{A} +Y_{B} +Y_{C}}\\
+\\
+V_{N'N} =\dfrac{57,74\angle 0\mathrm{^{\circ }} \cdotp 0,02+57,74\angle 120\mathrm{^{\circ }} \cdotp 0,0122\angle -49,31+57,74\angle -120\mathrm{^{\circ }} \cdotp 0,0131\angle 49,13\mathrm{^{\circ }}}{0,02+0,0122\angle -49,31\mathrm{^{\circ }} +0,0131\angle 49,13\mathrm{^{\circ }}}\\
+\\
+V_{N'N} =43,15\angle -2,839\mathrm{^{\circ }}
+\end{array}
+\end{equation*}
+
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 2, em sequência CBA.}
+\label{m2:teorico:cba}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ & $V_L$ (V) & $V_F$ (V) & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP & $V_{N'N}$ (V) \\ \hline
+A & 100,0 & 11,84 & 0,237 & 2,086 & 0 & 2,806 & 1 & \multirow{3}{*}{43,15} \\ \cline{1-8}
+B & 100,0 & 86,14 & 1,051 & 44,54 & 78,79 & 90,53 & 0,492 &  \\ \cline{1-8}
+C & 100,0 & 83,76 & 1,097 & 38,13 & 83,61 & 91,88 & 0,415 &  \\ \hline
+\end{tabular}%
+}
+\end{table}
+\vspace{0.2cm}
 
 \subsubsection{Carga em triângulo desequilibrado} \label{m3:teoria}
+Para carga em triângulo, tem-se as impedâncias e admitâncias descritas abaixo.
+
+\vspace{-0.5cm}
+\begin{equation*}
+\begin{aligned}
+\begin{cases}
+Z_{AB} =50\ [ \Omega ]\\
+Z_{BC} =53,8+j\ 62,58\ [ \Omega ]\\
+Z_{CA} =50-j\ 57,79\ [ \Omega ]
+\end{cases} & \quad \text{e também} \quad  & \begin{cases}
+Y_{AB} =0,02\ [ S]\\
+Y_{BC} =0,0122\ \angle -49,31\ [ S]\\
+Y_{CA} =0,0131\ \angle \ 49,13\ [ S]
+\end{cases}
+\end{aligned}
+\end{equation*}
+\vspace{0.2cm}
+
+Ademais, com o intuito de manter as correntes de linha com módulos inferiores a 2A, a tensão de linha passa a ser de 50V. Logo tem-se:
+
+
+\vspace{-0.4cm}
+\begin{equation*}
+\begin{array}{ c c c }
+\mathrm{\begin{bmatrix}
+E_{AB}\\
+E_{BC}\\
+E_{CA}
+\end{bmatrix} =50V\ \begin{bmatrix}
+1\\
+\alpha ^{2}\\
+\alpha 
+\end{bmatrix}} & \quad \text{e} \quad \  & \mathrm{\begin{bmatrix}
+E_{AN}\\
+E_{BN}\\
+E_{CN}
+\end{bmatrix} =28,87V\ \angle -30^{\circ } \begin{bmatrix}
+1\\
+\alpha ^{2}\\
+\alpha 
+\end{bmatrix}}
+\end{array}
+\end{equation*}
+\vspace{0.2cm}
+
+Assim, é possível calcular e organizar os dados teóricos para as sequências ABC e CBA, respectivamente, nas Tabelas \ref{m3:teorico:abc} e \ref{m3:teorico:cba}.
+\vspace{0.2cm}
+
+\begin{equation*}
+\begin{array}{l}
+I_{AB} =\dfrac{V_{AB}}{Z_{AB}} =\dfrac{50\angle 0\mathrm{^{\circ }}}{50} =1\angle 0\mathrm{^{\circ }}\\
+\\
+I_{BC} =\dfrac{V_{BC}}{Z_{BC}} =\dfrac{50\angle 120\mathrm{^{\circ }}}{53,8+j\ 62,58} =0,929\angle 57,4\mathrm{^{\circ }}\\
+\\
+I_{AC} =\dfrac{V_{CA}}{Z_{CA}} =\dfrac{50\angle -120\mathrm{^{\circ }}}{50-j\ 57,79} =0,654\angle -70,87\mathrm{^{\circ }}\\
+\\
+I_{A} =I_{AB} -I_{CA} =1\angle 38,18\mathrm{^{\circ }}\\
+I_{B} =\ I_{BC} -I_{AB} =0,928\angle 122,5\mathrm{^{\circ }}\\
+I_{C} =I_{CA} -I_{BC} =1,429\angle -101,5\mathrm{^{\circ }}
+\end{array}
+\end{equation*}
+\vspace{0.3cm}
+
+%% CORRENTES AB  
+%% TABELAS ABC E CBA
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 3, em sequência ABC.}
+\label{m3:teorico:abc}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+ & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP \\ \hline
+A & 1,647 & 39,28 & -26,80 & 47,55 & 0,826 \\ \hline
+B & 1,599 & 41,50 & 20,24 & 46,16 & 0,899 \\ \hline
+C & 0,241 & 6,828 & -1,352 & 6,96 & 0,981 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering \small \def\arraystretch{1.32}
+\caption{Dados teóricos para a montagem 3, em sequência CBA.}
+\label{m3:teorico:cba}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+ & $I_L$ (A) & P (W) & Q (VAr) & S (VA) & FP \\ \hline
+A & 1 & 10,74 & -26,80 & 28,87 & 0,372 \\ \hline
+B & 0,928 & 22,58 & -14,39 & 26,79 & 0,843 \\ \hline
+C & 1,429 & 27,36 & -30,9 & 41,26 & 0,663 \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
 
 \subsection{Análise comparativa: experimento \emph{vs.} teoria}
 \subsubsection{Sobre a presença do neutro no circuito desequilibrado}
@@ -306,18 +535,39 @@ Na ausência do fio neutro a corrente resultante da soma das correntes de linha 
 % - Usando os módulos das tensões e correntes medidas, obtenha os fasores correspondentes
 % e faça um diagrama fasorial de cada caso, em ambas as sequências
 A partir do resultado teórico, é interessante verficar a disposição de grandezas de tensão e corrente num diagrama fasorial, assim constatar o desequílibrio visualmente (Figura \ref{fasores}).
-\vspace{0.15cm}
-\begin{figure}[H]
+
+\begin{figure}
 \centering
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-abc}}\hfill
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-cba}}
+    \begin{tikzpicture}[ > = angle 90, phasor/.style = {very thick,-{Triangle[fill=white]}}, angles/.style = {draw, <->, angle eccentricity=1, right, angle radius=7mm}]
 
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-abc}}\hfill
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-cba}}
+    % coordinates
+    \draw[->] (-0.5,0) -- (4,0) coordinate (x) node[below left] {$Re$};
+    \draw[->] (0,-1.5) -- (0,2) node[below left] (y) {$Im$};
+    % phasors
+    \draw[phasor] (0,0) -- (300:1.5) coordinate (i)  node[right] {I};
+    \draw[phasor] (0,0) -- ( 30:2.5) coordinate (v)  node[right] {V};
 
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-abc}}\hfill
-\subfloat[]{\includegraphics[width=0.48\textwidth]{m2-fasores-cba}}
-\caption{Digrama fasorial das montagens 1-3 em (a)-(c).}
+
+    \end{tikzpicture}
+    \begin{tikzpicture}[>=latex]
+    \draw[style=help lines] (0,0) (3,2);
+
+    \coordinate (vec1) at (-30:1.5); 
+    \coordinate (vec2) at (30:2.5);
+    \coordinate (vec3) at (0:2.5);
+    \coordinate (vec4) at (90:2);
+    \coordinate (vec5) at (270:2);
+    \coordinate (vec6) at (180:2);
+
+    \draw[->,thick,red] (0,0) -- (vec1);
+    \draw[->,thick,red] (0,0) -- (vec2);
+    \draw[->,thick,red] (0,0) -- (vec3);
+    \draw[->,thick,black] (0,0) -- (vec4);
+    \draw[->,thick,black] (0,0) -- (vec5);
+    \draw[->,thick,black] (0,0) -- (vec6);
+
+    \end{tikzpicture}
+\caption{Diagrama fasorial das montagens 1-3 em (a)-(c).}
 \label{fasores}
 \end{figure}
 \vspace{0.2cm}
@@ -349,19 +599,92 @@ Com relação a segunda configuração (TL=0049), para as outras duas montagem, 
 \newpage
 \section{Simulação computacional} % (10%);
 \subsection{Carga em estrela com neutro conectado}
+Para sequência de fases ABC tem-se: 
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=13.5cm]{m1-esquema}
+\includegraphics[width=13.5cm]{m1-esquema-abc-correntes}
 \caption{Circuito esquemático da montagem 1.}
-\label{m1:esquema}
+\label{m1:IL}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m1-esquema-abc-vf}
+\caption{Circuito esquemático da montagem 1.}
+\label{m1:VF}
+\end{figure}
+
+Para sequência de fases CBA tem-se: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m1-esquema-cba-correntes}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:IL}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m1-esquema-cba-vf}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:VF}
 \end{figure}
 
 \subsection{Carga em estrela com neutro isolado}
+Para sequência de fases ABC tem-se: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m2-esquema-abc-correntes}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:IL}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m2-esquema-abc-vf}
+\caption{Circuito esquemático da montagem 1.}
+\label{m1:VF}
+\end{figure}
+
+Para sequência de fases CBA tem-se: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m2-esquema-cba-correntes}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:IL}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m2-esquema-cba-vf}
+\caption{Circuito esquemático da montagem 1.}
+\label{m1:VF}
+\end{figure}
 
 \subsection{Carga em triângulo desequilibrado}
+Para sequência de fases ABC tem-se: 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m3-esquema-abc-correntes}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:IL}
+\end{figure}
+
+Para sequência de fases CBA tem-se: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=13.5cm]{m3-esquema-cba-correntes}
+\caption{Circuito esquemático da montagem 1.}
+\label{m2:IL}
+\end{figure}
+
+
+\newpage
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
+A presença do fio em circuito equilibrados, como visto em experimentos anteriores, não era de grande efeito, dado que as correntes se anulavam no ponto de encontro $n'$ da carga em estrela equilibrada, resultando em $I_N=0$. Entretanto, para circuitos desequilibrados isso não ocorre, como verificado neste experimento.
 
+Dada uma carga trifásica desequilibrada em configuração estrela, investigou-se teóricamente e experimentalmente acerca de 2 situações: neutro conectado e neutro isolado. No caso do neutro conectado, o fio neutro serve como fuga para corrente resultante da interação das 3 correntes de cada fase, sendo notável que $V_{n'n}=0$. Já no caso do neutro isolado, o desequilíbrio manifesta-se no deslocamento de neutro, logo $V_{n'n}\ne 0$. 
 
 \newpage
 \begin{thebibliography}{9} 
