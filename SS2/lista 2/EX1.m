@@ -1,4 +1,4 @@
-clear all; close all; clc;
+clear all; clc;
 
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
@@ -9,19 +9,24 @@ syms t real
 x = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
 figure('Name', 'Receptor'); subplot(2,1,1); ezplot(x, [ti, tf])
 title('Sinal Recebido', 'FontSize',14);
-ylabel('$x(t)$','Interpreter','LaTex','FontSize',18);
+ylabel('$x(t)$','Interpreter','LaTex','FontSize',18); hold on;
 
 % Conversor A/D: Amostragem
 Fs = 15e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
 Ts = 1/Fs; % esquece no tempo t
 n = ti/Ts:1:tf/Ts; % numero de amostras depende de [ti tf]
+t_sample = ti:Ts:n*Ts;
 
-x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
-subplot(2,1,2); scatter(n, x_n);
-title('Pós Conversor A/D com Fs=12kHz');
+%x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
+x_n = sin(2*pi*10e3*n/Fs);
+% Converteu o sinal em digital normalizando por /Fs
+t = ti:1e-6:tf;
+subplot(2,1,2); plot(sin(2*pi*10e3*t)); hold on; scatter(n, x_n);
+title('Pós Conversor A/D com Fs=15kHz');
 xlabel('$n$','Interpreter','LaTex','FontSize',18);
 ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',18);
-set(gca,'FontSize',14);
+
+
 
 
 
