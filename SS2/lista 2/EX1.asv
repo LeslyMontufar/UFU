@@ -21,9 +21,7 @@ plot(t, x_t);
 
 
 % Espectro na freq por meio da fft
-w = 0:Fs; 
-
-set(gca,'FontSize',16);
+w = 0:Fs;
 
 
 
