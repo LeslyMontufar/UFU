@@ -1,4 +1,4 @@
-clear all; close all; clc;
+clear all; clc;
 
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
@@ -7,9 +7,9 @@ tf = 0.0018;
 % Sinal recebido
 syms t real
 x = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
-figure('Name', 'Receptor'); subplot(2,1,1); ezplot(x, [ti, tf])
+figure('Name', 'Receptor'); ezplot(x, [ti, tf])
 title('Sinal Recebido', 'FontSize',14);
-hold on;
+ylabel('$x(t)$','Interpreter','LaTex','FontSize',18); hold on;
 
 % Conversor A/D: Amostragem
 Fs = 15e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
@@ -22,17 +22,9 @@ x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
 
 scatter(Ts.*n, x_n);
 title('Pós Conversor A/D com Fs=15kHz');
-xlabel('$nT_s$','Interpreter','LaTex','FontSize',18);
+xlabel('$n$','Interpreter','LaTex','FontSize',18);
 ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',18);
 
-% Espectro de frequencia do sinal amostrado
-X = fft(x_n);
-X_abs = abs(X);
-X_phased = phase(X)*(180/pi);
-w = n/(tf-ti);% frequencia nao normalizadas a [0 pi]
-subplot(2,1,2); stem(w, X_abs);
-title('Análise do Espectro de Frequência do Sinal Digital');
-set(gca,'FontSize',14);
 
 
 

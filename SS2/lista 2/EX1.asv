@@ -20,13 +20,19 @@ t_sample = ti:Ts:length(n)*Ts;
 x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
 % Converteu o sinal em digital normalizando por /Fs
 
-subplot(2,1,2); plot(sin(2*pi*10e3*t)); hold on; scatter(n, x_n);
+subplot(2,1,2); scatter(Ts.*n, x_n);
 title('Pós Conversor A/D com Fs=15kHz');
 xlabel('$n$','Interpreter','LaTex','FontSize',18);
 ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',18);
 
-
-
+% Espectro de frequencia do sinal amostrado
+X = fft(x_n);
+X_abs = abs(X);
+X_phased = phase(X)*(180/pi);
+w = (ti);% frequencia digital
+figure('Name', 'Análise em frequência'); scatter([0:length(X)-1], X_abs);
+title('Espectro de frequência do Sinal Digital');
+set(gca,'FontSize',14);
 
 
 
