@@ -1,27 +1,26 @@
 clear all; close all; clc;
-% Do *sinal* se ve a maior freq para se determinar Fs
-% Amostragem (Conversor A/D) do sinal com Fs=12e3 pelo teorema de Nyquist (para evitar Aliasing - distorcao pos amostragem)
-Fs = 12e3;
-Ts = 1/Fs;
 
-tini = 0;
+% Invervalo a ser analisado - beep beep beep
+ti = 0;
 tf = 0.01;
-t = ti:Ts:tf;
+t = ti:1e-9:tf;
 
-% mas sabe-se que t = n*Ts
-% logo, nesse intervalo terá n=t/Ts=tf/(1/Fs)=tf*Fs amostras
-% n = 0:tf*Fs; ou:
-n = t/Ts; % n = t*Fs;
-
-% Sinal a ser discretizado
+% Sinal recebido
 x_t = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
-plot(t, x_t);
+figure('Name', 'Receptor'); plot(t, x_t);
+set(gca,'FontSize',16);
+title('Sinal Recebido'); 
 
-% Sinal discretizado
+% Conversor A/D: Amostragem
+Fs = 12e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
+Ts = 1/Fs; % esquece no tempo t
+n = 0:Ts:tf/Ts; % eixo tempo amostrado
 
+x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
+figure('Name', 'Sinal amostrado'); plot(n, x_n);
+xlabel('$t$','Interpreter','LaTex','FontSize',18);
+ylabel('$x[nT_s],x(t)$','Interpreter','LaTex','FontSize',18);
 
-% Espectro na freq por meio da fft
-w = 0:Fs;
 
 
 
