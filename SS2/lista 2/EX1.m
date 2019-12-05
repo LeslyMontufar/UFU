@@ -3,11 +3,12 @@ clear all; close all; clc;
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
 tf = 0.0018;
+t_total = tf-ti;
 
 % Sinal recebido
 syms t real
-x = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
-figure('Name', 'Receptor'); subplot(2,1,1); ezplot(x, [ti, tf])
+xt = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
+figure('Name', 'Receptor'); subplot(2,1,1); ezplot(xt, [ti, tf])
 title('Sinal Recebido', 'FontSize',14);
 hold on;
 
@@ -29,13 +30,32 @@ ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',18);
 X = fft(x_n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
-w = n/(tf-ti);% frequencia nao normalizadas a [0 pi]
+w = n/(tf-ti);% frequencia em Hz
 subplot(2,1,2); stem(w, X_abs);
 title('Análise do Espectro de Frequência do Sinal Digital');
-set(gca,'FontSize',14);
+set(gca,'FontSize',12);
 
+% Projeto do filtro rejeita banda
+H_ganho = ones(1, length(n));
+erro = 1e3;
+freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo total analisado
+H_ganho(round((freq_rejeitada-erro)*t_total):round((freq_rejeitada+erro)*t_total)) = 0;
+figure('Name','Projeto do filtro rejeita banda'); stem(w, H_ganho);
+title('Espectro em freq da Resposta ao Impulso');
+xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
+ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
 
+% Temos o filtro projetado
+% Para encontrar a saída filtrada tem-se:
+% Y(jw)=H(jw)*X(jw)
 
+% em modulo: |Y(jw)|=|H(jw)|*|X(jw)|
+Y_abs = H_ganho.*X_abs;
+figure('Name','Sinal Transmitido');
+subplot(2, 1, 1); stem(w, Y_abs);
+title('Espectro em freq da Resposta ao Impulso');
+xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
+ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
 
 
 
