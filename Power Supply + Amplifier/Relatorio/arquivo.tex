@@ -42,7 +42,7 @@
 \section{Introdução}
 Na construcão e planejamento da primeira placa de impresso (\emph{PCB}) está a essência de qualquer curso da Faculdade de Engenharia Elétrica (FEELT), uma vez que, à despeito das dificuldades no entendimento da disciplica teórica, o planejamento e análise da forma de onda da gradezas de tensão e corrente demonstram e ilustram com lucidez cada processo intrínseco do circuito. Nesse sentido, o uso de simuladores, seja \emph{PROTEUS}, \emph{MULTSIM} ou qualquer outro, é ferramenta de imprescindível para a análise do qualquer circuito, e entendimento dos componentes necessários e melhor adaptáveis às exigências do projeto.
 
-O projeto a ser destrinchado em cálculos e demostrações é retirado do material \emph{El Cheapo} \cite{cheapo} cujo título é \emph{Um realmente simples amplificador de potência} (do inglês, \emph{A Really Simple Power Amplifier}). Logo, é preciso planejar a elaboração de dois circuitos: a \emph{fonte de alimentação linear regulada} e o \emph{circuito amplificador}. Sabe-se que o projeto mencionado pode ser substituído em parte por um dispositivo menor (um amplificador operacional), contudo isso não é feito visto que o objetivo principal é o aprendizado dos componentes mais básicos da elétrica: reistores, capacitores, transistores e diodos. %%% indutores representados pelo transformador ??? nunca vi um deles sozinho, só aqueles grandões de exp-ce2.
+O projeto a ser destrinchado em cálculos e demostrações é retirado do material \emph{El Cheapo} \cite{cheapo} cujo título é \emph{Um realmente simples amplificador de potência} (do inglês, \emph{A Really Simple Power Amplifier}). Logo, é preciso planejar a elaboração de dois circuitos: a \emph{fonte de alimentação linear regulada} e o \emph{circuito amplificador}. Sabe-se que o projeto mencionado pode ser substituído em parte por um dispositivo menor (um amplificador operacional), contudo isso não é feito visto que o objetivo principal é o aprendizado dos componentes mais básicos da elétrica: reistores, capacitores, transistores e diodos. 
 
 À respeito da \textbf{\textit{fonte de alimentação linear regulada}}, tratada na Seção \ref{fonte}, pode obter-se melhor experiência, seja na busca por componentes, assim como melhor envolvimento com ferramentas de simulação e elaboração de placas de circuito impresso. Sabendo-se 
  que trata-se de um dispositivo responsável por converter a tensão elétrica alternada em contínua, foi possível verificar experimentalmente as qualidades e resultados de um circuito retificador em ponte, além de fitros capacitivos e circuitos reguladores com diodos zener.
@@ -67,7 +67,7 @@ Com intuito de realizar primeiramente o circuito que alimentará o circuito ampl
 \end{figure}
 \vspace{0.4cm}
 
-A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análise do circuito mediante um simulador ou análise do circuito, seja por malhas ou nodal, visto que devem ser projetados para uma tensão suficientemente alta. Para todo componente, existe essa limitação intrínseca do material, por exemplo a ponte retificadora escolhida foi a GBJ606, dado que suporta uma corrente máxima de 6A e tensão máxima de ...
+A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análise do circuito mediante um simulador ou análise do circuito, seja por malhas ou nodal, visto que devem ser projetados para uma tensão suficientemente alta. Para todo componente, existe essa limitação intrínseca do material, por exemplo a ponte retificadora escolhida foi a GBJ606, dado que suporta uma corrente máxima de 6A e tensão máxima de 600V.
 
 %\item Existe de especificação de tensão máxima no datasheet, para as pontes retificadoras?
 %\item O resistor de descarga só é necessário para fonte sem carga, entao retiro do orcamento? (Mas preciso dos resistores de for querer uma fonte independente, certo? Para mim, que eu possa regular a tensao de saida e corrente) 
@@ -217,7 +217,7 @@ O esquemático \emph{El Cheapo}, apresentado na Figura \ref{amp:esquematico}, po
 
 \vspace{0.4cm}
 Dos componentes da Tabela \ref{amp:componentes}, extraídos do esquemático da Figura \ref{amp:esquematico}, ainda são possíveis mudanças para o aprimoramento dos mecanismo do circuito. O capacitor $C7$* por exemplo poderia ter aumento de capacitância para $4700 \mu F$, com o intuito de suprir o amortecimento insuficiente do arranjo de capacitores. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% justificar melhor, entender com graficos e simulacoes
-Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em contato com o dissipador, uma vez que %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% explicar falando da tensao, eu acho, por meio de simulacao
+Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em contato com o dissipador, uma vez que da simulação se terá uma tensão em torno de 4 vezes a tensão de pico da fonte. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% explicar falando da tensao, eu acho, por meio de simulacao
 
 \begin{table}[H] \scriptsize
 \def\arraystretch{1.28}
@@ -252,7 +252,7 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
 \multicolumn{1}{|c|}{}                              & BD139                  & 2                   & 5,40           & \multicolumn{1}{c|}{Q2, Q3}             & \multicolumn{1}{c|}{}                              \\ \cline{2-6} 
 \multicolumn{1}{|c|}{}                              & BD140                  & 1                   & 1,68           & \multicolumn{1}{c|}{Q4}                 & \multicolumn{1}{c|}{}                              \\ \cline{2-6} 
 \multicolumn{1}{|c|}{}                              & 2N3055 (TIP35C)        & 2                   & 11,82           & \multicolumn{1}{c|}{Q5, Q6}             & \multicolumn{1}{c|}{}                              \\ \hline
-\multicolumn{1}{|c|}{Potenciômetro}                 & 200k                   & 1                   &                & \multicolumn{1}{c|}{VR1}                & \multicolumn{1}{c|}{}                              \\ \hline
+\multicolumn{1}{|c|}{Potenciômetro}                 & 200k                   & 1                   &  2,75              & \multicolumn{1}{c|}{VR1}                & \multicolumn{1}{c|}{}                              \\ \hline
 \multicolumn{1}{l}{}                                &                        & Total:              & R\$  35,17     &                                         &                                                    \\ \cline{3-4}
 \end{tabular}%
 }
