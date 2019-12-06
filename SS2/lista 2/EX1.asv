@@ -52,10 +52,14 @@ ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
 % em modulo: |Y(jw)|=|H(jw)|*|X(jw)|
 Y_abs = H_ganho.*X_abs;
 figure('Name','Sinal Transmitido');
-stem(w, Y_abs);
-title('Espectro em freq da Resposta ao Impulso');
+subplot(2, 1, 1); stem(w, Y_abs);
+title('Espectro em freq da saída');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
-ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
+ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
 
-
-
+% nao vejo necessidade em defasar o sinal (ainda)
+yt = ifft(Y_abs);
+subplot(2, 1, 2); stem(n*Ts, yt);
+title('Espectro no tempo da saída');
+xlabel('$t$','Interpreter','LaTex','FontSize',18);
+ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);

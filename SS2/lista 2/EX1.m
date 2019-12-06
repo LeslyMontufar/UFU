@@ -1,4 +1,4 @@
-clear all; close all; clc;
+clear all; clc;
 
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
@@ -37,7 +37,7 @@ set(gca,'FontSize',12);
 
 % Projeto do filtro rejeita banda
 H_ganho = ones(1, length(n));
-erro = 1e3;
+erro = 1e2;
 freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo total analisado
 H_ganho(round((freq_rejeitada-erro)*t_total):round((freq_rejeitada+erro)*t_total)) = 0;
 figure('Name','Projeto do filtro rejeita banda'); stem(w, H_ganho);
@@ -53,9 +53,18 @@ ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
 Y_abs = H_ganho.*X_abs;
 figure('Name','Sinal Transmitido');
 subplot(2, 1, 1); stem(w, Y_abs);
-title('Espectro em freq da Resposta ao Impulso');
+title('Espectro em freq da saída');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
 ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
 
+% nao vejo necessidade em defasar o sinal (ainda)
+yt = ifft(Y_abs);
+yt_abs = real(yt);
+subplot(2, 1, 2); stem(n*Ts, yt_abs);
+title('Espectro no tempo da saída');
+xlabel('$t$','Interpreter','LaTex','FontSize',18);
+ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
 
-
+hold on;
+xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
+ezplot(xt_filtro_ideal, [ti, tf]);
