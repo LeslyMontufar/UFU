@@ -13,7 +13,7 @@ title('Sinal Recebido', 'FontSize',14);
 hold on;
 
 % Conversor A/D: Amostragem
-Fs = 15e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
+Fs = 20e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
 Ts = 1/Fs; % esquece no tempo t
 n = ti/Ts:1:tf/Ts; % numero de amostras depende de [ti tf]
 t_sample = ti:Ts:length(n)*Ts;
@@ -37,7 +37,7 @@ set(gca,'FontSize',12);
 
 % Projeto do filtro rejeita banda
 H_ganho = ones(1, length(n));
-erro = 1e2;
+erro = 0.5e3;
 freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo total analisado
 H_ganho(round((freq_rejeitada-erro)*t_total):round((freq_rejeitada+erro)*t_total)) = 0;
 figure('Name','Projeto do filtro rejeita banda'); stem(w, H_ganho);
@@ -68,3 +68,14 @@ ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
 hold on;
 xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
 ezplot(xt_filtro_ideal, [ti, tf]);
+
+% testes
+figure;
+f = [2.7e3 2.8e3 2.9e3 3.0e3 3.1e3 3.2e3 3.3e3];
+a = [1 0 0 0 1]; 
+od = 1e-3;
+dev = od*ones(1, length(a));
+[n_, fo, ao, w] = firpmord (f, a, dev, Fs);
+sist = firpm (n_, fo, ao, w);
+freqz (sist, 1.1024, Fs)
+title ( 'Filtro para frequencias de 3kHz e 5kHz' )
