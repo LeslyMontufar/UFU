@@ -96,9 +96,18 @@ A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análi
 }
 \end{table}
 
-\vspace{0.2cm}
+\vspace{0.5cm}
 \subsection{Memória de cálculo} % com simulações!
-Cada componente possui uma função no circuito, que pode ser analisada a nível de tensão e corrente. Espera-se um sinal contínuo na saída, com o qual poderá conectar-se a carga, ou seja o circuito amplificador de $8 \Omega$.
+Cada componente possui uma função no circuito, que pode ser analisada a nível de tensão e corrente. Espera-se um sinal contínuo na saída, com o qual poderá conectar-se a carga que puxa no máximo 4A (limitação do fusível). Assim, é utilizada uma carga $R_{CARGA}=\frac{V_{OUT}}{I_{OUTmax}}=\frac{60}{4}=15\Omega$, como observa-se na Figura \ref{fonte:simulacao:circuito} utilizada na simulação.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{fonte-simulacao-circuito}
+\caption{Circuito utilizado na simulação da fonte.}
+\label{fonte:simulacao:circuito}
+\end{figure}
+
 
 \subsubsection{Retificação}
 Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e é realizada pela ponte retificadora, sendo escolhida a GBJ606 que suporta de 6A, 600 V e atende os parâmetros do circuito montado. Na Figura \ref{fonte:retificacao}
@@ -134,6 +143,16 @@ I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
 \end{equation}
 Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
 
+\subsection{Transistores em configuração Darlington}
+A configuração Darlington permite maior sensibilidade do transistor, permitindo um ganho $\beta$ ($h_{FE}$) maior. Assim, na Figura \ref{fonte:darlington}, vê-se o par Darlington com os transistores TIP35C e BD139.
+
+\begin{figure}[H]
+\centering
+\captionsetup{font=scriptsize}
+\includegraphics[width=15cm]{fonte-darlington}
+\caption{Configuração Darlington na fonte.}
+\label{fonte:darlington}
+\end{figure}
 
 \subsubsection{Resistor para descarga do capacitor} \label{descarga}
 Para segurança do circuito,e daqueles que forem manejá-lo, resistores foram acrescentados em paralelo com os capacitores, para que, ao efetuar o desligamento da placa os capacitores pudessem ser descarregados em segurança.
@@ -146,6 +165,8 @@ t= RC \cdot ln\bigg( 1 - \frac{V_{C}}{V_{in}} \bigg)
 Considerndo os capacitores de 4700uF e um tempo de descarga de 10 s, para uma tensão média entre os dois capacitores, $V_{C}$ de $64,85 V$ (de acordo com simulação) e $V_{in}$ de 80 $V_{pp}$, a resitência mínima necessária é de $1,3 k\Omega$, para suprir esses requisitos mínimos, foi utilizado um reistor de $1,8 k\Omega$ de $5W$. 
 
 
+
+\vspace{0.3cm}
 \subsection{Finalização e considerações sobre a PCB}
 
 \subsubsection{Espessura da linha}
@@ -265,64 +286,18 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
 }
 \end{table}
 
+\subsection{Memória de Cálculo}
+\subsubsection{Amplificador Push Pull (Classe AB)} % Perguntar para o Daniel
+
+\subsubsection{Amplificador Seguidor de emissor}
+
+
 \newpage
 \section{Finalização do projeto: Fonte + Circuito amplificador} \label{projeto-final}
 %%%% ideia: chave liga e desliga e caixinha
 
 \newpage
 \section{Conclusões}
-%%%% ideia: chave liga e desliga e caixinha
-
-
-
-\begin{comment}
-\section{Circuito esquemático}
-
-\subsection{Componentes}
-\begin{enumerate}[1 -]
-    \item \textbf{\emph{Ponte retificadora:}} Optou-se pela ponte retificadora GBJ606 \cite{GBJ606}, pois possui corrente máxima de 6A.
-    \item \textbf{\emph{Capacitores:}} De acordo com a disponbilidade de capacitores nos principais pontos de venda de eletrônicos em Uberlândia, conseguiu-se dois capacitores de $4700\mu F$ - 100V e um capacitor de $470\mu F$ - 200V.
-    \item \textbf{\emph{Resistores:}} Foram utilizados dois resistores de 1k para regulação e dois de 1.8k - 5W para descarga do capacitor (não foi encontrado de imediato, para a venda, o resistor de potencia adequado).
-    \item \textbf{\emph{Diodo Zener:}} Utlizado na regulação foi optado pelo diodo zener 1N4759.
-    \item \textbf{\emph{Transistores:}} Foram utilizados TIP35C (100V) \cite{TIP35} e BD139 \cite{BD139}.
-    \item \textbf{\emph{Fusível:}} Foi deduzido pela simulação que seria adequado um fusível de 4A ou até 2A nessa fase inicial, uma vez que já que não há carga conectada a corrente é nula, pois não é exigida pela carga. 
-\end{enumerate}
-
-
-\section{Simulação}
-Para a realização de cada etapa foi essencial a verificação de tensão e correntes máximas sobre os componentes a fim de evitar um curto-circuito.
-Por exemplo, antes de realizar a compra dos capacitores foi necessária a verificação da tensão máxima que este deveria suportar, a qual observa-se na Figura \ref{sim2}. Assim, verificou-se que seriam necessários capacitores que suportassem 80V ou mais, porém devido à disponibilidade escassa de capacitores na medida à risca, optou-se por dois capacitores 100V ($4700\mu F$) e um, 200V ($470\mu F$). Note que, já que a fonte não possui carga conectada, foi suposota uma carga de valor baixo de $0,5 \Omega$.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=15cm]{sim2}
-\caption{Tensões máximas sobre os capacitores.}
-\label{sim2}
-\end{figure}
-
-Agora pensando numa carga de $8 \Omega$ (do amplificador a ser conectado) obtem-se maiores tensões, e a partir dessa estimativa é possível projetar o fusível a ser utilizado na saída, pois, conforme à Figura \ref{com-carga}, espera-se uma corrente em torno de $5,68\ A$.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=15cm]{com-carga}
-\caption{Tensões e correntes para uma carga de $8\Omega$.}
-\label{com-carga}
-\end{figure}
-
-Ainda é interessante projetar resistores de descarga para o capacitor, uma vez que, sem carga conectada, é medida de segurança descarregar o capacitor.
-Para isso, foi pensado num valor de resistência que conferisse pequeno tempo de descarga para capacitor. Assim, um resistor por exemplo de $1,8k\Omega$ possui tempo de descarga de aproximadamente $40s$, conforme os cálculos explicitados na seção \ref{descarga}. Dessa maneira, a simulação de um circuito com essas características resulta na Figura \ref{sim3}. Percebe-se que os resistores cumprem sua função de descarga do capacitor e desviam pequeno valor de corrente, de aproximadamente $25mA$. Para o capacitor de $470\mu F$ não é necessário um resistor de descarga, já que descarrega relativamente rápido, devido à sua baixa capacitância.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=15cm]{sim3}
-\caption{Tensões e correntes com resistores de descarga de capacitor conectados.}
-\label{sim3}
-\end{figure}
-
-\newpage
-\section{Funcionamento do circuito}
-A tensão de entrada é primeiramente rebaixada de $220V/127V$ para $56V$ com auxílio do regulador de tensão (também chamado de \emph{varivolt}). Assim, obter-se-á uma tensão senoidal de menor amplitude que ainda será convertida em contínua com intuito de ser utilizada para alimentar o amplificador.
-\end{comment}
 
 
 \newpage
@@ -333,6 +308,8 @@ A tensão de entrada é primeiramente rebaixada de $220V/127V$ para $56V$ com au
  Disponível em:
  \url{https://sound-au.com/project12a.htm}. Acesso em: out. 2019.
  
+ 
+ % FONTE
  \bibitem{espess}
     Brooks Doug,Graves Dave,
     "Current Carrying Capacity of Vias"
@@ -354,6 +331,13 @@ IMPRESSO - BÁSICO "
   Disponível em: 
  \url{http://www.professorpetry.com.br/Bases_Dados/Apostilas_Tutoriais/Projeto_PCI_Charles.pdf}. Acesso em: out. 2019.
  
+ % AMPLIFICADOR
+ \bibitem{amp-classes}
+    Eletronics Tutorials,
+ "Amplifier Classes"
+  Disponível em: 
+ \url{https://www.electronics-tutorials.ws/amplifier/amplifier-classes.html}. Acesso em: dez. 2019.
+ 
  % DATASHEETS
  
  \bibitem{GBJ606} % ponte retificadora
@@ -370,6 +354,7 @@ IMPRESSO - BÁSICO "
     “Silicon NPN Power Transistors TIP35/35A/35B/35C ”, SavantIC Semiconductor. 
  Disponível em:
  \url{https://pdf1.alldatasheet.com/datasheet-pdf/view/269985/SAVANTIC/TIP35.html}. Acesso em: out. 2019.
+ 
  
 
 

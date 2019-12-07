@@ -5,6 +5,9 @@
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{indentfirst}
+\usepackage{tikz} %% fasores
+\usetikzlibrary{arrows,arrows.meta,quotes,angles}
+\usepackage{siunitx}
 
 \usepackage[brazilian]{babel}
 \usepackage[utf8x]{inputenc}
@@ -14,21 +17,20 @@
 \usepackage{makeidx}
 \usepackage{geometry}
 
+\graphicspath{{img/}}
 \geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
 \setlength{\parindent}{1.0cm}
-\graphicspath{{img/}}
 \captionsetup{font=small}
 
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
-\newcommand{\thetitle}{FONTE LINEAR REGULADA + CIRCUITO AMPLIFICADOR}
-\newcommand{\thetype}{Relatório da Disciplina de Eletrônica Analógica I}
+\newcommand{\thetitle}{ANÁLISE DE ONDAS NÃO SENOIDAIS - LÂMPADAS (CARGAS NÃO LINEARES)}
+\newcommand{\thetype}{Relatório da Disciplina de Experimental de Circuitos Elétricos II}
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
-\newcommand{\thestudent}{Ana Júlia Costa Santana \_ 
-11811ETE003\\Lesly Viviane Montúfar Berrios \_ 
-11811ETE001}
-\newcommand{\theadvisor}{Prof. Daniel Pereira de Carvalho}
+\newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
+\centering11811ETE001}
+\newcommand{\theadvisor}{Prof. Wellington Maycon Santos Bernardes}
 \newcommand{\thecity}{Uberlândia}
 
 \thispagestyle{empty}\input{CapaABNT}
@@ -39,324 +41,128 @@
 \tableofcontents % sumário
 \newpage
 
-\section{Introdução}
-Na construcão e planejamento da primeira placa de impresso (\emph{PCB}) está a essência de qualquer curso da Faculdade de Engenharia Elétrica (FEELT), uma vez que, à despeito das dificuldades no entendimento da disciplica teórica, o planejamento e análise da forma de onda da gradezas de tensão e corrente demonstram e ilustram com lucidez cada processo intrínseco do circuito. Nesse sentido, o uso de simuladores, seja \emph{PROTEUS}, \emph{MULTSIM} ou qualquer outro, é ferramenta de imprescindível para a análise do qualquer circuito, e entendimento dos componentes necessários e melhor adaptáveis às exigências do projeto.
+\section{Objetivos} % 2,5%
+Pretende-se verificar experimentalmente conceitos teóricos de sinais não senoidais, obtendo os coeficientes da série de Fourier pelo método analítico e usando uma rotina computacional (como Matlab, Python). Aqui também é investigada a determinação do valor eficazes (rms) da tensão e corrente, bem como as potências associadas das formas de onda não senoidais.
 
-O projeto a ser destrinchado em cálculos e demostrações é retirado do material \emph{El Cheapo} \cite{cheapo} cujo título é \emph{Um realmente simples amplificador de potência} (do inglês, \emph{A Really Simple Power Amplifier}). Logo, é preciso planejar a elaboração de dois circuitos: a \emph{fonte de alimentação linear regulada} e o \emph{circuito amplificador}. Sabe-se que o projeto mencionado pode ser substituído em parte por um dispositivo menor (um amplificador operacional), contudo isso não é feito visto que o objetivo principal é o aprendizado dos componentes mais básicos da elétrica: reistores, capacitores, transistores e diodos. %%% indutores representados pelo transformador ??? nunca vi um deles sozinho, só aqueles grandões de exp-ce2.
+\section{Introdução teórica} % 5%
 
-À respeito da \textbf{\textit{fonte de alimentação linear regulada}}, tratada na Seção \ref{fonte}, pode obter-se melhor experiência, seja na busca por componentes, assim como melhor envolvimento com ferramentas de simulação e elaboração de placas de circuito impresso. Sabendo-se 
- que trata-se de um dispositivo responsável por converter a tensão elétrica alternada em contínua, foi possível verificar experimentalmente as qualidades e resultados de um circuito retificador em ponte, além de filtros capacitivos e circuitos reguladores com diodos zener.
+Ondas não senoidais na rede são bastante comuns, o que significa a presença de harmônicos na rede. Devido ao aumento de equipamentos na rede também pode haver o aumento de harônicos na rede
 
-Já o \textbf{\textit{circuito amplificador}}, discutido na Seção \ref{amp}, pode e deve ser realizado com maior empenho, devido à experiência adquirida durante a realização da fonte. Ademais, é interessante sua análise, uma vez que nesse circuito se vê a aplicação de conceitos aprendidos na disciplina teórica, por exemplo de circuitos amplificadores coletor-comum (ou seguidor de emissor) com/sem bootstrapping, amplificadores push-pull, e outros.
-
-Na seção \ref{fonte}, é descrita o procedimento completo para a construção na fonte, começando pela catalogação dos componentes necessários e seu orçamento, para assim poder estudá-lo em etapas de análise: retificação, filtragem e regulação. Em seguida, na seção \ref{amp}, são tratadas as peculiaridades do circuito amplificador, o qual abrange trasistores amplificadores de distintas características. Para assim, na seção \ref{projeto-final} mostrar o resultado final obtido da fonte com o amplificador.
-
-\newpage
-\section{Fonte de Alimentação Linear Regulada} \label{fonte}
-
-\subsection{Componentes e orçamento} 
-Com intuito de realizar primeiramente o circuito que alimentará o circuito amplificador, ou seja a fonte de alimentação, \emph{El Cheapo} sugere o esquemático da Figura \ref{fonte:esquematico}, o qual já foi adaptado em \cite{cheapo} para componentes mais modernos, por exemplo substituindo os transistores de germânio por outros de silício. Assim, extraí-se os componentes que estão dispostos na Tabela \ref{fonte:componentes}, na qual também verifica-se o orçamento total para esta etapa, nas lojas de eletrônicos de Uberlândia, sendo visitadas Mundo Eletrônico, Ponto Eletrônico, Rádio Peças Uberlândia e Ponto Eletrônico para a aquisição de todos os componentes necessários.
-\vspace{0.2cm}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=15cm]{fonte-esquematico}
-\caption{Esquemático \emph{El Cheapo} do circuito alimentador \cite{cheapo}.}
-\label{fonte:esquematico}
-\end{figure}
-\vspace{0.4cm}
-
-A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análise do circuito mediante um simulador ou análise do circuito, seja por malhas ou nodal, visto que devem ser projetados para uma tensão suficientemente alta. Para todo componente, existe essa limitação intrínseca do material, por exemplo a ponte retificadora escolhida foi a GBJ606, dado que suporta uma corrente máxima de 6A e tensão máxima de 600V.
-
-%\item Existe de especificação de tensão máxima no datasheet, para as pontes retificadoras?
-%\item O resistor de descarga só é necessário para fonte sem carga, entao retiro do orcamento? (Mas preciso dos resistores de for querer uma fonte independente, certo? Para mim, que eu possa regular a tensao de saida e corrente) 
-
-
-\begin{table}[H]
-\def\arraystretch{1.28}
-\centering
-\caption{Componentes e orçamento da fonte.}
-\label{fonte:componentes}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{cc|c|c|c}
-\hline
-\multicolumn{1}{|c|}{\textbf{Componente}}           & \textbf{Especificação} & \textbf{Quantidade} & \textbf{Preço (R\$)}         & \multicolumn{1}{c|}{\textbf{Descrição}}    \\ \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Capacitores}}  & $4700 \mu F - 100V$           & 2                   & 35                   & \multicolumn{1}{c|}{C1, C3}                \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                              & $470 \mu F - 100V$            & 1                   & 9,50                  & \multicolumn{1}{c|}{C2}                    \\ \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Resistores}}   & $1k \Omega$            & 2                   & $ 0,12$        & \multicolumn{1}{c|}{R1, R2}                \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                              & $1k8 \Omega$ - 5W      & 2                   & $4,84$        & \multicolumn{1}{c|}{Descarga do capacitor} \\ \hline
-\multicolumn{1}{|c|}{Ponte Retificadora}            & 6A                     & 1                   & 7,15                         & \multicolumn{1}{c|}{Havia a GBJ606}        \\ \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Transistores}} & BD139                  & 1                   & 0,85                         & \multicolumn{1}{c|}{Q1}                    \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                              & TIP35C                 & 1                   & 5,85                         & \multicolumn{1}{c|}{Q2}                    \\ \hline
-\multicolumn{1}{|c|}{Fusível}                       & 4A                     & 1                   & 0,30                         & \multicolumn{1}{c|}{FUS}                   \\ \hline
-\multicolumn{1}{|c|}{Borne Painel}                  & 5A                     & 4                   & 	5,25	  & \multicolumn{1}{c|}{Só havia de 20A}       \\ \hline
-\multicolumn{1}{|c|}{Placa de fenolite}             & $10\times 15cm$        & 1                   & 6,80                         & \multicolumn{1}{c|}{Tamanho adequado}      \\ \hline
-                                                    &                        & \textbf{Total:}     & R\$ 75,66                    &                                            \\ \cline{3-4}
-\end{tabular}%
-}
-\end{table}
+Na ausência desse tipo de equipamento, circuitos desequilibrados podem ser utilizados para a verificação de sequência de fases em certo sistema elétrico. Basendo-se na queda de tensão em cada fase, é possível provar matematicamente qual é a sequência de fases utilizada, por meio da análise do circuito, sendo os resultados teóricos dispostos na Sessão \ref{dados}.
 
 \vspace{0.5cm}
-\subsection{Memória de cálculo} % com simulações!
-Cada componente possui uma função no circuito, que pode ser analisada a nível de tensão e corrente. Espera-se um sinal contínuo na saída, com o qual poderá conectar-se a carga que puxa no máximo 4A (limitação do fusível). Assim, é utilizada uma carga $R_{CARGA}=\frac{V_{OUT}}{I_{OUTmax}}=\frac{60}{4}=15\Omega$, como observa-se na Figura \ref{fonte:simulacao:circuito} utilizada na simulação.
-
 \begin{figure}[H]
 \centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{fonte-simulacao-circuito}
-\caption{Circuito utilizado na simulação da fonte.}
-\label{fonte:simulacao:circuito}
+\includegraphics[width=12.5cm]{fasimetro}
+\caption{Fasímetro com indicador led 690 volts - MFA-862 \cite{fig1}.}
+\label{intro:fig1}
 \end{figure}
-
-
-\subsubsection{Retificação}
-Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e é realizada pela ponte retificadora, sendo escolhida a GBJ606 que suporta de 6A, 600 V e atende os parâmetros do circuito montado. Na Figura \ref{fonte:retificacao}
-
-\begin{figure}[H]
-\centering
-\subfloat[]{\includegraphics[width=0.47\textwidth]{fonte-retificacao}}\hfill
-\subfloat[]{\includegraphics[width=0.49\textwidth]{fonte-retificado}}
-\caption{Estágio de retificação.}
-\label{fonte:retificacao}
-\end{figure}
-
-\subsubsection{Filtragem}
-Transforma a tensão contínua pulsante em uma tensão contínua quase perfeita. Mas essa tensão contínua apresenta, quando a fonte é ligada a uma carga, uma oscilação chamada Tensão de Ripple. Essa etapa é realizada pelos capacitores encontrados eno circuito que devido a sua composição, ao sofrer o processo de carga e descarga diminuem a oscilação da tensão já que a tensão fornecida ao circuito agora nos momentos de pulso é suprida pela descarga do capacitor. Porém como abprdado anteriormente, resta ainda o riplle e para eliminar esse fator incômodo existe ainda outra etapa...
-
-\subsubsection{Regulação}
-Após a retificação e a filtragem,ocorre a etapa de regulação, com o objetivo de eliminar definitivamente a tensão de oscilação, mesmo com uma carga variável. O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
-
-O comportamento do zener é observado para dois processos, a regulação de linha, que mostra acapacidade da fonte de manter a tensão de saída diante de variações na tensão de entrada.
-
-Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcioandas ao resistor limitador, mostrando serem válidas as equações abaixo.
-
-\begin{equation}
-I_{S}  = I_{Z} +I_{R}  
-\end{equation}
-\begin{equation}
-V_{S}  = V_{in} - V_{Z}
-\end{equation}
-
-Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de sída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
-\begin{equation}
-I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
-\end{equation}
-Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
-
-\subsection{Transistores em configuração Darlington}
-A configuração Darlington permite maior sensibilidade do transistor, permitindo um ganho $\beta$ ($h_{FE}$) maior. Assim, na Figura \ref{fonte:darlington}, vê-se o par Darlington com os transistores TIP35C e BD139.
-
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{fonte-darlington}
-\caption{Configuração Darlington na fonte.}
-\label{fonte:darlington}
-\end{figure}
-
-\subsubsection{Resistor para descarga do capacitor} \label{descarga}
-Para segurança do circuito,e daqueles que forem manejá-lo, resistores foram acrescentados em paralelo com os capacitores, para que, ao efetuar o desligamento da placa os capacitores pudessem ser descarregados em segurança.
-Para projetar a resistência necessária nos capacitores, as equações conhecidas para descarga num capacitor foram aplicadas.
-
-\begin{equation}
-t= RC \cdot ln\bigg( 1 - \frac{V_{C}}{V_{in}} \bigg) 
-\end{equation}
-
-Considerndo os capacitores de 4700uF e um tempo de descarga de 10 s, para uma tensão média entre os dois capacitores, $V_{C}$ de $64,85 V$ (de acordo com simulação) e $V_{in}$ de 80 $V_{pp}$, a resitência mínima necessária é de $1,3 k\Omega$, para suprir esses requisitos mínimos, foi utilizado um reistor de $1,8 k\Omega$ de $5W$. 
-
-
-
-\vspace{0.3cm}
-\subsection{Finalização e considerações sobre a PCB}
-
-\subsubsection{Espessura da linha}
-Ao projetar a plca de circuito impresso. Um cuidado maior com relação as trilhas precisa ser tomado, para que não haja problemas quanto a passagem de corrente, e para otimizar a dissipção do calor na placa. 
-Para escolher uma espessura de linha que cumprisse tais propósitos, utilizamos o equacionamento de acordo com a norma IPC-2221, que através de sua curva define as constantes k, b e c que são utilizadas no cálculo da espessura da trilha mais adequada.
-Iniciando pelo cálculo da área temos:
-\begin{equation}
-A [\mathit{th^{2}}] = \Bigg(\dfrac{I}{k \cdot (Temp-Rise [deg. C])^{b}}\Bigg)^{\frac{1}{c}}
- \end{equation}
- \vspace{0.3cm}
-
-E em sequência a largura é dada:
-
-\begin{equation}
-L [\mathit{th}] = \dfrac{A}{Espessura [oz] \cdot 1,378}
- \end{equation}
 \vspace{0.3cm}
 
-Considerando  $k = 0,048$, $b = 0,44$, $c = 0,725$ e a placa de fenolite de \emph{1 OZ}, e uma variação de temperatura de aproximadamente $10^{\circ}C$, descobriu-se um valor para a espessura das linhas de aproximadamente $90 th$, o qual foi utilizado na maioria das trilhas do projeto.
+
+\section{Preparação}
+\subsection{Materiais e ferramentas} % 2,5%
+\begin{enumerate}[1 -]
+\item \emph{\textbf{Fonte:}}
+Alimentará todo o circuito. Possui frequência de $60\ Hz$.
+
+\item \emph{\textbf{Regulador de tensão (Varivolt):}}
+Também chamado de autotransformador, permitirá obter o valor desejado de corrente a partir da regulagem correta da tensão fornecida pela fonte.
+
+\item \emph{\textbf{Conectores:}}
+Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana.
+
+\item \emph{\textbf{Medidor eletrônico KRON Mult K:}}
+Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q) e aparente (S) do circuito. Ele também possui função de cofasímetro, instrumento elétrico que mede o fator de potência (fp, $cos\theta$) ou o ângulo da impedância $\theta$ do circuito, para um circuito com a impedância $Z = Z\angle \theta$.
+
+\item \emph{\textbf{Resistor de $50\Omega$:}}
+Carga resistiva para compor a carga do circuito trifásico.
+
+\item \emph{\textbf{Capacitor de $45,9\mu F$:}}
+Sendo sua resistência quase nula, portanto desprezível nessa aplicação (Esquenta pouco, logo dissipa menos energia).
+\end{enumerate}
 
 \vspace{0.2cm}
-\subsubsection{Projeto final no \emph{PROTEUS}}
-Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{isis}
-\caption{Projeto ISIS da fonte.}
-\label{isis}
-\end{figure}
+\subsection{Montagem} % 2,5%
 
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{ares}
-\caption{Projeto ARES da fonte.}
-\label{ares}
-\end{figure}
+\subsubsection{Verificação da sequência de fases}
+A montagem para o método do voltímetro pode ser realizado por meio de voltímetros analógicos, como mostra a Figura \ref{m1:analogico}, ou mediante equipamento digital, como na Figura \ref{m1:esquema}. Para este experimento utilizou o medidor digital \emph{Kron}, com configuração TL=0000 (Trifásico Equilibrado ou Desequilibrado Estrela - 3F + N - 3 elementos 4 fios). 
+Assim, no caso de equipamento digital, aplica-se uma tensão linha $V_L=100V$ com o auxílio do \emph{Varivolt}, em frequência de 60Hz, e parâmetros de carga: $R=50\Omega$ e $C=45,9 \mu F$. Ademais, como procedimento de segurança, é verificado sempre se existe algum curto-circuito em alguma das fases em baixa tensão.
 
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{bottom}
-\caption{Parte inferior do placa.}
-\label{bottom}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\captionsetup{font=scriptsize}
-\includegraphics[width=15cm]{top}
-\caption{Parte superior da placa.}
-\label{top}
-\end{figure}
-
-\subsection{Testes e ensaios} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fazer!
-\subsubsection{Regulação de linha}
-
-\subsubsection{Regulação de carga}
-
-
-\newpage
-\section{Circuito amplificador} \label{amp}
-\subsection{Componentes e orçamento} 
-O esquemático \emph{El Cheapo}, apresentado na Figura \ref{amp:esquematico}, possui alguns dispositivos que são obsoletos hoje, por exemplo os trasistores de germânio, os quais podem ser equivalentemente substituidos pelos componentes descritos na Tabela \ref{amp:componentes}. 
 \vspace{0.2cm}
-
 \begin{figure}[H]
 \centering
-\includegraphics[width=15cm]{amp-esquematico}
-\caption{Esquemático \emph{El Cheapo} do circuito amplificador \cite{cheapo}.}
-\label{amp:esquematico}
+\includegraphics[width=11.5cm]{m-analog}
+\caption{Método do voltímetro, utilizando-se voltímetros analógicos.}
+\label{m1:analogico}
 \end{figure}
 
-\vspace{0.4cm}
-Dos componentes da Tabela \ref{amp:componentes}, extraídos do esquemático da Figura \ref{amp:esquematico}, ainda são possíveis mudanças para o aprimoramento dos mecanismo do circuito. O capacitor $C7$* por exemplo poderia ter aumento de capacitância para $4700 \mu F$, com o intuito de suprir o amortecimento insuficiente do arranjo de capacitores. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% justificar melhor, entender com graficos e simulacoes
-Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em contato com o dissipador, uma vez que da simulação se terá uma tensão em torno de 4 vezes a tensão de pico da fonte. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% explicar falando da tensao, eu acho, por meio de simulacao
-
-\begin{table}[H] \scriptsize
-\def\arraystretch{1.28}
+\vspace{2cm}
+\begin{figure}[H]
 \centering
-\caption{Componentes e orçamento do circuito amplificador.}
-\label{amp:componentes}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{cc|c|c|cc}
-\hline
-\multicolumn{1}{|c|}{\textbf{Componente}} & \textbf{Especificação} & \textbf{Quantidade} & \textbf{Preço} & \multicolumn{1}{c|}{\textbf{Descrição}} & \multicolumn{1}{c|}{\textbf{Observações}} \\ \hline
-\multicolumn{1}{|c|}{\multirow{7}{*}{Capacitores}} & $15 \mu F$ & 1 &  & \multicolumn{1}{c|}{C1} & \multicolumn{1}{c|}{2 capacitores de $10 \mu F$} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $200 \mu F$ & 1 & 5,00 & \multicolumn{1}{c|}{C2} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $68 p F$ & 1 & 0,50 & \multicolumn{1}{c|}{C3} & \multicolumn{1}{c|}{50V cerâmico} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $20 \mu F$ & 1 & 0,76 & \multicolumn{1}{c|}{C4} & \multicolumn{1}{c|}{22UF 100V} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $220 \mu F$ & 1 & 6,20 & \multicolumn{1}{c|}{C5} & \multicolumn{1}{c|}{220MF 100V (6,20) 220V (5,00)} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $100 nF$ & 1 & 0,42 & \multicolumn{1}{c|}{C6} & \multicolumn{1}{c|}{100k 50V cerâmico} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $1000 \mu F$ & 1 & 1,20 & \multicolumn{1}{c|}{C7*} & \multicolumn{1}{c|}{4700MF 63V(15,50)/1000MF 25V} \\ \hline
-\multicolumn{1}{|c|}{\multirow{12}{*}{Resistores}} & $2M7 \Omega$ & 1 &  & \multicolumn{1}{c|}{R1} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $150k \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R2} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $33k \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R3} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $1k \Omega$ & 3 & 0,15 & \multicolumn{1}{c|}{R4, R11, R14} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $18k \Omega$ & 2 & 0,16 & \multicolumn{1}{c|}{R5, R7} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $47k \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R6} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $330R \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R8} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $6k8 \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R9} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $1k5 \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R10} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $0R47 \Omega$ & 2 & 0,20 & \multicolumn{1}{c|}{R12, R15} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $27R \Omega$ & 1 & 0,10 & \multicolumn{1}{c|}{R13} & \multicolumn{1}{c|}{1/8W} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & $18R \Omega$ & 1 & 0,05 & \multicolumn{1}{c|}{R16} & \multicolumn{1}{c|}{1/8W} \\ \hline
-\multicolumn{1}{|c|}{Diodos} & 1N456A & 3 & 0,30 & \multicolumn{1}{c|}{D1, D2, D3.} & \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|c|}{\multirow{4}{*}{Transistores}} & BC559 & 1 & 0,93 & \multicolumn{1}{c|}{Q1} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & BD139 & 2 & 5,40 & \multicolumn{1}{c|}{Q2, Q3} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & BD140 & 1 & 1,68 & \multicolumn{1}{c|}{Q4} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & 2N3055 (TIP35C) & 2 & 11,82 & \multicolumn{1}{c|}{Q5, Q6} & \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|c|}{Potenciômetro} & 200k & 1 & 2,75 & \multicolumn{1}{c|}{VR1} & \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|c|}{\multirow{2}{*}{Bornes}} & Painel & 4 &  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} \\ \cline{2-6} 
-\multicolumn{1}{|c|}{} & Jack J2 & 1 &  & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{PJ-301} \\ \hline
-\multicolumn{1}{l}{} &  & Total: & R\$  35,17 &  &  \\ \cline{3-4}
-\end{tabular}%
-}
-\end{table}
+\includegraphics[width=13cm]{m1-circuito}
+\caption{Método do voltímetro, utilizando-se equipamento digital.}
+\label{m1:esquema}
+\end{figure}
 
-\subsection{Memória de Cálculo}
-\subsubsection{Amplificador Push Pull (Classe AB)} % Perguntar para o Daniel
+\newpage
+\subsubsection{Lâmpadas - cargas não lineares}
+A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:esquema}.
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13cm]{m2-circuito}
+\caption{Montagem 1 com fase A aberta.}
+\label{m2:esquema}
+\end{figure}
+\vspace{0.1cm}
 
-\subsubsection{Amplificador Seguidor de emissor}
+\subsubsection{}
 
 
 \newpage
-\section{Finalização do projeto: Fonte + Circuito amplificador} \label{projeto-final}
-%%%% ideia: chave liga e desliga e caixinha
+\section{Dados Experimentais} \label{dados}
 
-\newpage
-\section{Conclusões}
+\section{Análise sobre segurança} % 2,5%
+Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
+É importante a utilização desse equipamento durante os experimentos a fim de evitar qualquer dano, além de preparar o profissional para o manejo correto e seguro de qualquer equipamento.
+Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
 
+\vspace{0.2cm}
+\section{Reflexão} % (quando houver) (70%)
+\subsubsection{E na ausência de um voltímetro?}
+% - Na impossibilidade de ter voltímetros, amperímetros e sequencímetro, como você poderia encontrar a solução desse problema (abc ou cba)?
+ Na ausência de voltímetros, amperímetros ou sequencímetro, pode-se utilizar equipamentos permitam de forma visual ou sensitiva identificar a fase com maior e maior tensão, para assim prosseguir com a análise realizada neste experimento. No caso de tensão na fase superior à tensão de linha aplicada a sequência de fases correspondente é ABC, enquanto que se for inferior, será sequência de fases CBA.
+ Por exemplo, é possível verificar o mesmo efeito conectando-se lâmpadas aos terminais $V_{ab}$ e $V_{bn'}$ para assim constatar a ddp entre os terminais em que estão conectadas por meio da viasualização da intensidade do brilhar da lâmpada.
+ 
+\subsubsection{Sobre a importância da sequência de fase em um circuito elétrico}
+% - Aponte a importância de encontrar a correta sequência de fase em um circuito elétrico.
+Saber a sequência de fase em um circuito desequilibrado é de grande importância. Para circuitos equilibrados, o efeito é mínimo, uma vez que os módulos das tensões e correntes de linha e de fase são idênticos, e há somente uma defasagem entre elas. No entanto, para cargas desequilibradas, que são mais comuns e trata-se de uma situação, é essencial conhecer a sequência de fases em que trabalha, seja para evitar danos em equipamentos conectados às fases ou determinar a direção de
+rotação de uma motor de indução
+conectado à fonte de tensão trifásica.
+
+\vspace{1cm}
+\section{Simulação computacional} % (10%);
+
+\vspace{2cm}
+\section{Conclusões} % (no mínimo 10 linhas) (5%);
+Ter conhecimento sobre a sequência de fases em circuito equilibrado é de extrema importância, uma vez que do desequíbrio pode resultar correntes elevadas em determinada fase e assim danificar algum equipamento, além de ser essencial na determinação da direção de rotação de uma motor de indução
+conectado à fonte de tensão trifásica. Para isso, tem-se equipamentos como o fasímetro e o sequencímetro. Entretanto, na ausência desses equipamentos sofisticados, o engenheiro deve ser capaz de determinar a sequência de fases utilizando-se de equipamentos de menor custo, como o voltímetro ou visualizando-se a intensidade do brilhar de uma lâmpada.
+
+Assim, neste experimento é tratado o método dos voltímetros, e verificou-se que considera-se sequência de fases ABC, no caso de tensão na fase B $V_{bn'}>V_{ab}$. Enquanto que para $V_{bn'}<V_{ab}$ considera-se sequência de fases CBA. A conclusão do experimento terminou na verificação do mesmo efeito, porém utilizando-se lâmpadas nos terminais $V_{ab}$ e $V_{bn'}$, para visualizar o mesmo efeito na intensidade do brilhar.
 
 \newpage
 \begin{thebibliography}{9} 
-\bibitem{cheapo}
-    Rod Elliott,
-    “El Cheapo - A Really Simple Power Amplifier”, ESP, Elliott Sound Products, 2005.
- Disponível em:
- \url{https://sound-au.com/project12a.htm}. Acesso em: out. 2019.
- 
- 
- % FONTE
- \bibitem{espess}
-    Brooks Doug,Graves Dave,
-    "Current Carrying Capacity of Vias"
- Disponível em: 
- \url{https://www.ultracad.com/articles/viacurrents.pdf}. Acesso em: out. 2019.
- 
- \bibitem{res}
-    Soares Camila,
- "Dedução das equações de carga e descarga dos capacitores utilizando equações diferenciais de primeira ordem". 
-  Disponível em: 
-% \url{https://camilasoares.wordpress.com/2009/04/07/deducao-das-equacoes-de-carga-e-descarga-dos-capacitores-utilizando-equacoes-diferenciais-de-primeira-ordem/}.
-https://camilasoares.wordpress.com/2009/04/07/deducao-das-equacoes-de-carga-e-descarga-dos-capacitores-utilizando-equacoes-diferenciais-de-primeira-ordem/ 
-Acesso em: out. 2019.
- 
- \bibitem{comp}
-    Petry Clovis Antonio,
- "D. PROJETO DE PLACAS DE CIRCUITO
-IMPRESSO - BÁSICO "
-  Disponível em: 
- \url{http://www.professorpetry.com.br/Bases_Dados/Apostilas_Tutoriais/Projeto_PCI_Charles.pdf}. Acesso em: out. 2019.
- 
- % AMPLIFICADOR
- \bibitem{amp-classes}
-    Eletronics Tutorials,
- "Amplifier Classes"
-  Disponível em: 
- \url{https://www.electronics-tutorials.ws/amplifier/amplifier-classes.html}. Acesso em: dez. 2019.
- 
- % DATASHEETS
- 
- \bibitem{GBJ606} % ponte retificadora
-        “6.0A GLASS PASSIVATED BRIDGE RECTIFIER”, DIODES INCORPORATED.
- Disponível em:
- \url{https://www.diodes.com/assets/Datasheets/ds21216.pdf}. Acesso em: out. 2019.
- 
-  \bibitem{BD139} % transistor
-    “BD135/137/139”, FAIRCHILD SEMICONDUCTOR.
- Disponível em:
- \url{http://www.redrok.com/NPN_BD135_45V_1.5A_12.5W_Hfe40_TO-126.pdf}. Acesso em: out. 2019.
- 
- \bibitem{TIP35} % transistor
-    “Silicon NPN Power Transistors TIP35/35A/35B/35C ”, SavantIC Semiconductor. 
- Disponível em:
- \url{https://pdf1.alldatasheet.com/datasheet-pdf/view/269985/SAVANTIC/TIP35.html}. Acesso em: out. 2019.
- 
- 
+% Introdução
+\bibitem{PH}
+    P. H. O. Rezende,
+    "Circuitos Polifásicos Desequilibrados", 2018.
 
+\bibitem{safe}
+    SafetyTrabi,
+    “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
+ Disponível em:
+ \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
 
 \end{thebibliography}
 \end{document}
