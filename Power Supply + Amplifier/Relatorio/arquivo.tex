@@ -42,15 +42,14 @@
 \section{Introdução}
 Na construcão e planejamento da primeira placa de impresso (\emph{PCB}) está a essência de qualquer curso da Faculdade de Engenharia Elétrica (FEELT), uma vez que, à despeito das dificuldades no entendimento da disciplica teórica, o planejamento e análise da forma de onda da gradezas de tensão e corrente demonstram e ilustram com lucidez cada processo intrínseco do circuito. Nesse sentido, o uso de simuladores, seja \emph{PROTEUS}, \emph{MULTSIM} ou qualquer outro, é ferramenta de imprescindível para a análise do qualquer circuito, e entendimento dos componentes necessários e melhor adaptáveis às exigências do projeto.
 
-O projeto a ser destrinchado em cálculos e demostrações é retirado do material \emph{El Cheapo} \cite{cheapo} cujo título é \emph{Um realmente simples amplificador de potência} (do inglês, \emph{A Really Simple Power Amplifier}). Logo, é preciso planejar a elaboração de dois circuitos: a \emph{fonte de alimentação linear regulada} e o \emph{circuito amplificador}. Sabe-se que o projeto mencionado pode ser substituído em parte por um dispositivo menor (um amplificador operacional), contudo isso não é feito visto que o objetivo principal é o aprendizado dos componentes mais básicos da elétrica: reistores, capacitores, transistores e diodos. 
+O projeto a ser destrinchado em cálculos e demostrações é retirado do material \emph{El Cheapo} \cite{cheapo} cujo título é \emph{Um realmente simples amplificador de potência} (do inglês, \emph{A Really Simple Power Amplifier}). Logo, é preciso planejar a elaboração de dois circuitos: a \emph{fonte de alimentação linear regulada} e o \emph{circuito amplificador}. Sabe-se que o projeto mencionado pode ser substituído em parte por um dispositivo menor (um amplificador operacional), contudo isso não é feito visto que o objetivo principal é o aprendizado dos componentes mais básicos da elétrica: reistores, capacitores, transistores e diodos. %%% indutores representados pelo transformador ??? nunca vi um deles sozinho, só aqueles grandões de exp-ce2.
 
 À respeito da \textbf{\textit{fonte de alimentação linear regulada}}, tratada na Seção \ref{fonte}, pode obter-se melhor experiência, seja na busca por componentes, assim como melhor envolvimento com ferramentas de simulação e elaboração de placas de circuito impresso. Sabendo-se 
- que trata-se de um dispositivo responsável por converter a tensão elétrica alternada em contínua, foi possível verificar experimentalmente as qualidades e resultados de um circuito retificador em ponte, além de fitros capacitivos e circuitos reguladores com diodos zener.
+ que trata-se de um dispositivo responsável por converter a tensão elétrica alternada em contínua, foi possível verificar experimentalmente as qualidades e resultados de um circuito retificador em ponte, além de filtros capacitivos e circuitos reguladores com diodos zener.
 
-Já o \textbf{\textit{circuito amplificador}}, discutido na Seção \ref{amp}, pode e deve ser realizado com maior empenho, devido à experiência adquirida durante a realização da fonte. 
+Já o \textbf{\textit{circuito amplificador}}, discutido na Seção \ref{amp}, pode e deve ser realizado com maior empenho, devido à experiência adquirida durante a realização da fonte. Ademais, é interessante sua análise, uma vez que nesse circuito se vê a aplicação de conceitos aprendidos na disciplina teórica, por exemplo de circuitos amplificadores coletor-comum (ou seguidor de emissor) com/sem bootstrapping, amplificadores push-pull, e outros.
 
-Na Seção \ref{fonte} são discutidos as características da fonte: componentes, memória de cálculo, simulação ...
-A Seção \ref{amp} é subdividida de forma análoga ... 
+Na seção \ref{fonte}, é descrita o procedimento completo para a construção na fonte, começando pela catalogação dos componentes necessários e seu orçamento, para assim poder estudá-lo em etapas de análise: retificação, filtragem e regulação. Em seguida, na seção \ref{amp}, são tratadas as peculiaridades do circuito amplificador, o qual abrange trasistores amplificadores de distintas características. Para assim, na seção \ref{projeto-final} mostrar o resultado final obtido da fonte com o amplificador.
 
 \newpage
 \section{Fonte de Alimentação Linear Regulada} \label{fonte}
@@ -102,7 +101,7 @@ A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análi
 Cada componente possui uma função no circuito, que pode ser analisada a nível de tensão e corrente. Espera-se um sinal contínuo na saída, com o qual poderá conectar-se a carga, ou seja o circuito amplificador de $8 \Omega$.
 
 \subsubsection{Retificação}
-Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e é realizada principalmente pela ponte retificadora. a ponte escolhida foi uma de 6A, 100 V que atende aos parâmetros do circuito montado.
+Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e é realizada principalmente pela ponte retificadora. a ponte escolhida foi uma de 6A, 600 V que atende aos parâmetros do circuito montado. Na Figura
 
 %%%%%%%%%%%% simulaçao sem carga como fazer?
 
@@ -259,7 +258,7 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
 \end{table}
 
 \newpage
-\section{Finalização do projeto: Fonte + Circuito amplificador}
+\section{Finalização do projeto: Fonte + Circuito amplificador} \label{projeto-final}
 %%%% ideia: chave liga e desliga e caixinha
 
 \newpage
