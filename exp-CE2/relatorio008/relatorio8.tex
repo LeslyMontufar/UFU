@@ -46,19 +46,28 @@ Pretende-se verificar experimentalmente conceitos teóricos de sinais não senoi
 
 \section{Introdução teórica} % 5%
 
-Ondas não senoidais na rede são bastante comuns, o que significa a presença de harmônicos na rede. Devido ao aumento de equipamentos na rede também pode haver o aumento de harônicos na rede
+Ondas não senoidais na rede são bastante comuns e originam-se da presença de cargas não-lineares na rede (proporção tensão e corrente não é constante). Alguns exemplos de cargas geradoras de correntes harmônicas são geradores e motores CA, transformadores, lâmpadas de descarga, retificadores/motores CC controlados, inversores/motores de indução, ciclo-conversores/motores síncronos, cargas de aquecimento controladas por tiristores, reguladores de tensão a núcleo saturado, computadores etc \cite{PH}. 
 
-Na ausência desse tipo de equipamento, circuitos desequilibrados podem ser utilizados para a verificação de sequência de fases em certo sistema elétrico. Basendo-se na queda de tensão em cada fase, é possível provar matematicamente qual é a sequência de fases utilizada, por meio da análise do circuito, sendo os resultados teóricos dispostos na Sessão \ref{dados}.
+Na Figura \ref{intro:fig1} observa-se uma característica importante para ondas com distorção harmônica. A corrente fundamental vai da fonte para a carga, enquanto que as de ordem harmônica vão da carga para a fonte (sentido oposto). Além disso, a Figura \ref{intro:fig2} ilustra como é feita a análise da onda não senoidal, por meio da descrição em séries de Fourier, para assim poder construir seu espectro de frequências.
 
 \vspace{0.5cm}
 \begin{figure}[H]
+\hspace{0.4cm}
 \centering
-\includegraphics[width=12.5cm]{fasimetro}
-\caption{Fasímetro com indicador led 690 volts - MFA-862 \cite{fig1}.}
+\includegraphics[width=12.5cm]{harmonicos}
+\caption{Figura ilustrativa de harmônicos na rede \cite{PH}.}
 \label{intro:fig1}
 \end{figure}
-\vspace{0.3cm}
 
+\vspace{0.5cm}
+\begin{figure}[H]
+\hspace{0.4cm}
+\centering
+\includegraphics[width=12.5cm]{espectro}
+\caption{Descrição em série de Fourier  e análise espectro de frequências \cite{PH}.}
+\label{intro:fig2}
+\end{figure}
+\vspace{0.3cm}
 
 \section{Preparação}
 \subsection{Materiais e ferramentas} % 2,5%
@@ -85,17 +94,8 @@ Sendo sua resistência quase nula, portanto desprezível nessa aplicação (Esqu
 \vspace{0.2cm}
 \subsection{Montagem} % 2,5%
 
-\subsubsection{Verificação da sequência de fases}
-A montagem para o método do voltímetro pode ser realizado por meio de voltímetros analógicos, como mostra a Figura \ref{m1:analogico}, ou mediante equipamento digital, como na Figura \ref{m1:esquema}. Para este experimento utilizou o medidor digital \emph{Kron}, com configuração TL=0000 (Trifásico Equilibrado ou Desequilibrado Estrela - 3F + N - 3 elementos 4 fios). 
-Assim, no caso de equipamento digital, aplica-se uma tensão linha $V_L=100V$ com o auxílio do \emph{Varivolt}, em frequência de 60Hz, e parâmetros de carga: $R=50\Omega$ e $C=45,9 \mu F$. Ademais, como procedimento de segurança, é verificado sempre se existe algum curto-circuito em alguma das fases em baixa tensão.
-
-\vspace{0.2cm}
-\begin{figure}[H]
-\centering
-\includegraphics[width=11.5cm]{m-analog}
-\caption{Método do voltímetro, utilizando-se voltímetros analógicos.}
-\label{m1:analogico}
-\end{figure}
+\subsubsection{Lâmpadas (Cargas não lineares)}
+A montagem realizada observa-se na Figura \ref{m1:esquema}, na qual são empregados medidores de tensão e de corrente digitais (\emph{Kron Mult-K Série 2}). A configuração usada no medidor \emph{Kron} foi TL=0000 ($3\phi$ com Neutro - Carga Desequilibrada) e valor para a resistência medida foi de $R=10.1\Omega$ e foi aplicada uma tensão de fase $V_F=V_{AN}$ que variou de 10 a 100V. Lembrando que as lâmpadas a LED ou fluorescente compacta normalmente acende após certo valor de tensão.
 
 \vspace{2cm}
 \begin{figure}[H]
@@ -106,7 +106,7 @@ Assim, no caso de equipamento digital, aplica-se uma tensão linha $V_L=100V$ co
 \end{figure}
 
 \newpage
-\subsubsection{Lâmpadas - cargas não lineares}
+\subsubsection{Medições em ambiente com $f\ne 60Hz$}
 A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:esquema}.
 \vspace{0.3cm}
 \begin{figure}[H]
@@ -116,8 +116,6 @@ A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:es
 \label{m2:esquema}
 \end{figure}
 \vspace{0.1cm}
-
-\subsubsection{}
 
 
 \newpage
@@ -129,17 +127,24 @@ Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e sã
 Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
 
 \vspace{0.2cm}
-\section{Reflexão} % (quando houver) (70%)
-\subsubsection{E na ausência de um voltímetro?}
-% - Na impossibilidade de ter voltímetros, amperímetros e sequencímetro, como você poderia encontrar a solução desse problema (abc ou cba)?
- Na ausência de voltímetros, amperímetros ou sequencímetro, pode-se utilizar equipamentos permitam de forma visual ou sensitiva identificar a fase com maior e maior tensão, para assim prosseguir com a análise realizada neste experimento. No caso de tensão na fase superior à tensão de linha aplicada a sequência de fases correspondente é ABC, enquanto que se for inferior, será sequência de fases CBA.
- Por exemplo, é possível verificar o mesmo efeito conectando-se lâmpadas aos terminais $V_{ab}$ e $V_{bn'}$ para assim constatar a ddp entre os terminais em que estão conectadas por meio da viasualização da intensidade do brilhar da lâmpada.
- 
-\subsubsection{Sobre a importância da sequência de fase em um circuito elétrico}
-% - Aponte a importância de encontrar a correta sequência de fase em um circuito elétrico.
-Saber a sequência de fase em um circuito desequilibrado é de grande importância. Para circuitos equilibrados, o efeito é mínimo, uma vez que os módulos das tensões e correntes de linha e de fase são idênticos, e há somente uma defasagem entre elas. No entanto, para cargas desequilibradas, que são mais comuns e trata-se de uma situação, é essencial conhecer a sequência de fases em que trabalha, seja para evitar danos em equipamentos conectados às fases ou determinar a direção de
-rotação de uma motor de indução
-conectado à fonte de tensão trifásica.
+\section{Análise e discussão} % (quando houver) (70%)
+\subsubsection{Descrição da corrente sobre as lâmpadas em série Fourier}
+% - Obtenha, analiticamente, a série de Fourier da corrente que alimenta as lâmpadas.
+
+\subsubsection{Comparação do valor RMS obtido com o experimental}
+% - Com o resultado do item anterior, calcule o valor eficaz e compare com a indicação dos amperímetros.
+
+\subsubsection{Espectro harmônico da corrente}
+% - Usando alguma rotina computacional, obtenha o espectro harmônico da corrente e
+% compare o resultado obtido com o item (a). Se necessário, aplique um filtro para
+% frequências acima de 720 Hz. Neste caso, qual é a ordem harmônica de interesse neste
+% relatório?
+
+\subsubsection{Sobre a Distorção Harmônica Total (DHT)}
+% - Pesquise sobre DHT, sua relação com essa aula e possíveis problemas causados em um
+% circuito elétrico. Qual é o valor máximo admissível em uma instalação elétrica?
+
+
 
 \vspace{1cm}
 \section{Simulação computacional} % (10%);
@@ -156,7 +161,7 @@ Assim, neste experimento é tratado o método dos voltímetros, e verificou-se q
 % Introdução
 \bibitem{PH}
     P. H. O. Rezende,
-    "Circuitos Polifásicos Desequilibrados", 2018.
+    "Ondas Não Senoidais", 2018.
 
 \bibitem{safe}
     SafetyTrabi,
