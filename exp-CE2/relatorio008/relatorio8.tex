@@ -84,11 +84,13 @@ Para as conexões no circuito foi utilizado majoritariamente cabos banana-banana
 \item \emph{\textbf{Medidor eletrônico KRON Mult K:}}
 Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q) e aparente (S) do circuito. Ele também possui função de cofasímetro, instrumento elétrico que mede o fator de potência (fp, $cos\theta$) ou o ângulo da impedância $\theta$ do circuito, para um circuito com a impedância $Z = Z\angle \theta$.
 
-\item \emph{\textbf{Resistor de $50\Omega$:}}
-Carga resistiva para compor a carga do circuito trifásico.
+\item \emph{\textbf{Lâmpadas:}}
+Foram utilizadas lâmpadas LED e incandescente, para investigar o carácter não linear dessas cargas e seu efeuto na rede.
 
-\item \emph{\textbf{Capacitor de $45,9\mu F$:}}
-Sendo sua resistência quase nula, portanto desprezível nessa aplicação (Esquenta pouco, logo dissipa menos energia).
+\item \emph{\textbf{Reostato:}}
+Carga resistiva para evitar dano na lâmpada LED.
+
+
 \end{enumerate}
 
 \vspace{0.2cm}
@@ -120,6 +122,44 @@ A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:es
 
 \newpage
 \section{Dados Experimentais} \label{dados}
+
+\subsubsection{Lâmpadas (Cargas não lineares)}
+Do experimento para análise de tensão e corrente em cargas não lineares tem-se do dados comtemplados na Tabela \ref{m1:dados}.
+
+\begin{table}[H]
+\centering \def\arraystretch{1.28}
+\caption{Dados experimentais para o experimento com lâmpadas como carga.}
+\label{m1:dados}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$V_{F}$ (V) & Fase & $V_{F}$ (V) & $I_{L}$ & P (W) & Q (VAr) & S (VA) & FP & DTT (\%) & DTI (\%) \\ \hline
+\multirow{2}{*}{10,0} & A & 10,47 & 0 & 0 & 0 & 0 & 0 & 4,73 & 0 \\ \cline{2-10} 
+ & B & 10,67 & 0,112 & 1,182 & 1,156 & 1,194 & 0,991 & 4,09 & 9,08 \\ \hline
+\multirow{2}{*}{20,0} & A &  & 0 & 0 & 0 & 0 & 0 &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{30,0} & A &  & 0 & 0 & 0 & 0 & 0 &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{40,0} & A &  & 0 & 0 & 0 & 0 & 0 &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{50,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{60,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{70,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{80,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{90,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\multirow{2}{*}{100,0} & A &  &  &  &  &  &  &  &  \\ \cline{2-10} 
+ & B &  &  &  &  &  &  &  &  \\ \hline
+\end{tabular}%
+}
+\end{table}
+\vspace{0.3cm}
+
+\subsubsection{Medições em ambiente com $f\ne 60Hz$}
 
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
