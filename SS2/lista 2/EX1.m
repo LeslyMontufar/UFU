@@ -36,20 +36,16 @@ title('Análise do Espectro de Frequência do Sinal Digital');
 set(gca,'FontSize',12);
 
 % Projeto do filtro rejeita banda
-% H_ganho = ones(1, length(n));
-% erro = 0.5e3;
-freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo total analisado
-% H_ganho(round((freq_rejeitada-erro)*t_total):round((freq_rejeitada+erro)*t_total)) = 0;
-w_rejeitada = 2*pi*freq_rejeitada/Fs;
+freq_rejeitada = 3e3; 
+w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
 zero = 0.98*(cos(w_rejeitada)+ j*sin(w_rejeitada));
 polo = 0.85*real(zero)+j*0.69*imag(zero);
+complex_numbers = [zero conj(zero) polo conj(polo)];
 
-
-Hz = (1-zero*Z).*(1-conj(zero)*Z)./((1-polo*Z).*(1-conj(polo)*Z));
+Hz = deconv(conv([1 -zero],[1 -conj(zero)])./((1-polo*Z).*(1-conj(polo)*Z));
 
 H_ganho = abs(Hz);
 H_phased = phase(Hz)*(180/pi);
-complex_numbers = [zero conj(zero) polo conj(polo)];
 
 figure('Name','Projeto do filtro rejeita banda'); 
 subplot(2, 1, 1); polarplot(complex_numbers, '*')
