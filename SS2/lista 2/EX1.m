@@ -43,6 +43,7 @@ polo = 0.85*real(zero)+j*0.69*imag(zero);
 complex_numbers = [zero conj(zero) polo conj(polo)];
 
 Hz = deconv(conv([1 -zero],[1 -conj(zero)])./((1-polo*Z).*(1-conj(polo)*Z));
+% polyfit
 
 H_ganho = abs(Hz);
 H_phased = phase(Hz)*(180/pi);
