@@ -69,13 +69,5 @@ hold on;
 xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
 ezplot(xt_filtro_ideal, [ti, tf]);
 
-% testes
-% figure;
-% f = [2.7e3 2.8e3 2.9e3 3.0e3 3.1e3 3.2e3];
-% a = [1 0 0 1]; 
-% od = 1e-3;
-% dev = od*ones(1, length(a));
-% [n_, fo, ao, w] = firpmord (f, a, dev, Fs);
-% sist = firpm (n_, fo, ao, w);
-% freqz (sist, 1.1024, Fs)
-% title ( 'Filtro para frequencias de 3kHz e 5kHz' )
+% observando o filtro ideal, eh necessario defasar o sinal
+
