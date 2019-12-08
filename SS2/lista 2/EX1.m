@@ -43,10 +43,12 @@ freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo 
 w_rejeitada = 2*pi*freq_rejeitada/Fs;
 zero = 0.98*(cos(w_rejeitada)+ j*sin(w_rejeitada));
 polo = 0.85*real(zero)+j*0.69*imag(zero);
-H = ((j.*w)+zero).*((j.*w)+conj(zero))./(((j.*w)+polo).*((j.*w)+conj(polo)));
 
-H_ganho = abs(H);
-H_phased = phase(H)*(180/pi);
+
+Hz = (1-zero*Z).*(1-conj(zero)*Z)./((1-polo*Z).*(1-conj(polo)*Z));
+
+H_ganho = abs(Hz);
+H_phased = phase(Hz)*(180/pi);
 complex_numbers = [zero conj(zero) polo conj(polo)];
 
 figure('Name','Projeto do filtro rejeita banda'); 
