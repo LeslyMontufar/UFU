@@ -46,8 +46,11 @@ polo = 0.85*real(zero)+j*0.69*imag(zero);
 H = ((j.*w./zero)+1).*((j.*w./conj(zero))+1)./(((j.*w./polo)+1).*((j.*w./conj(polo))+1));
 
 H_ganho = abs(H);
+H_phased = phase(H)*(180/pi);
 
-figure('Name','Projeto do filtro rejeita banda'); stem(w, H_ganho);
+figure('Name','Projeto do filtro rejeita banda'); 
+subplot(2, 1, 1); polarplot(theta,abs(zero))
+subplot(2, 1, 2); stem(w, H_ganho);
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
 ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
@@ -59,8 +62,10 @@ ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
 % Y(jw)=H(jw)*X(jw)
 
 % em modulo: |Y(jw)|=|H(jw)|*|X(jw)|
-Y = 
+Y = H .* X;
 Y_abs = abs(Y);
+Y_phased = phase(Y)*(180/pi);
+
 figure('Name','Sinal Transmitido');
 subplot(2, 1, 1); stem(w, Y_abs);
 title('Espectro em freq da saída');

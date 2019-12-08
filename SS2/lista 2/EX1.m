@@ -41,14 +41,19 @@ set(gca,'FontSize',12);
 freq_rejeitada = 3e3; % para voltar para a escala do discreto divide pelo tempo total analisado
 % H_ganho(round((freq_rejeitada-erro)*t_total):round((freq_rejeitada+erro)*t_total)) = 0;
 w_rejeitada = 2*pi*freq_rejeitada/Fs;
-zero = cos(w_rejeitada)+ j*sin(w_rejeitada)
+zero = 0.98*(cos(w_rejeitada)+ j*sin(w_rejeitada));
 polo = 0.85*real(zero)+j*0.69*imag(zero);
-H = ((j.*w./zero)+1).*((j.*w./conj(zero))+1)./(((j.*w./polo)+1).*((j.*w./conj(polo))+1));
+H = ((j.*w)+zero).*((j.*w)+conj(zero))./(((j.*w)+polo).*((j.*w)+conj(polo)));
 
 H_ganho = abs(H);
 H_phased = phase(H)*(180/pi);
+complex_numbers = [zero conj(zero) polo conj(polo)];
 
-figure('Name','Projeto do filtro rejeita banda'); stem(w, H_ganho);
+figure('Name','Projeto do filtro rejeita banda'); 
+subplot(2, 1, 1); polarplot(complex_numbers, '*')
+title('Diagrama de polos e zeros do Filtro Seletivo');
+subplot(2, 1, 2); stepplot(H);
+
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
 ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
@@ -86,7 +91,7 @@ ezplot(xt_filtro_ideal, [ti, tf]);
 % 
 
 function sys = FiltroSeletivo(w_rejeitada, w)
-    w
+    w_rejeitada = 2*pi*freq_rejeitada/Fs;
     zero = cos(w_rejeitada)+ j*sin(w_rejeitada)
     polo = 0.77*zero
     sys = ((j.*w/zero)+1)/((j.*w/polo)+1)
