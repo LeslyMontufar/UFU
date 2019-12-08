@@ -60,7 +60,7 @@ ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
 % nao vejo necessidade em defasar o sinal (ainda)
 yt = ifft(Y_abs);
 yt_abs = real(yt);
-subplot(2, 1, 2); stem(n*Ts, yt_abs);
+subplot(2, 1, 2); stem(n*Ts+7*Ts, yt_abs);
 title('Espectro no tempo da saída');
 xlabel('$t$','Interpreter','LaTex','FontSize',18);
 ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
@@ -70,4 +70,5 @@ xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
 ezplot(xt_filtro_ideal, [ti, tf]);
 
 % observando o filtro ideal, eh necessario defasar o sinal
+% 
 
