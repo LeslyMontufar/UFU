@@ -1,21 +1,21 @@
-clear all; clc; clear t_f
+clear all; clc; clear tf
 
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
-t_f = 0.0018;
-t_total = t_f-ti;
+tfin = 0.0018;
+t_total = tfin-ti;
 
 % Sinal recebido
 syms t real
 xt = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
-figure('Name', 'Receptor'); subplot(2,1,1); ezplot(xt, [ti, t_f]);
+figure('Name', 'Receptor'); subplot(2,1,1); ezplot(xt, [ti, tfin]);
 % title('Sinal Recebido', 'FontSize',14);
 hold on;
 
 % Conversor A/D: Amostragem
 Fs = 20e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar a amostragem)
 Ts = 1/Fs; % esquece no tempo t
-n = ti/Ts:1:t_f/Ts; % numero de amostras depende de [ti t_f]
+n = ti/Ts:1:tfin/Ts; % numero de amostras depende de [ti tf]
 
 x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
 
@@ -28,7 +28,7 @@ ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',18);
 X = fft(x_n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
-w = n/(t_f-ti);% frequencia em Hz
+w = n/(tf-ti);% frequencia em Hz
 subplot(2,1,2); stem(w, X_abs);
 title('Análise do Espectro de Frequência do Sinal Digital');
 set(gca,'FontSize',12);
@@ -45,21 +45,21 @@ complex_numbers = [zeros polos];
 k = 0.2/(5 * 0.5); % nao possui amplitude superior a 0.2 de pico
 % polyfit
 
-[b, a] = zp2tf(zeros,polos,k);
-% [b, a] = butter(1,20/(Fs/2));
+% [b, a] = zp2tf(zeros,polos,k);
+[b, a] = butter(1,20/(Fs/2));
 
-Hz = tf(b,a, Ts);
-% H_ganho = abs(Hz);
-% H_phased = phase(Hz)*(180/pi);
+H_z = tf(b,a);
+H_ganho = abs(Hz);
+H_phased = phase(Hz)*(180/pi);
 
 figure('Name','Projeto do filtro rejeita banda'); 
 subplot(2, 1, 1); polarplot(complex_numbers, '*');
 title('Diagrama de polos e zeros do Filtro Seletivo');
+subplot(2, 1, 2); stepplot(H);
 
-subplot(2, 1, 2); stepplot(Hz);
 title('Espectro em freq da Resposta ao Impulso');
-xlabel('$\omega$','Interpreter','LaTex','FontSize',16);
-ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',16);
+xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
+ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',18);
 gca.XTick = 0:1e3:Fs;
 
 
@@ -86,7 +86,7 @@ ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
 
 hold on;
 xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
-ezplot(xt_filtro_ideal, [ti, t_f]);
+ezplot(xt_filtro_ideal, [ti, tf]);
 
 % observando o filtro ideal, eh necessario defasar o sinal
 % 
