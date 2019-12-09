@@ -50,7 +50,7 @@ Ondas não senoidais na rede são bastante comuns e surgem da presença de carga
 
 Na Figura \ref{intro:fig1} observa-se uma característica importante para ondas com distorção harmônica. A corrente fundamental vai da fonte para a carga, enquanto que as de ordem harmônica vão da carga para a fonte (sentido oposto). Além disso, a Figura \ref{intro:fig2} ilustra como é feita a análise da onda não senoidal, por meio da descrição em séries de Fourier, para assim poder construir seu espectro de frequências.
 
-\vspace{0.5cm}
+\vspace{1.1cm}
 \begin{figure}[H]
 \hspace{0.4cm}
 \centering
@@ -59,7 +59,6 @@ Na Figura \ref{intro:fig1} observa-se uma característica importante para ondas 
 \label{intro:fig1}
 \end{figure}
 
-\vspace{0.5cm}
 \begin{figure}[H]
 \hspace{0.4cm}
 \centering
@@ -88,33 +87,36 @@ Possibilita encontrar a medição da potência real (P) - vatímetro, reativa (Q
 Foram utilizadas lâmpadas LED e incandescente, para investigar o carácter não linear dessas cargas e seu efeuto na rede.
 
 \item \emph{\textbf{Reostato:}}
-Carga resistiva para evitar dano na lâmpada LED.
+Carga resistiva para evitar dano na lâmpada LED. Foi setado para $10 \Omega$.
 
+\item \emph{\textbf{Reator:}}
+Para a segunda montagem utilizou-se um indutor na carga de $166$ mH.
 
 \end{enumerate}
 
-\vspace{0.2cm}
+
 \subsection{Montagem} % 2,5%
 
 \subsubsection{Lâmpadas (Cargas não lineares)}
-A montagem realizada observa-se na Figura \ref{m1:esquema}, na qual são empregados medidores de tensão e de corrente digitais (\emph{Kron Mult-K Série 2}). A configuração usada no medidor \emph{Kron} foi TL=0000 ($3\phi$ com Neutro - Carga Desequilibrada) e valor para a resistência medida foi de $R=10.1\Omega$ e foi aplicada uma tensão de fase $V_F=V_{AN}$ que variou de 10 a 100V. Lembrando que as lâmpadas a LED ou fluorescente compacta normalmente acende após certo valor de tensão.
+A montagem realizada observa-se na Figura \ref{m1:esquema}, na qual são empregados medidores de tensão e de corrente digitais (\emph{Kron Mult-K Série 2}). A configuração usada no medidor \emph{Kron} foi TL = 0000 ($3\phi$ com Neutro - Carga Desequilibrada) e valor para a resistência medida foi de $R=10.1\Omega$ e foi aplicada uma tensão de fase $V_F=V_{AN}$ que variou de 10 a 100V. Lembrando que as lâmpadas a LED ou fluorescente compacta normalmente acendem após certo valor de tensão.
 
-\vspace{2cm}
+\vspace{1.5cm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=13cm]{m1-circuito}
-\caption{Método do voltímetro, utilizando-se equipamento digital.}
+\caption{Montagem realizada para verificação de espectro para cargas não-lineares.}
 \label{m1:esquema}
 \end{figure}
 
 \newpage
 \subsubsection{Medições em ambiente com $f\ne 60Hz$}
-A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:esquema}.
-\vspace{0.3cm}
+Como na Figura \ref{m2:esquema}, nessa etapa é utilizado um retificador de onda completa para representar uma onda não-senoidal. O intuito dessa montagem é medir as grandezas de tensão e corrente nos terminais da carga utilizando-se de distintos medidores, inclusive não True RMS, para assim intuir a importância da utilização de equipamento de medição True RMS.
+
+\vspace{1.5cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=13cm]{m2-circuito}
-\caption{Montagem 1 com fase A aberta.}
+\includegraphics[width=13.3cm]{m2-circuito}
+\caption{Montagem para experimento de ambiente com $f\ne 60Hz$.}
 \label{m2:esquema}
 \end{figure}
 \vspace{0.1cm}
@@ -124,12 +126,13 @@ A primeira montagem com a fase A aberta resulta na montagem da Figura \ref{m2:es
 \section{Dados Experimentais} \label{dados}
 
 \subsubsection{Lâmpadas (Cargas não lineares)}
-Do experimento para análise de tensão e corrente em cargas não lineares tem-se do dados comtemplados na Tabela \ref{m1:dados}.
+Do experimento para análise de tensão e corrente em cargas não lineares tem-se do dados comtemplados na Tabela \ref{m1:dados:kron} obtidos com o medidor \emph{Kron}. Já na Tabela \ref{m1:dados:truerms} estão os valores de tensão obtidos com o multímetro True RMS.
 
+\vspace{0.8cm}
 \begin{table}[H]
 \centering \def\arraystretch{1.28}
 \caption{Dados experimentais para o experimento com lâmpadas como carga.}
-\label{m1:dados}
+\label{m1:dados:kron}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -159,7 +162,39 @@ $V_{F}$ (V) & Fase & $V_{F}$ (V) & $I_{L}$ & P (W) & Q (VAr) & S (VA) & FP & DTT
 \end{table}
 \vspace{0.3cm}
 
+\begin{table}[H]
+\centering \small \def\arraystretch{1.28}
+\caption{Tensões True RMS para a fase A (LED) e fase B (Incandescente)}
+\label{m1:dados:truerms}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+ & $V_A$ (V) & $V_B$ (V) \\ \hline
+\multicolumn{1}{|c|}{10V} & 10,49 & 10,62 \\ \hline
+\multicolumn{1}{|c|}{20V} & 20,59 & 20,99 \\ \hline
+\multicolumn{1}{|c|}{30V} & 31,13 & 30,80 \\ \hline
+\multicolumn{1}{|c|}{40V} & 40,60 & 40,47 \\ \hline
+\multicolumn{1}{|c|}{50V} & 49,62 & 51,00 \\ \hline
+\multicolumn{1}{|c|}{60V} & 60,4 & 61,9 \\ \hline
+\multicolumn{1}{|c|}{70V} & 69,5 & 71,1 \\ \hline
+\multicolumn{1}{|c|}{80V} & 80,3 & 81,7 \\ \hline
+\multicolumn{1}{|c|}{90V} & 90,65 & 90,99 \\ \hline
+\multicolumn{1}{|c|}{100V} & 100,0 & 101,2 \\ \hline
+\end{tabular}
+\end{table}
+\vspace{0.4cm}
+
 \subsubsection{Medições em ambiente com $f\ne 60Hz$}
+Da montagem da Figura \ref{m2:esquema} pode-se retirar dados com o osciloscópio, tanto de imagem conforme a Figura \ref{m2:imagem}, quanto de CSV, no qual são discretizados os dados de tensão obtidos numa determinada frequência de amostragem $F_S$. Como o arquivo CSV obtido é demasiadamente extenso não será mostrado aqui. 
+
+\vspace{1cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13cm]{osc001}
+\caption{Dado de imagem retirado do osciloscópio.}
+\label{m2:imagem}
+\end{figure}
+\vspace{0.1cm}
+ 
 
 \section{Análise sobre segurança} % 2,5%
 Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e são utilizados para a proteção da área ao redor dos olhos contra qualquer tipo de detrito estranho, que possa causar irritação ou ferimentos. Também protegem contra faíscas, respingos de produtos químicos, detritos, poeira, radiação e etc \cite{safe}.
@@ -191,10 +226,7 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 
 \vspace{2cm}
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
-Ter conhecimento sobre a sequência de fases em circuito equilibrado é de extrema importância, uma vez que do desequíbrio pode resultar correntes elevadas em determinada fase e assim danificar algum equipamento, além de ser essencial na determinação da direção de rotação de uma motor de indução
-conectado à fonte de tensão trifásica. Para isso, tem-se equipamentos como o fasímetro e o sequencímetro. Entretanto, na ausência desses equipamentos sofisticados, o engenheiro deve ser capaz de determinar a sequência de fases utilizando-se de equipamentos de menor custo, como o voltímetro ou visualizando-se a intensidade do brilhar de uma lâmpada.
-
-Assim, neste experimento é tratado o método dos voltímetros, e verificou-se que considera-se sequência de fases ABC, no caso de tensão na fase B $V_{bn'}>V_{ab}$. Enquanto que para $V_{bn'}<V_{ab}$ considera-se sequência de fases CBA. A conclusão do experimento terminou na verificação do mesmo efeito, porém utilizando-se lâmpadas nos terminais $V_{ab}$ e $V_{bn'}$, para visualizar o mesmo efeito na intensidade do brilhar.
+Equipamentos não lineares são bastante comuns na rede, e interferem por meio do aparecimento de harmônicos na rede.
 
 \newpage
 \begin{thebibliography}{9} 
