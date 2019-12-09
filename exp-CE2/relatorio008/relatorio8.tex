@@ -22,6 +22,11 @@
 \setlength{\parindent}{1.0cm}
 \captionsetup{font=small}
 
+\usepackage{mathtools,listings} %%
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
 \begin{document}
 \newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
 \newcommand{\thecourse}{FEELT}
@@ -34,6 +39,23 @@
 \newcommand{\thecity}{Uberlândia}
 
 \thispagestyle{empty}\input{CapaABNT}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
 
 %% Comeca o documento !
 
@@ -206,10 +228,10 @@ Os óculos de segurança são Equipamentos de Proteção Individual (EPIs) e sã
 Além disso, foi de extrema importância a presença do professor ou técnico na verificação da montagem do circuito antes de energizá-lo. Assim, reduziu-se riscos de curtos-circuitos ou sobrecarga na rede.
 
 \vspace{0.2cm}
-\section{Análise e discussão} % (quando houver) (70%)
+\section{Análise e discussão} \label{analise} % (quando houver) (70%)
 \subsubsection{Análise da forma de onda das lâmpadas com distorção harmônica}
 % - Obtenha, analiticamente, a série de Fourier da corrente que alimenta as lâmpadas.
-No ambiente MATLAB, foi possível recriar a forma de onda com distorções harmônicas por meio do arquivo CSV obtido do osciloscópio, como mostrado da Figura \ref{m1:matlab:image};
+No ambiente MATLAB, foi possível recriar a forma de onda com distorções harmônicas por meio do arquivo CSV obtido do osciloscópio, como mostrado da Figura \ref{m1:matlab:image}.
 
 \vspace{0.6cm}
 \begin{figure}[H]
@@ -230,16 +252,74 @@ No ambiente MATLAB, foi possível recriar a forma de onda com distorções harm�
 % frequências acima de 720 Hz. Neste caso, qual é a ordem harmônica de interesse neste
 % relatório?
 
+Ainda é possível o espectro de frequência do sinal de corrente sobre o resistor acoplado ao LED, como visto na Figura \ref{m1:matlab:espectro}.
+
+\vspace{0.6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13cm]{Espectro_IN}
+\caption{Espectro da forma de onda via MATLAB.}
+\label{m1:matlab:espectro}
+\end{figure}
+\vspace{0.1cm}
+
 \subsubsection{Sobre a Distorção Harmônica Total (DHT)}
 % - Pesquise sobre DHT, sua relação com essa aula e possíveis problemas causados em um
 % circuito elétrico. Qual é o valor máximo admissível em uma instalação elétrica?
+A distorção harmônica em um sistema de potência pode provocar diversos problemas, como analisado em \cite{dht}. Por isso, é regulamentado um valor máximo admissível em uma instalação elétrica. Abaixo são descritos alguns deles:
+
+\begin{enumerate}[1. ]
+\item \emph{Excitação de correntes ou tensões ressonantes entre indutâncias e capacitâncias.}\\
+Casos típicos: associações de capacitores com transformadores, cabos com blindagem,
+capacitores associados com motores, capacitores operando com reatores, dispositivos de
+correção de fator de potência, etc.
+
+\item \emph{Aparecimento de vibrações e ruído.}\\
+Casos típicos: ferrorressonância em transformadoresb
+e reatores, motores de indução
+ressonando com a compensação capacitiva, etc.
+
+\item \emph{Sobreaquecimento de núcleos ferromagnéticos.}\\
+Casos típicos: aumento de perdas por histerese e correntes parasitas em núcleos de motores,
+geradores, transformadores, reatores, relés, etc.
+
+\item \emph{Sobreaquecimento de capacitores.}\\
+Caso típico: ressonância de capacitores shunt, provocando sobretensão e perdas excessivas
+no dielétrico. Risco de explosão do capacitor por falta de dissipação do calor gerado
+internamente.
+
+\item \emph{Erro de medição de grandezas elétricas.}\\
+Casos típicos: medidores de energia com disco de indução, medidores de valor eficaz
+baseados no valor de pico ou valor médio, etc.
+
+\item \emph{Erro de controle de conversores.}\\
+Casos típicos: detectores de sincronismo e comparadores de nível, usados como referência
+para gerar pulsos de controle em chaves eletrônicas;
+
+\item \emph{Erro de atuação da proteção.}\\
+Casos típicos: relés eletromagnéticos atracando devido à contribuição das harmônicas, relés
+eletrônicos e digitais com erro de calibração na presença de distorções, etc.
+
+\item \emph{Sobrecorrente de neutro.}\\
+Casos típicos: circuitos com lâmpadas de descarga com reatores ferromagnéticos ou
+circuitos retificadores monofásicos podem provocar correntes de neutro maiores que as de
+linha, devido às harmônicas de sequência zero.
+
+\item \emph{Interferências e ruídos eletromagnéticos.}\\
+Casos típicos: fontes chaveadas, inversores de frequência, pontes retificadoras, sistemas de
+acionamento controlados eletronicamente, etc.
+\end{enumerate}
 
 
-
-\vspace{1cm}
+\vspace{0.4cm}
 \section{Simulação computacional} % (10%);
+A simulação computacional foi mostrada no decorrer da sessão de Análise e Discussões em \ref{analise} e o código correspondente à análise realizada á mostrado abaixo.
+\vspace{0.3cm}
 
+\lstinputlisting{lampadas.m}
 \vspace{2cm}
+
+\newpage
 \section{Conclusões} % (no mínimo 10 linhas) (5%);
 Equipamentos não lineares são bastante comuns na rede, e interferem por meio do aparecimento de harmônicos na rede.
 
@@ -255,6 +335,12 @@ Equipamentos não lineares são bastante comuns na rede, e interferem por meio d
     “Óculos de segurança: Saiba quando utilizar este EPI”, SafetyTrab, 2019.
  Disponível em:
  \url{https://www.safetytrab.com.br/blog/oculos-de-seguranca/}. Acesso em: ago. 2019.
+
+\bibitem{dht}
+    S.M.Deckmann e J. A. Pomilio,
+    “Distorção harmônica: causas, efeitos, soluções e normas”, Avaliação da Qualidade da Energia Elétrica, DSE – FEEC – UNICAMP , 2019.
+ Disponível em:
+ \url{http://www.dsce.fee.unicamp.br/~antenor/pdffiles/qualidade/a5.pdf}. Acesso em: dez. 2019.
 
 \end{thebibliography}
 \end{document}
