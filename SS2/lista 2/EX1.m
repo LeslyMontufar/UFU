@@ -8,79 +8,52 @@ t_total = t_f-ti;
 % Sinal recebido
 syms t real
 xt = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
-figure('Name', 'Receptor'); subplot(2,1,1); ezplot(xt, [ti, t_f]);
-% title('Sinal Recebido', 'FontSize',14);
-hold on;
 
 % Amostragem
 Fs = 20e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar o aliasing)
-Ts = 1/Fs; % esquece no tempo t
-n = ti/Ts:1:t_f/Ts; % numero de amostras depende de [ti t_f]
-
-x_n = 5*sin(2*pi*1000*n/Fs) + 2*cos(2*pi*3000*n/Fs) + 0.5*cos(2*pi*5000*n/Fs);
-
-scatter(Ts.*n, x_n);
-title('Sinal recebido pós amostragem com Fs=20kHz');
-xlabel('$nT_s$','Interpreter','LaTex','FontSize',16);
-ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',16);
+Ts = 1/Fs; 
+figure('Name', 'Receptor');
+subplot(2, 1, 1);
+[x_n, n] = figure_amostragem('$nT_s$','$x[nT_s]$', xt, t, Fs, ti, t_f);
+title(strcat('Sinal recebido pós amostragem com Fs=', string(Fs/1e3), 'kHz'));
+ax = gca; ax.FontSize=12;
 
 % Espectro de frequencia do sinal amostrado
 X = fft(x_n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
-w = n/(t_f-ti);% frequencia em Hz
+w = n/(t_f-ti);% frequencia em Hz % usou Fs
 subplot(2,1,2); stem(w, X_abs);
 title('Análise do Espectro de Frequência do Sinal Digital');
-set(gca,'FontSize',12);
-
-figure('Name', ['Amostragem: ' 'Sinal x(t)']);
-subplot(2, 1, 1);
-figure_amostragem('amostragem', xt, t, Fs, ti, t_f);
-title('Sinal recebido pós amostragem com Fs=20kHz');
-xlabel('$nT_s$','Interpreter','LaTex','FontSize',16);
-ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',16);
+ax = gca; ax.FontSize=12; ax.XTick = 0:3e3:Fs;
 
 % Projeto do filtro rejeita banda
+figure('Name','Projeto do filtro rejeita banda'); 
 freq_rejeitada = 3e3; 
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
 zero = 0.98*(cos(w_rejeitada)+ 1j*sin(w_rejeitada));
 zeros = [zero; conj(zero)];
 polo = 0.80*real(zero)+1j*imag(zero);
 polos = [polo; conj(polo)];
-complex_numbers = [zeros polos];
+k = 0.2/(5*.5);
+[Hjw] = H(zeros, polos, k, w);
 
-k = 0.2/(5 * 0.5); % nao possui amplitude superior a 0.2 de pico
-% polyfit
-
-[b, a] = zp2tf(zeros,polos,k);
-% [b, a] = butter(1,20/(Fs/2));
-
-Hz = tf(b,a, Ts);
-% H_ganho = abs(Hz);
-% H_phased = phase(Hz)*(180/pi);
-%[H wH] = amostragem(Hz, Hz.variable, Fs, t_total);
-
-figure('Name','Projeto do filtro rejeita banda'); 
-subplot(3, 1, 1); polarplot(complex_numbers, '*');
+subplot(2, 1, 1); polarplot([zeros polos], '*');
 title('Diagrama de polos e zeros do Filtro Seletivo');
-
-subplot(3, 1, 2); impulse(Hz);
+subplot(2, 1, 2); stem(w, abs(Hjw));
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
 ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',14);
-gca.XTick = 0:1e3:Fs;
+ax = gca; ax.FontSize=12; ax.XTick = 0:1e3:Fs;
 
-subplot(3, 1, 3); stepplot(Hz);
 % Temos o filtro projetado
 % Para encontrar a saída filtrada tem-se:
-% Y(jw)=H(jw)*X(jw)
-
-Y = Hz .* X;
-%Y_abs = abs(Y);
-%Y_phased = phase(Y)*(180/pi);
+Y = Hjw.* X;
+Y_abs = abs(Y);
+Y_phased = phase(Y)*(180/pi);
 
 figure('Name','Sinal Transmitido');
-subplot(2, 1, 1); stem(w, Y);
+subplot(2, 1, 1); stem(w, Y_abs);
 title('Espectro em freq da saída');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
 ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
@@ -99,7 +72,7 @@ ezplot(xt_filtro_ideal, [ti, t_f]);
 % Functions
 
 function [s, n] = amostragem(sinal, var, Fs, ti, t_f)
-    % AMOSTRAGEM (sinal, var, Fs)
+    % AMOSTRAGEM (sinal, var, Fs, ti, t_f)
     % sinal: em funcao de var
     % var: variavel de percurso analógico
     % Fs: frequencia de amostragem desejada
@@ -110,10 +83,34 @@ function [s, n] = amostragem(sinal, var, Fs, ti, t_f)
     s = eval(strrep(string(sinal),char(var),'n/Fs'));
 end
 
-function figure_amostragem(nome, sinal, var, Fs, ti, t_f)
-    [s, n] = amostragem(sinal, var, Fs, ti, t_f);
-    %figure('Name', ['Amostragem: ' nome]);
+function [s_n, n]= figure_amostragem(x_label, y_label, sinal, var, Fs, ti, t_f)
+    % FIGURE_AMOSTRAGEM (x_label, y_label, sinal, var, Fs, ti, t_f)
+    % x_label: str
+    % y_label: str
+    % sinal: em funcao de var
+    % var: variavel de percurso analógico
+    % Fs: frequencia de amostragem desejada
+    % ti: tempo inicial
+    % t_f: tempo final
+    
+    [s_n, n] = amostragem(sinal, var, Fs, ti, t_f);
     ezplot(sinal, [ti t_f]);
     hold on;
-    scatter(n/Fs, s);
+    scatter(n/Fs, s_n);
+    xlabel(x_label,'Interpreter','LaTex','FontSize',16);
+    ylabel(y_label,'Interpreter','LaTex','FontSize',16);
+    
+end
+
+function [Hjw] = H(zeros, polos, k, w)
+    x = ' * ';
+    r = 1;
+    Hjw = string(k);
+    for ii = 1:length(zeros)
+        Hjw = [Hjw x string(zeros(ii)*r*exp(-j*w))]
+    end
+    for ii = 1:length(polos)
+        Hjw = [Hjw '/' string(zeros(ii)*r*exp(-j*w))]
+    end
+    Hjw = eval(Hjw); % talvez o tempo de demora seja menor do que com vetores
 end
