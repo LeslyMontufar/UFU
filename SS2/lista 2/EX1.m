@@ -1,4 +1,4 @@
-clear all; clc;
+clear all; clc; clear tf
 
 % Invervalo a ser analisado - beep beep beep
 ti = 0;
@@ -37,17 +37,21 @@ set(gca,'FontSize',12);
 freq_rejeitada = 3e3; 
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
 zero = 0.98*(cos(w_rejeitada)+ 1j*sin(w_rejeitada));
+zeros = [zero; conj(zero)];
 polo = 0.85*real(zero)+1j*0.69*imag(zero);
-complex_numbers = [zero conj(zero) polo conj(polo)];
+polos = [polo; conj(polo)];
+complex_numbers = [zeros polos];
 
-Hz = deconv(conv([1 -zero],[1 -conj(zero)])./((1-polo*Z).*(1-conj(polo)*Z)));
+k = 0.2/(5 * 0.5); % nao possui amplitude superior a 0.2 de pico
 % polyfit
 
+[b, a] = zp2tf(zeros,polos,k);
+Hz = tf(b,a, Ts);
 H_ganho = abs(Hz);
 H_phased = phase(Hz)*(180/pi);
 
 figure('Name','Projeto do filtro rejeita banda'); 
-subplot(2, 1, 1); polarplot(complex_numbers, '*')
+subplot(2, 1, 1); polarplot(complex_numbers, '*');
 title('Diagrama de polos e zeros do Filtro Seletivo');
 subplot(2, 1, 2); stepplot(H);
 
@@ -89,7 +93,7 @@ ezplot(xt_filtro_ideal, [ti, tf]);
 
 function sys = FiltroSeletivo(w_rejeitada, w)
     w_rejeitada = 2*pi*freq_rejeitada/Fs;
-    zero = cos(w_rejeitada)+ j*sin(w_rejeitada)
-    polo = 0.77*zero
-    sys = ((j.*w/zero)+1)/((j.*w/polo)+1)
+    zero = cos(w_rejeitada)+ 1j*sin(w_rejeitada);
+    polo = 0.77*zero;
+    sys = ((1j.*w/zero)+1)/((1j.*w/polo)+1);
 end
