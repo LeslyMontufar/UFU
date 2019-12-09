@@ -66,7 +66,7 @@ xlabel('$t$','Interpreter','LaTex','FontSize',18);
 ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
 
 hold on;
-xt_filtro_ideal = 5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t);
+xt_filtro_ideal = k*(5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t));
 ezplot(xt_filtro_ideal, [ti, t_f]);
 
 % Functions
@@ -103,14 +103,12 @@ function [s_n, n]= figure_amostragem(x_label, y_label, sinal, var, Fs, ti, t_f)
 end
 
 function [Hjw] = H(zeros, polos, k, w)
-    x = ' * ';
     r = 1;
-    Hjw = string(k);
+    Hjw = k;
     for ii = 1:length(zeros)
-        Hjw = [Hjw x string(zeros(ii)*r*exp(-j*w))]
+        Hjw = Hjw.*zeros(ii).*r.*exp(-1j*w);
     end
     for ii = 1:length(polos)
-        Hjw = [Hjw '/' string(zeros(ii)*r*exp(-j*w))]
+        Hjw = Hjw./(zeros(ii).*r.*exp(-1j*w));
     end
-    Hjw = eval(Hjw); % talvez o tempo de demora seja menor do que com vetores
 end
