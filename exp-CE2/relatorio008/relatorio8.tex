@@ -162,6 +162,10 @@ $V_{F}$ (V) & Fase & $V_{F}$ (V) & $I_{L}$ & P (W) & Q (VAr) & S (VA) & FP & DTT
 \end{table}
 \vspace{0.3cm}
 
+Ademais, ainda será verificado o comportamento da rede por meio de um osciloscópio sobre os terminais do resistor de $10 \Omega$. É importante que a garra esteja em 10x e o GND não seja conectado, no caso da existência do terra no plug da tomada. Do osciloscópio será possível salvar em um \emph{pendrive} a forma de onda (vetor $v \times t$ - arquivo de imagem e
+tabela numérica) para extrair a corrente que circula na lâmpada.
+
+\vspace{0.3cm}
 \begin{table}[H]
 \centering \small \def\arraystretch{1.28}
 \caption{Tensões True RMS para a fase A (LED) e fase B (Incandescente)}
@@ -203,8 +207,19 @@ Além disso, foi de extrema importância a presença do professor ou técnico na
 
 \vspace{0.2cm}
 \section{Análise e discussão} % (quando houver) (70%)
-\subsubsection{Descrição da corrente sobre as lâmpadas em série Fourier}
+\subsubsection{Análise da forma de onda das lâmpadas com distorção harmônica}
 % - Obtenha, analiticamente, a série de Fourier da corrente que alimenta as lâmpadas.
+No ambiente MATLAB, foi possível recriar a forma de onda com distorções harmônicas por meio do arquivo CSV obtido do osciloscópio, como mostrado da Figura \ref{m1:matlab:image};
+
+\vspace{0.6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=13cm]{Sinal_IN}
+\caption{Reconstrução da forma de onda via MATLAB.}
+\label{m1:matlab:image}
+\end{figure}
+\vspace{0.1cm}
+
 
 \subsubsection{Comparação do valor RMS obtido com o experimental}
 % - Com o resultado do item anterior, calcule o valor eficaz e compare com a indicação dos amperímetros.
