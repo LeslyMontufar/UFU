@@ -33,6 +33,13 @@ subplot(2,1,2); stem(w, X_abs);
 title('Análise do Espectro de Frequência do Sinal Digital');
 set(gca,'FontSize',12);
 
+figure('Name', ['Amostragem: ' 'Sinal x(t)']);
+subplot(2, 1, 1);
+figure_amostragem('amostragem', xt, t, Fs, ti, t_f);
+title('Sinal recebido pós amostragem com Fs=20kHz');
+xlabel('$nT_s$','Interpreter','LaTex','FontSize',16);
+ylabel('$x[nT_s]$','Interpreter','LaTex','FontSize',16);
+
 % Projeto do filtro rejeita banda
 freq_rejeitada = 3e3; 
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
@@ -91,16 +98,22 @@ ezplot(xt_filtro_ideal, [ti, t_f]);
 
 % Functions
 
-function [s, w] = amostragem(sinal, var, Fs, ttotal)
-    % CONVERSORAD (sinal, var, Fs)
+function [s, n] = amostragem(sinal, var, Fs, ti, t_f)
+    % AMOSTRAGEM (sinal, var, Fs)
     % sinal: em funcao de var
     % var: variavel de percurso analógico
-    % Fs: freqûencia de amostragem desejada
-    % ttotal: intervalo de tempo de tempo a ser amostrado
+    % Fs: frequencia de amostragem desejada
+    % ti: tempo inicial
+    % t_f: tempo final
     
-    s = strrep(sinal,var,'n/Fs');
-    % s = str2func(['@(' var ')' s]);
     n = ti*Fs:1:t_f*Fs; % Ts=1/Fs
-    w = n/ttotal;
-    plot(w, s);
+    s = eval(strrep(string(sinal),char(var),'n/Fs'));
+end
+
+function figure_amostragem(nome, sinal, var, Fs, ti, t_f)
+    [s, n] = amostragem(sinal, var, Fs, ti, t_f);
+    %figure('Name', ['Amostragem: ' nome]);
+    ezplot(sinal, [ti t_f]);
+    hold on;
+    scatter(n/Fs, s);
 end
