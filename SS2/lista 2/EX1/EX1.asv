@@ -33,7 +33,7 @@ freq_rejeitada = 3e3;
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
 zero = 0.9999*(cos(w_rejeitada)+ 1j*sin(w_rejeitada));
 zeros = [zero; conj(zero)];
-polo = 0.79*real(zero)+1j*imag(zero);
+polo = 0.661*real(zero)+1j*imag(zero);
 polos = [polo; conj(polo)];
 k = 0.2/(5*.5);
 [Hjw] = H(zeros, polos, k, w);
@@ -52,7 +52,7 @@ Y_abs = abs(Y);
 Y_phased = phase(Y)*(180/pi);
 
 figure('Name','Sinal Transmitido');
-subplot(2, 1, 1); stem(w, Y_abs, 'filled','black');
+subplot(2, 1, 1); stem(w, Y_abs);
 title('Espectro em freq da saída');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
 ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
@@ -105,9 +105,9 @@ function [Hjw] = H(zeros, polos, k, w)
     r = 1;
     Hjw = k;
     for ii = 1:length(zeros)
-        Hjw = Hjw.*(1 - zeros(ii).*r.*exp(-1j*w));
+        Hjw = Hjw.*zeros(ii).*r.*exp(-1j*w);
     end
     for ii = 1:length(polos)
-        Hjw = Hjw./(1 - polos(ii).*r.*exp(-1j*w));
+        Hjw = Hjw./(zeros(ii).*r.*exp(-1j*w));
     end
 end
