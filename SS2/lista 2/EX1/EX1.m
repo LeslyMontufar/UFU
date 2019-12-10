@@ -33,40 +33,50 @@ freq_rejeitada = 3e3;
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
 zero = 0.9999*(cos(w_rejeitada)+ 1j*sin(w_rejeitada));
 zeros = [zero; conj(zero)];
-polo = 0.79*real(zero)+1j*imag(zero);
+polo = 0.6*real(zero)+0.6j*imag(zero);
 polos = [polo; conj(polo)];
 k = 0.2/(5*.5);
-[Hjw] = H(zeros, polos, k, w);
+% [Hjw] = H(zeros, polos, k, w);
+[b,a]=zp2tf(zeros,polos,1);
+Nfft = 512;
+Y = fft(b,Nfft)./fft(a,Nfft);
+% plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
 
 subplot(2, 1, 1); polarplot([zeros polos], '*');
 title('Diagrama de polos e zeros do Filtro Seletivo');
-subplot(2, 1, 2); stem(w, abs(Hjw));
+subplot(2, 1, 2); 
+% stem(w, abs(Hjw));
+plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
+
+grid on    
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
 ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',14);
-ax = gca; ax.FontSize=12; ax.XTick = 0:1e3:Fs;
+ax = gca; ax.FontSize=12; 
+set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
+set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'})
 
 % Para encontrar a saída filtrada tem-se:
-Y = Hjw.* X;
-Y_abs = abs(Y);
-Y_phased = phase(Y)*(180/pi);
-
-figure('Name','Sinal Transmitido');
-subplot(2, 1, 1); stem(w, Y_abs, 'filled','black');
-title('Espectro em freq da saída');
-xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
-ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
-
-yt = ifft(Y_abs);
-yt_abs = real(yt);
-subplot(2, 1, 2); stem(n*Ts, yt_abs);
-title('Espectro no tempo da saída');
-xlabel('$t$','Interpreter','LaTex','FontSize',18);
-ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
-
-hold on;
-xt_filtro_ideal = k*(5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t));
-ezplot(xt_filtro_ideal, [ti, t_f]);
+% Y = Hjw.* X;
+% Y_abs = abs(Y);
+% Y_phased = phase(Y)*(180/pi);
+% 
+% figure('Name','Sinal Transmitido');
+% subplot(2, 1, 1); stem(w, Y_abs, 'filled','black');
+% title('Espectro em freq da saída');
+% xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
+% ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
+% 
+% yt = ifft(Y_abs);
+% yt_abs = real(yt);
+% subplot(2, 1, 2); stem(n*Ts, yt_abs);
+% title('Espectro no tempo da saída');
+% xlabel('$t$','Interpreter','LaTex','FontSize',18);
+% ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
+% 
+% hold on;
+% xt_filtro_ideal = k*(5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t));
+% ezplot(xt_filtro_ideal, [ti, t_f]);
 
 % Functions
 
