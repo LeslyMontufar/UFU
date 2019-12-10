@@ -19,64 +19,75 @@ title(strcat('Sinal recebido pós amostragem com Fs=', string(Fs/1e3), 'kHz'));
 ax = gca; ax.FontSize=12;
 
 % Espectro de frequencia do sinal amostrado
-X = fft(x_n);
+X = fft(x_n); Nfft = length(n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
 w = n/(t_f-ti);% frequencia em Hz % usou Fs
-subplot(2,1,2); stem(w, X_abs,'filled','black');
+subplot(2,1,2);
+%stem(w, X_abs,'filled','black');
+plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(X))),'linewidth',2,'color',[0 0 0]);
 title('Análise do Espectro de Frequência do Sinal Digital');
-ax = gca; ax.FontSize=12; ax.XTick = 0:3e3:Fs;
+xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
+ylabel('$|X(e^{jw})|$ (dB)','Interpreter','LaTex','FontSize',14);
+ax = gca; ax.FontSize=12; 
+set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
+set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 
 % Projeto do filtro rejeita banda
 figure('Name','Projeto do filtro rejeita banda'); 
 freq_rejeitada = 3e3; 
 w_rejeitada = 2*pi*freq_rejeitada/Fs; % Freq Digital equivalente
+erro = 2*pi*0.3e3/Fs;
 zero = 0.9999*(cos(w_rejeitada)+ 1j*sin(w_rejeitada));
+% um sistema estavel tem mais polos dq zeros
 zeros = [zero; conj(zero)];
-polo = 0.6*real(zero)+0.6j*imag(zero);
-polos = [polo; conj(polo)];
-k = 0.2/(5*.5);
+polo = 0.14*real(zero)+0.3j*imag(zero);
+polo2 = 0.63*real(zero)+0.75j*imag(zero);
+polos = [polo; conj(polo); polo2; conj(polo2)];
+k = 0.2/(5+.5);
 % [Hjw] = H(zeros, polos, k, w);
 [b,a]=zp2tf(zeros,polos,1);
-Nfft = 512;
-Y = fft(b,Nfft)./fft(a,Nfft);
-% plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
+% Nfft = 512;
+Hjw = k * fft(b,Nfft)./fft(a,Nfft);
 
-subplot(2, 1, 1); polarplot([zeros polos], '*');
+subplot(2, 1, 1); polarplot([zeros; polos], '*');
 title('Diagrama de polos e zeros do Filtro Seletivo');
 subplot(2, 1, 2); 
 % stem(w, abs(Hjw));
-plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
+plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Hjw))),'linewidth',2,'color',[0 0 0]);
 
 grid on    
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
-ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',14);
+ylabel('$|H(e^{jw})|$ (dB)','Interpreter','LaTex','FontSize',14);
 ax = gca; ax.FontSize=12; 
 set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
-set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'})
+set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 
 % Para encontrar a saída filtrada tem-se:
-% Y = Hjw.* X;
-% Y_abs = abs(Y);
-% Y_phased = phase(Y)*(180/pi);
-% 
-% figure('Name','Sinal Transmitido');
-% subplot(2, 1, 1); stem(w, Y_abs, 'filled','black');
-% title('Espectro em freq da saída');
-% xlabel('$\omega$','Interpreter','LaTex','FontSize',18);
-% ylabel('$|Y(jw)|$','Interpreter','LaTex','FontSize',18);
-% 
-% yt = ifft(Y_abs);
-% yt_abs = real(yt);
-% subplot(2, 1, 2); stem(n*Ts, yt_abs);
-% title('Espectro no tempo da saída');
-% xlabel('$t$','Interpreter','LaTex','FontSize',18);
-% ylabel('$y(t)$','Interpreter','LaTex','FontSize',18);
-% 
-% hold on;
-% xt_filtro_ideal = k*(5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t));
-% ezplot(xt_filtro_ideal, [ti, t_f]);
+Y = Hjw.* X;
+Y_abs = abs(Y);
+Y_phased = phase(Y)*(180/pi);
+
+figure('Name','Sinal Transmitido');
+subplot(2, 1, 1); %stem(w, Y_abs, 'filled','black');
+plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
+title('Espectro em freq da saída');
+xlabel('$\omega$','Interpreter','LaTex','FontSize',16);
+ylabel('$|Y(e^{jw})|$','Interpreter','LaTex','FontSize',16);
+ax = gca; ax.FontSize=12; 
+set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
+set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
+
+yt = ifft(Y_abs);
+yt_abs = real(yt);
+subplot(2, 1, 2); stem(n*Ts, yt_abs);
+hold on;
+xt_filtro_ideal = k*(5*sin(2*pi*1000*t) + 0.5*cos(2*pi*5000*t));
+ezplot(xt_filtro_ideal, [ti, t_f]);
+title('Espectro no tempo da saída');
+xlabel('$t$','Interpreter','LaTex','FontSize',16);
+ylabel('$y(t)$','Interpreter','LaTex','FontSize',16);
 
 % Functions
 
