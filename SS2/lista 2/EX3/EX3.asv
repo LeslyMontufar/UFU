@@ -1,16 +1,18 @@
-%clc; close all; clearvars;
+clc; close all; clearvars;
 % Dada a equação de diferenças
-Fs = 7;
+Fs = 35;
 w=0:1e-3:2*pi*Fs;
 s = 1j*w;
 Hs = (10*s+5)./(s.^2+2*s+5);
-b = [10]; a = [1 2 5];
+b = [10 5]; a = [1 2 5];
 
-figure; plot(w/(2*pi), (abs(Hs)), 'linewidth',2, 'color', [0 0 0]);
+figure; plot(w, 20*log10(abs(Hs)), 'linewidth',2, 'color', [0 0 0]);
 title('Resposta em frequência');
 xlabel('$\omega (rad/s)$','Interpreter','LaTex','FontSize',14);
-ylabel('$|H(jw)|$','Interpreter','LaTex','FontSize',14);
+ylabel('$|H(jw)|$ (dB)','Interpreter','LaTex','FontSize',14);
 ax = gca; ax.FontSize=11; 
+%set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
+%set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 grid on;
 
 % Resposta ao impulso
@@ -33,3 +35,4 @@ ylabel('$s(t)$','Interpreter','LaTex','FontSize',14);
 ax = gca; ax.FontSize=11; 
 grid minor;
 
+% Resposta ao
