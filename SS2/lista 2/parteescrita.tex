@@ -36,7 +36,7 @@
 \newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
 \newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
 \centering11811ETE001}
-\newcommand{\theadvisor}{Prof. Wellington Maycon Santos Bernardes}
+\newcommand{\theadvisor}{Prof. Alan Petrônio Pinheiro}
 \newcommand{\thecity}{Uberlândia}
 
 \thispagestyle{empty}\input{CapaABNT}
@@ -132,6 +132,8 @@ H(z) = 0.0364\  \dfrac{ (z - (0.5877 \pm 0.8089i) )}{(z - (0.0823 \pm 0.2427i))\
 \vspace{0.1cm}
 
 Simplificando \ref{ex1:H:pz} tem-se \ref{ex1:H:ab}, no qual visualizam-se os coeficientes $b$ e $a$.
+\vspace{0.1cm}
+
 \begin{equation} \label{ex1:H:ab}
 H(z) = \dfrac{Y(z)}{X(z)}=\dfrac{0 - 0\ z^{-1} + 0.0364\ z^{-2} -0.0427\ z^{-3} + 0.0364\ z^{-4}}{1 -0.9051\ z^{-1} +0.6927\ z^{-2} -0.1318\ z^{-3} +0.0332\ z^{-4}}
 \end{equation}
@@ -158,7 +160,9 @@ y[n] = 0.9051\ y[n-1] - 0.6927 \ y[n-2]  +0.1318\ y[n-3]  - 0.0332\ y[n-4] \\
 Dada a equação de diferenças tem-se, na Equação (\ref{ex2:eqdif}), sua forma após aplicar-se a Transformada Z. Para assim obter a equação de sua resposta em frequência como na Equação (\ref{ex2:Hz}) e analisá-la no espectro da frequência como na Figura \ref{ex2:H}.
 
 \begin{gather} 
-y[n] - y[n-1] + \dfrac{1}{4} y[n-2] = x[n] +\dfrac{1}{4} x[n-1] -\dfrac{1}{8} x[n-2] \label{ex2:eqdif} \\ \\
+y[n] - y[n-1] + \dfrac{1}{4} y[n-2] = x[n] +\dfrac{1}{4} x[n-1] -\dfrac{1}{8} x[n-2] \label{ex2:eqdif} 
+\end{gather}
+\begin{gather} 
 Y(z)\ (1 - 1\ z^{-1} + 0.25\ z^{-2}) = X(z)\ (1 + 0.25\ z^{-1} + 0.125\ z^{-2})
 \end{gather}
 
@@ -166,7 +170,7 @@ Y(z)\ (1 - 1\ z^{-1} + 0.25\ z^{-2}) = X(z)\ (1 + 0.25\ z^{-1} + 0.125\ z^{-2})
 H(z) = \dfrac{1 + 0.25\ z^{-1} + 0.125\ z^{-2}}{1 - 1\ z^{-1} + 0.25\ z^{-2}}
 \end{equation}
 
-\vspace{0.3cm}
+\vspace{0.4cm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{ex2-Hz}
@@ -182,19 +186,19 @@ A resposta em frequênia do sistema tabém pode ser escrita como mostrado na Equ
 H(z) = \dfrac{(z-(-0.1250 \pm 0.3307i))}{(z-0.5)\ (z-0.5)}
 \end{equation}
  
-\vspace{0.3cm}
+\vspace{0.5cm}
 \subsection{Resposta ao degrau}
 A resposta degrau foi obtida pela equação de diferenças, a partir da Tranformada Z inversa de \ref{ex2:Hz} e observa-se na Figura \ref{ex2:u}.
 
-\vspace{0.2cm}
+\vspace{0.3cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=15.5cm]{ex2-u}
+\includegraphics[width=15.8cm]{ex2-u}
 \caption{Espectro em frequência e tempo da resposta ao degrau unitário.}
 \label{ex2:u}
 \end{figure}
 
-\vspace{0.3cm}
+\vspace{0.5cm}
 \section{Exercício 3}
 \subsection{Análise da função de transferência do motor}
 Para a análise do sistema do motor em que a entrada é a tensão e a saída, a velocidade angular, tem-se os gráficos das Figuras \ref{ex3:Hjw}, \ref{ex3:ht} e \ref{ex3:st}. Percebe do gráfico da função de transeferência que primeiramente ocorre o acionamento do motor por uma elevada tensão positiva, para depois estabilizar-se e tende a valores proxóimos ao zero. Ademias, do gráfico da resposta ao degrau na Figura \ref{ex3:st}, tem-se que o sistema é subamortecido.
@@ -238,7 +242,7 @@ ou ainda,
 
 $$ \zeta = \sqrt{\dfrac{ln(M_p)^2}{\pi^2 + ln(M_p)^2}}$$
 
-\vspace{0.4cm}
+\vspace{0.45cm}
 Assim, para um sistema com $M_p< 0,2$, pois no gráfico de resposta ao degrau a estabilização ocorre para s(t)=1, deve-se ter um $\zeta > 0.4559$. Colocando, por exemplo um sistema em série com função de transferência:
 
 
@@ -279,9 +283,9 @@ H_{novo}(j\omega) = \dfrac{5}{(jw)^2 + 2 \zeta \omega_n (jw) + w_n ^2}
 
 \vspace{0.3cm}
 \subsection{Aumento da velocidade do motor}
-Para o aumento da velocidade do motor em 2 vezes, pode-se multiplicar a nova função por dois obtendo-se assim que $2\times H(jw)$ será uma função de transferência com o dobro de ganho, para um inscremento constante de tensão, fazendo assim que a relação entre aumento de tensão e velocidade ângular seja linear. Nas Figuras \ref{ex3:Hjw:F}, \ref{ex3:ht:F} e \ref{ex3:st:F} verifica-se o resultado visual e na Equação (\ref{ex3:Hnovo:2}) a função de tranferência resultante, mantendo $M_p \approx 1,2$
+Para o aumento da velocidade do motor em 2 vezes, pode-se multiplicar a nova função por dois obtendo-se assim que $2\times H(jw)$ será uma função de transferência com o dobro de ganho, para um inscremento constante de tensão, fazendo assim que a relação entre aumento de tensão e velocidade ângular seja linear. Nas Figuras \ref{ex3:Hjw:F}, \ref{ex3:ht:F} e \ref{ex3:st:F} verifica-se o resultado visual e na Equação (\ref{ex3:Hnovo:2}) a função de tranferência resultante, mantendo $M_p \approx 1,2$.
 
-\vspace{0.2cm}
+\vspace{0.4cm}
 \begin{equation} \label{ex3:Hnovo:2}
 H_{novo}(j\omega) = \dfrac{10}{(jw)^2 + 2 \zeta \omega_n (jw) + w_n ^2}
 \end{equation}
@@ -348,7 +352,7 @@ das se quais de tira que $a=519.3148$ e $k=129.8287$. Além disso, do código no
 
 Na Figura \ref{ex4:st}, tem-se ainda a resposta ao degrau unitário da função de transferência resultante e descrita na Equação (\ref{ex4:Hideal})
 
-\vspace{0.3cm}
+\vspace{0.4cm}
 \begin{equation} \label{ex4:Hideal}
 H_{real}(j\omega) =\dfrac{1298,3}{(jw)^2 + (544.3)\ (jw) + 1298,3}
 \end{equation}
@@ -369,9 +373,27 @@ H_{real}(j\omega) =\dfrac{1298,3}{(jw)^2 + (544.3)\ (jw) + 1298,3}
 \label{ex4:st}
 \end{figure}
 
-
-
 \section{Exercício 5}
+Os dados do sistema do laboratório são lineares, no entanto ainda é possível ajustá-ia uma curva, mediante a modelagem exponencial (Veja Anexo \ref{anexo:ex5}). Assim, tem-se que $y(t)$ pode ser descrita como:
+
+$$y(t) = 0.9729\  e^{0.0050\ t} +   0.4321\  e^{-4.0703\ t}      -1.4031\  e^{-1.0747\ t}   $$
+
+Além disso, a Figura \ref{ex5:fig1} mostra a correspondência da curva obtida e a dispersão dos dados, enquanto que na Figura \ref{ex5:fig2} está comtemplado o Diagrama de Bode para o sistema.
+\vspace{0.2cm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{ex5-comp-mat}
+\caption{Modelagem matemática do sistema via MATLAB.}
+\label{ex5:fig1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{ex5-comp-f}
+\caption{Comportamento em frequência do sistema.}
+\label{ex5:fig2}
+\end{figure}
 
 \newpage
 \section{Anexos}
@@ -390,16 +412,21 @@ H_{real}(j\omega) =\dfrac{1298,3}{(jw)^2 + (544.3)\ (jw) + 1298,3}
 \subsection{Código correspondente ao exercício 4} \label{anexo:ex4}
 \lstinputlisting{EX4/EX4.m}
 
+\vspace{0.3cm}
+\subsection{Código correspondente ao exercício 5} \label{anexo:ex5}
+\lstinputlisting{EX5/EX5.m}
+
 \newpage
 \begin{thebibliography}{9} 
 % Introdução
 \bibitem{S1}
-    ...,
-    “Sistemas de Controle para a Engenharia”, Avaliação da Qualidade da Energia Elétrica, DSE – FEEC – UNICAMP , 2019.
- 
+    Gene F. Franklin, J. David Powell, Abbas Emami-Naieni.,
+    “Sistemas de Controle para a Engenharia”, Porto Alegre: Bookman, 2013.
+
 \bibitem{S2}
-    ...,
-    “Sinais e Sistemas”,... , 2019.
+    Oppeinheim, Alan V.; Willsky, Allan S.,
+    “Sinais e Sistemas”, São Paulo: Pearson
+Prentice Hall, 2010. 2ª Edição.
 
 \end{thebibliography}
 \end{document}

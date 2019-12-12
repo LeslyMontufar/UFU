@@ -24,7 +24,7 @@ w=0:1e-3:pi;
 Nfft = length(w);
 Y = fft(modelo(x, times), Nfft)
 figure('Name', 'Comportamento em frequêcia');
-plot(w, 20*log10(abs(Y)),'linewidth',2, 'color', [0 0 0]);
+plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
 grid on;    
 title('Comportamento em Frequência');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
