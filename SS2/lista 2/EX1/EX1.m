@@ -12,23 +12,23 @@ xt = 5*sin(2*pi*1000*t) + 2*cos(2*pi*3000*t) + 0.5*cos(2*pi*5000*t);
 % Amostragem
 Fs = 20e3; % Fs > 2*Fmax_sinal (Teorema de Nyquist para evitar o aliasing)
 Ts = 1/Fs; 
-receptor = figure('Name', 'Receptor');
-rec(1)= subplot(2, 1, 1);
+figure('Name', 'Receptor');
+subplot(2, 1, 1);
 [x_n, n] = figure_amostragem('$nT_s$','$x[nT_s]$', xt, t, Fs, ti, t_f);
 title(strcat('Sinal recebido pós amostragem com Fs=', string(Fs/1e3), 'kHz'));
-ax = gca; ax.FontSize=12;
+ax = gca; ax.FontSize=11;
 
 % Espectro de frequencia do sinal amostrado
 X = fft(x_n); Nfft = length(n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
-w = n/(t_f-ti);% frequencia em Hz % usou Fs
-rec(1); subplot(2,1,2);
+w = (pi/Fs)*n/(t_f-ti); % frequencia digital 0:pi com mesmo numero de amostra que n
+subplot(2,1,2);
 plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(X))),'linewidth',2,'color',[0 0 0]);
-title('Análise do Espectro de Frequência do Sinal Digital');
+title('Análise do Espectro de Frequência do Sinal de Entrada');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
 ylabel('$|X(e^{jw})|$ (dB)','Interpreter','LaTex','FontSize',14);
-ax = gca; ax.FontSize=12; 
+ax = gca; ax.FontSize=11; 
 set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
 set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 
@@ -44,19 +44,19 @@ polos = [polo; conj(polo); polo2; conj(polo2)];
 % um sist estável possui mais polos dq zeros
 
 k = 0.2/(5+.5);
-[b,a]=zp2tf(zeros,polos,1);
-Hjw = k * fft(b,Nfft)./fft(a,Nfft);
+[b,a]=zp2tf(zeros,polos,k);
+Hjw = fft(b,Nfft)./fft(a,Nfft);
 
-filtro(1) = subplot(2, 1, 1); polarplot([polos], '*');
-hold on; polarplot([zeros], 'o');
+subplot(2, 1, 1); polarplot([polos], '*');
+hold on; polarplot([zeros], 'o'); ax = gca; ax.FontSize=11; 
 title('Diagrama de polos e zeros do Filtro Seletivo');
-filtro(1) = subplot(2, 1, 2); 
+subplot(2, 1, 2); 
 plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Hjw))),'linewidth',2,'color',[0 0 0]);
-grid on    
+grid on;    
 title('Espectro em freq da Resposta ao Impulso');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
 ylabel('$|H(e^{jw})|$ (dB)','Interpreter','LaTex','FontSize',14);
-ax = gca; ax.FontSize=12; 
+ax = gca; ax.FontSize=11; 
 set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
 set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 
@@ -65,22 +65,36 @@ Y = Hjw.* X;
 Y_abs = abs(Y);
 Y_phased = phase(Y)*(180/pi);
 
-p_saida = figure('Name','Sinal Transmitido');
-saida(1) = subplot(2, 1, 1);
+figure('Name','Sinal Transmitido');
+subplot(2, 1, 1);
 plot((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(Y))),'linewidth',2,'color',[0 0 0]);
-title('Espectro em freq da saída');
+title('Espectro em frequência da saída');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',16);
 ylabel('$|Y(e^{jw})|$','Interpreter','LaTex','FontSize',16);
-ax = gca; ax.FontSize=12; 
+ax = gca; ax.FontSize=11; 
 set(ax,'xtick', [0:1/4:1]); set(ax,'xlim',[0 1]);
 set(ax,'xticklabel', {'0','\pi/4','\pi/2','2\pi/3','\pi'});
 
-yt = ifft(Y_abs);
+yt = ifft(Y);
 yt_abs = real(yt);
-saida(2) = subplot(2, 1, 2); stem(n*Ts, yt_abs);
+subplot(2, 1, 2); stem(n*Ts, yt_abs);
 title('Espectro no tempo da saída');
 xlabel('$t$','Interpreter','LaTex','FontSize',16);
 ylabel('$y(t)$','Interpreter','LaTex','FontSize',16);
+ax = gca; ax.FontSize=11; 
+
+
+% Pelo laço for
+
+% a(1) y[n] = - a(1+1) y[n-1] - a(2+1) y[n-2] - a(3-1) y[n-3] ...
+%        b(1) x[n-0] + b(2) x[n-1] + ... 
+y_n = eqdif(b, a, x_n);
+figure; stem(n*Ts, y_n);
+title('Sinal de saída y[n]');
+xlabel('$t$','Interpreter','LaTex','FontSize',16);
+ylabel('$y[n]$','Interpreter','LaTex','FontSize',16);
+ax = gca; ax.FontSize=11;
+grid minor;
 
 % Functions
 
@@ -113,3 +127,25 @@ function [s_n, n]= figure_amostragem(x_label, y_label, sinal, var, Fs, ti, t_f)
     xlabel(x_label,'Interpreter','LaTex','FontSize',16);
     ylabel(y_label,'Interpreter','LaTex','FontSize',16);
 end
+
+function [y_n] = eqdif(b, a, x_n)
+    % EQDIF determina a saida por meio da eq de diferencas
+    
+    % y_n(0)=0; matlab nao aceita
+    for n=1:length(x_n)
+        y_n(n) = 0; ia=2; 
+        while ia<=n
+            y_n(n) = y_n(n) - a(ia)*y_n(n-(ia-1));
+            ia = ia+1;
+            if ia > length(a) break; end
+        end
+        ib = 1;
+        while (n-1)-(ib-1)>=0 % pensar no básico
+            y_n(n) = y_n(n) + b(ib)*x_n(n-(ib-1));
+            ib = ib+1;
+            if ib > length(b) break; end
+        end
+        y_n(n) = y_n(n)/a(1);
+    end
+end
+
