@@ -4,7 +4,7 @@ Fs = 7;
 w=0:1e-3:2*pi*Fs;
 s = 1j*w;
 Hs = (10*s+5)./(s.^2+2*s+5);
-b = [10]; a = [1 2 5];
+b = [10 5]; a = [1 2 5];
 
 figure; plot(w/(2*pi), (abs(Hs)), 'linewidth',2, 'color', [0 0 0]);
 title('Resposta em frequência');
