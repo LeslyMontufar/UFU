@@ -92,14 +92,13 @@ A escolha dos componentes da Tabela \ref{fonte:componentes} também exige análi
 }
 \end{table}
 
-\vspace{0.5cm}
-\subsection{Memória de cálculo} % com simulações!
+\vspace{0.8cm}
+\subsection{Estágios do circuito} % com simulações!
 Cada componente possui uma função no circuito, que pode ser analisada a nível de tensão e corrente. Espera-se um sinal contínuo na saída, com o qual poderá conectar-se a carga que puxa no máximo 4A (limitação do fusível). Assim, é utilizada uma carga $R_{CARGA}=\dfrac{V_{OUT}}{I_{OUTmax}}=\dfrac{60}{4}=15\Omega$, como observa-se na Figura \ref{fonte:simulacao:circuito} utilizada na simulação.
-\vspace{0.5cm}
+\vspace{0.6cm}
 
 \begin{figure}[H]
 \centering
-  
 \includegraphics[width=15cm]{fonte-simulacao-circuito}
 \caption{Circuito utilizado na simulação da fonte.}
 \label{fonte:simulacao:circuito}
@@ -108,7 +107,7 @@ Cada componente possui uma função no circuito, que pode ser analisada a nível
 
 \subsubsection{Retificação}
 Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e é realizada pela ponte retificadora, sendo escolhida a GBJ606 que suporta de 6A, 600 V e atende os parâmetros do circuito montado. Na Figura \ref{fonte:retificacao} observa-se o gráfico da forma de onda da tensão, após a retificação em onda completa pela ponte de diodos.
-
+ 
 \begin{figure}[H]
 \centering
 \subfloat[]{\includegraphics[width=0.47\textwidth]{fonte-retificacao}}\hfill
@@ -117,15 +116,17 @@ Esta etapa transforma a tensão alternada em uma tensão contínua pulsante, e �
 \label{fonte:retificacao}
 \end{figure}
 
+\vspace{0.2cm}
 \subsubsection{Filtragem}
-Transforma a tensão contínua pulsante em uma tensão contínua quase perfeita. Mas essa tensão contínua apresenta, quando a fonte é ligada a uma carga, uma oscilação chamada Tensão de Ripple. Essa etapa é realizada pelos capacitores encontrados eno circuito que devido a sua composição, ao sofrer o processo de carga e descarga diminuem a oscilação da tensão já que a tensão fornecida ao circuito agora nos momentos de pulso é suprida pela descarga do capacitor. Porém como abprdado anteriormente, resta ainda o riplle e para eliminar esse fator incômodo existe ainda outra etapa...
+Transforma a tensão contínua pulsante em uma tensão contínua quase perfeita. Mas essa tensão contínua apresenta, quando a fonte é ligada a uma carga, uma oscilação chamada Tensão de Ripple. Essa etapa é realizada pelos capacitores encontrados eno circuito que devido a sua composição, ao sofrer o processo de carga e descarga diminuem a oscilação da tensão já que a tensão fornecida ao circuito agora nos momentos de pulso é suprida pela descarga do capacitor. Porém, como abordado anteriormente, resta ainda o ripple e para eliminar esse fator incômodo pode-se ainda implementar a etapa a de regulação.
 
+\vspace{0.2cm}
 \subsubsection{Regulação}
-Após a retificação e a filtragem,ocorre a etapa de regulação, com o objetivo de eliminar definitivamente a tensão de oscilação, mesmo com uma carga variável. O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
+Após a retificação e a filtragem, ocorre a etapa de regulação, com o objetivo de eliminar definitivamente a tensão de oscilação, mesmo com uma carga variável. O diodo utilizado, conta com uma tensão Zener nominal de 62 V para uma corrente de teste de 4 mA.
 
 O comportamento do zener é observado para dois processos, a regulação de linha, que mostra acapacidade da fonte de manter a tensão de saída diante de variações na tensão de entrada.
 
-Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcioandas ao resistor limitador, mostrando serem válidas as equações abaixo.
+Se a tensão de entrada aumenta muito, ao invés de ter todo esse acréscimo em cima da carga, o diodo Zener, regula esse valor de tensão, por meio da sua característica de operação em ruptura reversa. Isso é bem observado na corrente, que sofre maiores alterações para que a tensão se mantenha constante.Para o processo inverso, com um descréscimo na tensão de entrada, um processo análogo. As variações na tensão de entrada, são direcionadas ao resistor limitador, mostrando serem válidas as equações abaixo.
 
 \begin{equation}
 I_{S}  = I_{Z} +I_{R}  
@@ -134,19 +135,23 @@ I_{S}  = I_{Z} +I_{R}
 V_{S}  = V_{in} - V_{Z}
 \end{equation}
 
-Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de sída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
+Existe ainda a  regulação de carga, que mostra a capacidade da fonte de manter uma tensão de saída constante diante de variações na corrente de carga. Que depende da potência requerida pela carga.
+
 \begin{equation}
 I_{S}  =\frac{ V_{in} - V_{Z}  }{R_{S}}
 \end{equation}
-Logo, para toda a avariação na corrente de carga é compensada por uma variação oposta na corrente através do diodod Zener, mantendo a tensão constante.
 
+Logo, para toda a variação na corrente de carga é compensada por uma variação oposta na corrente através do diodo Zener, mantendo a tensão constante.
+Ademais, releva-se que quando a tensão sobre o diodo zener atinge a tensão de ruptura, o diodo passa a conduzir e se a corrente que passará por ele for suficientemente grande para aumentar sua temperatura, a corrente aumentará 
+
+\vspace{0.2cm}
 \subsubsection{Transistores em configuração Darlington}
-A configuração Darlington permite maior sensibilidade do transistor, permitindo um ganho $\beta$ ($h_{FE}$) maior. Assim, na Figura \ref{fonte:darlington}, vê-se o par Darlington com os transistores TIP35C e BD139.
+A configuração Darlington permite maior sensibilidade do transistor, permitindo um ganho $\beta$ ($h_{FE}$) maior. Assim, na Figura \ref{fonte:darlington}, vê-se o par Darlington com os transistores TIP35C \cite{TIP35} e BD139 \cite{BD139}, com $\beta$ associado de $\beta_{total}=25\times 100=2500$.
 
+\vspace{0.2cm}
 \begin{figure}[H]
 \centering
-  
-\includegraphics[width=15cm]{fonte-darlington}
+\includegraphics[width=9cm]{fonte-darlington}
 \caption{Configuração Darlington na fonte.}
 \label{fonte:darlington}
 \end{figure}
@@ -187,25 +192,10 @@ Considerando  $k = 0,048$, $b = 0,44$, $c = 0,725$ e a placa de fenolite de \emp
 \vspace{0.2cm}
 \subsubsection{Projeto final no \emph{PROTEUS}}
 Utilizando todos os conceitos já descritos foi possível organizar os componentes em uma placa de cirucito impresso, utilizando o software \emph{PROTEUS}.
-\begin{figure}[H]
-\centering
-  
-\includegraphics[width=15cm]{isis}
-\caption{Projeto ISIS da fonte.}
-\label{isis}
-\end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=15cm]{ares}
-\caption{Projeto ARES da fonte.}
-\label{ares}
-\end{figure}
-
-\subsection{Testes e ensaios} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fazer!
-\subsubsection{Regulação de linha}
-
-\subsubsection{Regulação de carga}
+\vspace{0.3cm}
+\subsection{Análise de testes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fazer!
+Através de testes, ligando a fonte com o auxílio do transformador, logo é possível perceber que a tensão de sída diverge dos 62 V esperados, e isso ocorre porque a placa acaba esquentando bastante devido a sua operação, e assim os diodos que são sensíveis à temperatura acabam operando de um modo não esperado, já que a resistência diminui.
 
 
 \newpage
@@ -266,18 +256,81 @@ Ademais, é importante ressaltar que os diodos (D1, D2 e D3) devem estar em cont
 }
 \end{table}
 
-\subsection{Memória de Cálculo}
-\subsubsection{Amplificador Push Pull (Classe AB)} % Perguntar para o Daniel
+\subsection{Etapas do projeto}
+\subsubsection{Primeiro estágio} % Perguntar para o Daniel
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{multisim-1.jpg}
+\caption{Preamp}
+\label{multisim-1}
+\end{figure}
 
-\subsubsection{Amplificador Seguidor de emissor}
+Dividindo o projeto do amplificador existem 3 estágios. O preampm o driver e o de potência. No inicial para a alimentação do circuito, o trasistor Q1 é utilizado, para parametrizar a entrada no amplificador de potência que conta com uma resistência de 1K, assim o transistor Q1, um seguidor de emissor é utilizado. Dessa forma o estágio de entrada se torna mais estável, o que minimiza os efeitos da Distorção de Intermodulação Transiente.
+Realizando alguns cálculos para esta etapa é possível estimar ma tensão de emissor de 4V e uma corrente de coletor de 1,8mA.
+
+\subsubsection{Estágio intermediário}
+Neste estágio, conhecido também como driver, o transistor Q2 é usado para realizar uma conversão devido à caractrística inversora do transistor na etapa preamp, mas serve também é utilizado para aumentar o suprimento de corrente, ou seja amplificando-a,possibilitando a excitação  par de transistores de saída. 
+
+Então com o pico máximo positivo na entrada é observada a tensão da fonte no coletor deste transistor, e com o pico mínimo negativo a tensão é zero. 
 
 
+\subsubsection{Estágio de saída}
+No estágio de saída, ou o de potência é utilizado a configuração de pares complementares. Os transistores Q3 e Q4 se encontram acoplados com uma configuração Darlington. Por isso os diodos associados em série são vistos.
+Nesta etapa com o uso desse par, cada transistor opera em um ciclo, quesão limitados pelos capacitores. E devido a configuração push- pull eles puxam a energia, logo tendo uma operação como que num sentido de vai e volta.
+
+No final deste etágio, com o auxílio do osciloscópio é possível coletar as formas de onda associadas a entrada e a saída, de forma a tornar possível observar o ganho que o amplificador consegue dar ao sinal de entrada. Para este projeto um ganho de 16 é esperado, porém em testes no laboratório, esta relação ficou em torno dos 15, o que ainda é um valor considerado aceitável, dados os parâmetros de construção.
+
+Abaixo temos o plot das formas de onda coletadas no osciloscópio. Com auxílio de um software matemático, neste caso para a entrada as ponteiras estavam com uma atenuação de 10X:
+
+\begin{figure}[H]
+\subfloat[]{\includegraphics[width=0.47\textwidth]{sinal_saida}}\hfill
+\subfloat[]{\includegraphics[width=0.47\textwidth]{ESPECTRO_OUT}}
+\caption{Dados de entrada do osciloscóspio.}
+\label{ampsuperiorlayout}
+\end{figure}
+
+\begin{figure}[H]
+\subfloat[]{\includegraphics[width=0.47\textwidth]{dados_entrada.jpg}}\hfill
+\subfloat[]{\includegraphics[width=0.47\textwidth]{dados_entrada_espectro.jpg}}
+\caption{Dados de saída do osciloscóspio.}
+\label{ampsuperiorlayout}
+\end{figure}
+
+
+\subsection{Projeto PCB}
+Abaixo seguem os esquemáticos utilizados para a confecção da placas.
+Este foi o modelo utilizado para realizar a confecção da placa de circuito impressa. Abaixo, há a disposição dos elementos na placa, assim como a disposição dos mesmos feita no Proteus.
+
+\begin{figure}[H]
+\includegraphics[width=15cm]{ampsuperiorlayout}
+\caption{Layout da PCB.}
+\label{ampsuperiorlayout}
+\end{figure}
+
+\vspace{0.4cm}
+
+
+\subsubsection{Considerações}
+Como o circuito opera em ciclos alternados, o uso de capacitoes cerâmicos se torna mais apelativo, porque estes não possuem polarização fixa como ocorre nos capacitores eletrolíticos, além das alterações que os eletrolíticos tamb~em podem sofrer devido a alta freqência.
+
+No esquemático também dá pra ver um potênciometro sendo utilizado, isso ocorre porque em aplicações onde a resistência necessária precisa ser ajustada atavés de testes práticos, para que seja regulada eficientemente como ocorre neste circuito, o potênciometro é muito mais eficiente, pois é mais fácil realizar ajustes no mesmo do que realizar uma troca constante de resistores fixos.
+
+As resistências de 0,47 nos pares de  transistores acoplados é necessária para que a polariaação dos transistores seja feita de forma mais correta, como resistores de compensação, já que os transistores Darlington são diferentes, sendo eles, um BD139 e o outro BD140, respectivamente Q3 e Q4.
+
+Tratando- se de estabilidade a presença de realimentação no circuito, neste caso do tipo Bootstrap, que é uma realimetação positiva, e auxilia na operação da configuração push-pull, mantendo a tensão AC em ambos os lados do R9 constantes e diminuindo as oscilações que poderiam ser observadas no sinal de saída.
 \newpage
-\section{Finalização do projeto: Fonte + Circuito amplificador} \label{projeto-final}
-%%%% ideia: chave liga e desliga e caixinha
+
 
 \newpage
 \section{Conclusões}
+\label{projeto-final}
+Ao realizar os testes, foi possível ver que a potência máxima alcançada no amplificador projetado, se encontra em torno de 36.44 W, a partir deste ponto, o sinal perde sua regulação e a leitura vista no osciloscópio se torna distorcida. Este acontecimento foi observado ao  elevar a tensão do sinal de entrada em valores maiores que 1.1 Vpp.
+
+Foi fácil perceber que num projeto de tal escala, o planejamento é muito importante, para que não hajam falhas nos resultados,visto que tanto o amplificador quanto a fonte, estão sujeitos a muitoas falhas.
+
+Notou-se que características como a temperatura no ambiente, embora muitas vezes desconsiderada em análises teróricas faz muita diferença na prática, daí a constante necessidade do uso de dissipadores.
+
+Também foi possível observar de uma forma prática tudo o que foi estudado no semestre a respeito de amplificadores, e sua caracterização, sobre as diferenças entre base, coletor e emissor e as relações de ganho no circuito.
 
 
 \newpage
