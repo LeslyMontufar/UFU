@@ -1,0 +1,36 @@
+close all; clc;
+
+% Rotina principal para plotar
+figure('Name','Sinais básicos importantes');
+t = -2:0.0000001:2;
+
+subplot(311); 
+plot(t, u(t, ),'linewidth',1.5,'color',[0 0 0]);
+title('Sinal \it{u(t)}');
+ylim([-0.5 1.5]);
+grid on;
+
+subplot(312); 
+plot(t, rect(t, 0.5),'linewidth',1.5,'color',[0 0 0]);
+title('Sinal \it{\Pi(t)}');
+ylim([-0.5 1.5]);
+grid on;
+
+subplot(313); 
+plot(t, Delta(t),'linewidth',1.5,'color',[0 0 0]);
+title('Sinal \it{\Delta(t)}');
+ylim([-0.5 1.5]);
+grid on;
+
+% Funções
+function out = u(t)
+    out = (t >= 0);
+end
+
+function out = rect(t)
+    out = u(t,-p)-u(t, p);
+end
+
+function out = Delta(t)
+    out = (t<=0.5).*(1-2*abs(t));
+end
