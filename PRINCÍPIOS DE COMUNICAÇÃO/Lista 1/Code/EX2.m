@@ -26,3 +26,7 @@ plot(t, exp(-t).*sin(6*pi*t).*u(t+1),'linewidth',1.5,'color',[0 0 0]);
 title('Sinal \it{e^{-t}sen(6\pi t)u(t+1)}');
 ylim([-3 3]);
 grid on;
+
+% cd ..
+% print('-f1','img/ex2-separado','-dpng');
+% print('-f2','img/ex2-mult','-dpng');
