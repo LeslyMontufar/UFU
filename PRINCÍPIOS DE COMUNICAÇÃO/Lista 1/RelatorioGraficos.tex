@@ -71,7 +71,7 @@ O gráfico correspondente aos Sinais Básicos Importantes é mostrado na Figura 
 \vspace{0.4cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=14cm]{ex1-fig}
+\includegraphics[width=16cm]{ex1-fig}
 \caption{Sinais Básicos Importantes.}
 \label{ex1:figure}
 \end{figure}
@@ -98,21 +98,32 @@ A seguir nas Figuras \ref{ex2:separado} e \ref{ex2:mult}, tem-se os gráficos re
 
 \vspace{0.3cm}
 \section{Exercício 3}
-Dado um sinal aperiódico, sua repetição gera um sinal periódico como o da Figura \ref{ex3:sinal}. Além disso, é possível extrair dados como a \textit{Energia = 48.7753 J} e \textit{Potência = 8.12922 W}.
+Dado um sinal aperiódico, sua repetição gera um sinal periódico como o da Figura \ref{ex3:sinal}. Além disso, é possível extrair dados como a \textit{Energia = 48.7753 J} e \textit{Potência = 8.12922 W}. O Anexo \ref{anexo:ex3} comtempla o código utilizado neste exercício.
 
 \vspace{0.4cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=14cm]{ex3-sinal}
+\includegraphics[width=16cm]{ex3-sinal}
 \caption{Sinal periódico.}
 \label{ex3:sinal}
 \end{figure}
 
-
-
 \vspace{0.3cm}
 \section{Exercício 4}
+O coeficiente de correlação entre a função $x(t)$ e $g_i(t)$, descrito como na Equação \ref{corr}, para cada função $g$, é comtemplado na Figura \ref{ex4:corr}. No Anexo \ref{anexo:ex3} observa-se o código utilizado neste exercício.
 
+\vspace{0.4cm}
+\begin{equation}
+\rho = 
+\end{equation}
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm]{ex4-corr}
+\caption{Correlação de sinais.}
+\label{ex3:sinal}
+\end{figure}
  
 \newpage
 \section{Anexos}
@@ -135,22 +146,33 @@ Dado um sinal aperiódico, sua repetição gera um sinal periódico como o da Fi
 \vspace{0.3cm}
 \subsection{Código correspondente ao exercício 3} \label{anexo:ex3}
 \lstinputlisting{Code/EX3.m}
+\vspace{0.3cm}
+
+\lstinputlisting{Code/energia.m}
 
 \vspace{0.3cm}
 \subsection{Código correspondente ao exercício 4} \label{anexo:ex4}
 \lstinputlisting{Code/EX4.m}
+\vspace{0.3cm}
+
+\lstinputlisting{Code/correlacao.m}
 
 \newpage
 \begin{thebibliography}{9} 
 % Introdução
-\bibitem{S1}
-    Gene F. Franklin, J. David Powell, Abbas Emami-Naieni.,
-    “Sistemas de Controle para a Engenharia”, Porto Alegre: Bookman, 2013.
+%\bibitem{S1}
+%    Gene F. Franklin, J. David Powell, Abbas Emami-Naieni.,
+%    “Sistemas de Controle para a Engenharia”, Porto Alegre: Bookman, 2013.
+
+%\bibitem{S2}
+%    Oppeinheim, Alan V.; Willsky, Allan S.,
+%    “Sinais e Sistemas”, São Paulo: Pearson
+%Prentice Hall, 2010. 2ª Edição.
 
 \bibitem{S2}
-    Oppeinheim, Alan V.; Willsky, Allan S.,
-    “Sinais e Sistemas”, São Paulo: Pearson
-Prentice Hall, 2010. 2ª Edição.
+    Lathi, B. P.; Ding, Zhi,
+    “Modern Digital and Analog Communication Systems”, New York: 
+    Oxford University Press, 2019. 5ª Edição.
 
 \end{thebibliography}
 \end{document}
