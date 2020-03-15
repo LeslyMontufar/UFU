@@ -16,7 +16,7 @@ plot(t,yp,'linewidth',1.5,'color',[0 0 0]);
 xlim([-20 20]);
 title('Sinal periódico');
 
-E = energia(y, T);
+E = energia(y);
 fprintf('Energia: %g J\nPotência: %g W\n', E, E/T);
 
 % cd ..
