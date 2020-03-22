@@ -3,8 +3,9 @@ clear all; close all; clc;
 figure('Name','Sinais periódicos');
 T = 6;
 M = 3;
-t = -M*T:0.01:M*T;
-tT = 0:0.01:T;
+step = 0.01;
+tT = 0:step:T;
+t = -M*T:step:M*T;
 y = exp(-abs(tT)/2).*sin(2*pi*tT).*rect((tT-2)/4);
 
 yp=[];
@@ -15,6 +16,7 @@ end
 plot(t,yp,'linewidth',1.5,'color',[0 0 0]);
 xlim([-20 20]);
 title('Sinal periódico');
+grid on;
 
 E = energia(y);
 fprintf('Energia: %g J\nPotência: %g W\n', E, E/T);

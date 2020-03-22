@@ -21,5 +21,7 @@ title('Sinal \it{\Delta(t)}');
 ylim([-0.5 1.5]);
 grid on;
 
-% cd ..
-% print('img/ex1-fig','-dpng');
+suptitle('Sinais Básicos Importantes');
+
+cd ..
+print('img/ex1-fig','-dpng');
