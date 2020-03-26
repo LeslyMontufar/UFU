@@ -129,7 +129,7 @@ V_{out,1} = V_{CC} - (\dfrac{I_{T}}{2})\ R_{1}
 V_{out,2} = V_{CC} - (\dfrac{I_{T}}{2})\ R_{2}
 \end{equation}
  
-\vspace{0.2cm}
+\vspace{0.3cm}
 \begin{table} [H]
 \centering
 \def\arraystretch{1.38}
@@ -147,9 +147,10 @@ V_{out,2} = V_{CC} - (\dfrac{I_{T}}{2})\ R_{2}
 \end{tabular}
 \end{table}
 
-\vspace{0.2cm}
-Já a Figura \ref{proc:CA} permite realizar a análise CA. Substitui-se o transistor pelo modelo equivalente $T$ ou $\pi$ e assim tem-se as relações das Equações \ref{saidasimples} e \ref{saidadif}, que correspondem ao ganho diferencial na caso de saídas simples e diferencial respectivamente. Considere a tensão térmica $V_{T}=25 mV$ e a resistência equivalente no terminal emissor $r'_{E}=\dfrac{V_{T}}{I_{E}} = 24,7795 \Omega$, já que $I_{E} = \dfrac{I_{T}}{2} = 1,0089 A$. A Tabela \ref{ganho} contemplam a comparação entre os dados teóricos e experimentais obtidos.
+\vspace{0.3cm}
+Já a Figura \ref{proc:CA} permite realizar a análise CA. Substitui-se o transistor pelo modelo equivalente $T$ ou $\pi$ e assim tem-se as relações das Equações \ref{saidasimples} e \ref{saidadif}, que correspondem ao ganho no caso de saídas simples e diferencial respectivamente. Considere a tensão térmica $V_{T}=25 mV$ e a resistência equivalente no terminal emissor $r'_{E}=\dfrac{V_{T}}{I_{E}} = 24,7795 \Omega$, já que $I_{E} = \dfrac{I_{T}}{2} = 1,0089 A$. A Tabela \ref{ganho} contemplam a comparação entre os dados teóricos e experimentais obtidos.
 
+\vspace{0.2cm}
 \begin{equation} \label{saidasimples}
 A_{simples} = \dfrac{V_{T}}{2 r'_{E}}
 \end{equation}
@@ -158,13 +159,14 @@ A_{simples} = \dfrac{V_{T}}{2 r'_{E}}
 A_{diferencial} = \dfrac{V_{T}}{r'_{E}}
 \end{equation}
 
+\vspace{0.3cm}
 \begin{table} [H]
 \centering
 \def\arraystretch{1.38}
-\caption{Tensões de polarização do amplificador diferencial.} \label{ganho}
+\caption{Ganho no caso de saída simples e diferencial, respectivamente.} \label{ganho}
 \begin{tabular}{|c|c|c|} 
 \hhline{~--|}
-\multicolumn{1}{c|}{}                            & {\cellcolor[rgb]{0.937,0.937,0.937}}\begin{tabular}[c]{@{}>{\cellcolor[rgb]{0.937,0.937,0.937}}c@{}}\textbf{Ganho Diferencial}\\\textbf{Saída Simples}\end{tabular} & {\cellcolor[rgb]{0.937,0.937,0.937}}\begin{tabular}[c]{@{}>{\cellcolor[rgb]{0.937,0.937,0.937}}c@{}}\textbf{Ganho Diferencial}\\\textbf{Saída Diferencial}\end{tabular}  \\ 
+\multicolumn{1}{c|}{}                            & {\cellcolor[rgb]{0.937,0.937,0.937}}\begin{tabular}[c]{@{}>{\cellcolor[rgb]{0.937,0.937,0.937}}c@{}}\textbf{Ganho em}\\\textbf{Saída Simples}\end{tabular} & {\cellcolor[rgb]{0.937,0.937,0.937}}\begin{tabular}[c]{@{}>{\cellcolor[rgb]{0.937,0.937,0.937}}c@{}}\textbf{Ganho em}\\\textbf{Saída Diferencial}\end{tabular}  \\ 
 \hline
 {\cellcolor[rgb]{0.937,0.937,0.937}}Teórico      & 131,157                                                                                                                                                             & 262,314                                                                                                                                                                  \\ 
 \hline
@@ -174,10 +176,12 @@ A_{diferencial} = \dfrac{V_{T}}{r'_{E}}
 \hline
 \end{tabular}
 \end{table}
+
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Simulação} 
 Da simulação computacional, pode-se confirmar os valores das grandezas teóricas. Utilizando-se o software \emph{PROTEUS}, a simulação do esquemático da Figura \ref{sim:circuito} fornece os dados dispostos na Tabela \ref{sim:dados}. 
-Ademais, a simulação permitiu recolher dados analógicos das saídas $V_{out, 1}$ e $V_{out, 2}$, que são vistos nas Figuras \ref{sim:out1} e \ref{sim:out2}.
+Ademais, a simulação permitiu recolher dados analógicos, no intervalo de tempo de [0, 1ms], das saídas $V_{out, 1}$ e $V_{out, 2}$, $V_{out, 2}-V_{out, 1}$ e da corrente $I_{T}$, contemplados nas Figuras \ref{sim:out1}, \ref{sim:out2}, \ref{sim:2-1} e \ref{sim:IT}.
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -190,22 +194,52 @@ Ademais, a simulação permitiu recolher dados analógicos das saídas $V_{out, 
 \begin{figure}[H]
 \center
 \subfloat[]{\label{sim:out1}\includegraphics[height=5cm]{analog-wave1}}\hfill
-\subfloat[]{\label{sim:out2}\includegraphics[height=5cm]{analog-wave2}}
-\caption{Análise (a) CC e (b) CA do circuito amplificador diferencial.}
-\label{proc:analise}
+\subfloat[]{\label{sim:out2}\includegraphics[height=5cm]{analog-wave2}} 
+\caption{Dados analógicos das saídas (a) $V_{out,1}$ e (b) $V_{out,2}$.}
+\label{sim:out}
 \end{figure}
 \vspace{0.5cm}
 
-% tabela
+\begin{figure}[H]
+\center
+\subfloat[]{\label{sim:2-1}\includegraphics[height=5cm]{analog-dif}}\hfill
+\subfloat[]{\label{sim:IT}\includegraphics[height=5cm]{analog-IT}}
+\caption{Dados analógicos da (a) saída diferencial $V_{out,1} - V_{out,2}$ e (b) corrente $I_{T}$.}
+\label{sim:conclusoes}
+\end{figure}
+
+\vspace{0.3cm}
+\begin{table} [H]
+\centering
+\def\arraystretch{1.38}
+\caption{Tensões de polarização do amplificador diferencial obtidos na simulação.} \label{sim:dados}
+\label{dados}
+\begin{tabular}{|c|c|c|c|} 
+\hhline{~---|}
+\multicolumn{1}{c|}{}                         & {\cellcolor[rgb]{0.937,0.937,0.937}}\textbf{$I_{T}$(mA)}  & {\cellcolor[rgb]{0.937,0.937,0.937}}\textbf{$V_{out, 1}$ (V)}  & {\cellcolor[rgb]{0.937,0.937,0.937}}\textbf{$V_{out, 2}$\textasciitilde{}(V)}   \\ 
+\hline
+{\cellcolor[rgb]{0.937,0.937,0.937}}Teórico   & 2,0179                                                    & 5,4420                                                         & 5,4452                                                                          \\ 
+\hline
+{\cellcolor[rgb]{0.937,0.937,0.937}}Simulação &                                                           &                                                                &                                                                                 \\ 
+\hline
+{\cellcolor[rgb]{0.937,0.937,0.937}}Erro (\%) &                                                           &                                                                &                                                                                 \\
+\hline
+\end{tabular}
+\end{table}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Resultados e Discusões} %(quando houver) (70%)
-Primeiramente, na Tabela \ref{dis:comp}, tem-se a comparação entre os dados teóricos, experimentais e de simulação, dos quais não se espera grande diferença, à exceção dos experimentais, que podem sofrer alteração de condições devido ao meio - que gera incerteza na medida.
+\section{Resultados e Discusões} 
 
-% tabela
+\subsection{Análise comparativa}
+No decorrer do relatório, tem-se a comparação entre os dados teóricos, experimentais e de simulação, dos quais não se espera grande diferença, à exceção dos experimentais, que podem sofrer alteração de condições devido ao meio - que gera incerteza na medida.
+
+\subsection{Saída simples vs. saída diferencial}
+A escolha pela saída simples ou diferencial depende da aplicação. Como analisado teoricamente e experimentalmente, a saída diferencial oferece um nível de \emph{offset} quase nulo, conforme a Figura \ref{sim:2-1}, além do dobro de ganho comparando quando o amplificador é usado em saída simples, pela Tabela \ref{ganho}. Essas características permitem que seja aplicado, por exemplo, em ... .
+
+Enquanto que quando usado em saída simples, pode ser aplicado em diversas outras aplicações em que ... é essencial. Por exemplo, a ... utiliza esse aspectos com o intuito de ... . 
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusões} % (no mínimo 10 linhas) (5%)
+\section{Conclusões} 
 
 \newpage
 \begin{thebibliography}{9} 
