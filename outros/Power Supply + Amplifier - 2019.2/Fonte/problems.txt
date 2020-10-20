@@ -1,3 +1,0 @@
-# Capacitor 4700u 100V
-	- Caro
-	- Simular para ver se é possível de 2200u

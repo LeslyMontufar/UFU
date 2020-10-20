@@ -1,0 +1,54 @@
+\newcommand*{\themonth}{\ifthenelse{\the\month < 2}{Janeiro }
+                  {\ifthenelse{\the\month < 3}{Fevereiro }
+                  {\ifthenelse{\the\month < 4}{Março }
+                  {\ifthenelse{\the\month < 5}{Abril }
+                  {\ifthenelse{\the\month < 6}{Maio }
+                  {\ifthenelse{\the\month < 7}{Junho }
+                  {\ifthenelse{\the\month < 8}{Julho }
+                  {\ifthenelse{\the\month < 9}{Agosto }
+                  {\ifthenelse{\the\month < 10}{Setembro }
+                  {\ifthenelse{\the\month < 11}{Outubro }
+                  {\ifthenelse{\the\month < 12}{Novembro }{Dezembro }}}}}}}}}}}}
+                  
+\begin{titlepage}
+
+\begin{center}
+
+	\vspace{-0.5cm}
+
+  \begin{figure}[hbt!]
+		\begin{center}
+		   \includegraphics[width=2.8cm]{ufu-logo.png}
+		\end{center}
+	\end{figure}
+ 	%\vspace{-4cm}
+
+%\begin{doublespacing}
+
+  \Large{\textbf{Universidade Federal de Uberlândia}}\\
+  \large{\thedepartment}\\
+  \large{\thecourse}\\
+
+
+\vspace{6cm}
+  \par
+  \large\textbf{\thetitle}
+\vspace{6cm} 
+
+%\end{doublespacing}
+  \par
+  \thetype\\
+  por\\
+  %\hspace{2cm}\large{}\\
+
+\vspace{1cm}
+\par\vfil
+  \normalsize{\thestudent}\\ [2cm]
+  \theadvisor
+
+\par\vfill
+  \thecity, \themonth / \the\year
+
+\end{center}
+
+\end{titlepage}
