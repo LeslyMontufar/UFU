@@ -22,9 +22,9 @@ ax = gca; ax.FontSize=11;
 X = fft(x_n); Nfft = length(n);
 X_abs = abs(X);
 X_phased = phase(X)*(180/pi);
-w = (pi/Fs)*n/(t_f-ti); % frequencia digital 0:pi com mesmo numero de amostra que n
-subplot(2,1,2);
-stem((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(X))),'linewidth',2,'color',[0 0 0]);
+w = (pi/Fs)*n/(t_f-ti); % frequencia digital 0:pi com mesmo numero de amostra que n 
+subplot(2,1,2); 
+stem((0:Nfft-1)/Nfft*2-1, 20*log10(fftshift(abs(X))),'linewidth',2,'color',[0 0 0]); 
 title('Análise do Espectro de Frequência do Sinal de Entrada');
 xlabel('$\omega$','Interpreter','LaTex','FontSize',14);
 ylabel('$|X(e^{jw})|$ (dB)','Interpreter','LaTex','FontSize',14);

@@ -1,0 +1,219 @@
+\documentclass[a4paper,12pt,oneside,openany,table,xcdraw]{article}
+
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{tikz} %% fasores
+\usetikzlibrary{arrows,arrows.meta,quotes,angles}
+\usepackage{siunitx}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, graphicx, subfig, enumerate}
+\usepackage{float, verbatim}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{makeidx}
+\usepackage{geometry}
+
+\graphicspath{{img/}}
+\geometry{a4paper, hmargin={3cm, 3cm}, vmargin={3cm, 2cm} }
+\setlength{\parindent}{1.0cm}
+\captionsetup{font=small}
+
+\usepackage{mathtools,listings} %%
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{listingsutf8}
+
+\begin{document}
+\newcommand{\thedepartment}{Faculdade de Engenharia Elétrica}
+\newcommand{\thecourse}{FEELT}
+\newcommand{\thetitle}{Resolução da Lista de Exercícios 1}
+\newcommand{\thetype}{Trabalho de Princípios de Comunição}
+\newcommand{\theproftitle}{Bacharel em Engenharia Elétrica}
+\newcommand{\thestudent}{Lesly Viviane Montúfar Berrios\\
+\centering11811ETE001}
+\newcommand{\theadvisor}{Prof. Lorenço Santos Vasconcelos}
+\newcommand{\thecity}{Uberlândia}
+
+\thispagestyle{empty}\input{CapaABNT}
+
+\lstset{language=Matlab,%
+	inputencoding=utf8/latin1,
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+%% Comeca o documento !
+
+\onehalfspacing
+\tableofcontents % sumário
+\newpage
+
+\section{Exercício 1}
+O gráfico correspondente aos Sinais Básicos Importantes é mostrado na Figura \ref{ex1:figure} e o código que a gerou no Anexo \ref{anexo:ex1}.
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm]{ex1-fig}
+\caption{Sinais Básicos Importantes.}
+\label{ex1:figure}
+\end{figure}
+
+\vspace{0.3cm}
+\section{Exercício 2}
+A seguir nas Figuras \ref{ex2:separado} e \ref{ex2:mult}, tem-se os gráficos referentes aos sinais separados e depois multiplicados respectivamente.
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{ex2-separado}
+\caption{Sinais separados.}
+\label{ex2:separado}
+\end{figure}
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{ex2-mult}
+\caption{Sinais multiplicados.}
+\label{ex2:mult}
+\end{figure}
+
+\vspace{0.3cm}
+\section{Exercício 3}
+Dado um sinal aperiódico, sua repetição gera um sinal periódico como o da Figura \ref{ex3:sinal}. Além disso, é possível extrair dados como a \textit{Energia = 0.487753} e \textit{Potência = 0.0812922}. O Anexo \ref{anexo:ex3} comtempla o código utilizado neste exercício.
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm]{ex3-sinal}
+\caption{Sinal periódico.}
+\label{ex3:sinal}
+\end{figure}
+
+\vspace{0.3cm}
+\section{Exercício 4}
+O coeficiente de correlação entre a função $x(t)$ e $g_i(t)$, descrito como na Equação \ref{corr}, para cada função $g$, é comtemplado na Figura \ref{ex4:corr}. No Anexo \ref{anexo:ex3} observa-se o código utilizado neste exercício.
+
+\vspace{0.4cm}
+\begin{equation} \label{corr}
+\rho = \dfrac{1}{\sqrt{E_g\ E_x}} \int^{+\infty} _{-\infty} {g(t)\ x^*(t)} dt
+\end{equation}
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm]{ex4-corr}
+\caption{Correlação de sinais.}
+\label{ex4:corr}
+\end{figure}
+
+\vspace{0.3cm}
+\section{Exercício 5}
+A série de Fourier exponencial utiliza um conjunto ortogonal com representação mais simples, isto é $e^{jn\Omega_0t}$ com $n$. Assim, quer obter o conjunto de exponenciais que formam um sinal $g(t)$, mediante as Equações (\ref{sfexp:gt}) e (\ref{sfexp:Dn}).
+\vspace{0.4cm}
+\begin{equation} \label{sfexp:gt}
+g(t) = \sum_{n=-\infty} ^{+\infty} D_n e ^{j\, n\, \omega_0\, t}
+\end{equation}
+
+\begin{equation} \label{sfexp:Dn}
+D_n = \dfrac{1}{T_0}\, \int_{T_0} g(t) e ^{-j\, n\, \omega_0\, t} dt
+\end{equation}
+\vspace{0.4cm}
+
+No entanto, para o caso discreto, deve-se considerar a frequência e tempo de amostragem, representados por $F_s$ e $T_s$ respectivamente. Sendo $k$ o número de amostras e $N_0$, o número de amostras em um período, tem-se que para um período $N_0=T_0/T_s$. Assim, obtém-se que, para o caso discreto, Dn é descrito como na Equação (\ref{sfexp:Dn-discreto}). Além disso, vale ressaltar que, como $T_s$ não é zero, deve-se tomar cuidado para escolher $F_s$ suficientemente grande para evitar o \textit{erro de aliasing}, logo deve-se respeitar o limite de Nyquist-Shannon. A Figura \ref{ex5:sinal} contém o sinal periódico analisado e a Figura \ref{ex5:Dn} mostra os gráficos de módulo e fase de $D_n$.
+
+\vspace{0.2cm}
+\begin{equation} \label{sfexp:Dn-discreto}
+D_n = \dfrac{1}{T_0}\, \sum_{k=1} ^{N_0} g(k\, T_s) e ^{-j\, n\, \omega_0\, t} \cdot T_s
+\end{equation}
+
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{ex5-sinal}
+\caption{Sinal periódico analisado.}
+\label{ex5:sinal}
+\end{figure}
+
+\vspace{0.4cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{ex5-sinais-Dn}
+\caption{Espectro de frequência das componentes exponenciais.}
+\label{ex5:Dn}
+\end{figure}
+ 
+\newpage
+\section{Anexos}
+\subsection{Código correspondente ao exercício 1} \label{anexo:ex1}
+\lstinputlisting{codes/EX1.m}
+\vspace{0.3cm}
+
+\lstinputlisting{codes/u.m}
+\vspace{0.3cm}
+
+\lstinputlisting{codes/rect.m}
+\vspace{0.3cm}
+
+\lstinputlisting{codes/Delta.m}
+
+\vspace{0.3cm}
+\subsection{Código correspondente ao exercício 2} \label{anexo:ex2}
+\lstinputlisting{codes/EX2.m}
+
+\vspace{0.3cm}
+\subsection{Código correspondente ao exercício 3} \label{anexo:ex3}
+\lstinputlisting{codes/EX3.m}
+\vspace{0.3cm}
+
+\lstinputlisting{codes/energia.m}
+
+\vspace{0.3cm}
+\subsection{Código correspondente ao exercício 4} \label{anexo:ex4}
+\lstinputlisting{codes/EX4.m}
+\vspace{0.3cm}
+
+\lstinputlisting{codes/correlacao.m}
+
+\vspace{0.3cm}
+\subsection{Código correspondente ao exercício 5} \label{anexo:ex4}
+\lstinputlisting{codes/EX5.m}
+
+\newpage
+\begin{thebibliography}{9} 
+% Introdução
+%\bibitem{S1}
+%    Gene F. Franklin, J. David Powell, Abbas Emami-Naieni.,
+%    “Sistemas de Controle para a Engenharia”, Porto Alegre: Bookman, 2013.
+
+%\bibitem{S2}
+%    Oppeinheim, Alan V.; Willsky, Allan S.,
+%    “Sinais e Sistemas”, São Paulo: Pearson
+%Prentice Hall, 2010. 2ª Edição.
+
+\bibitem{S2}
+    Lathi, B. P.; Ding, Zhi,
+    “Modern Digital and Analog Communication Systems”, New York: 
+    Oxford University Press, 2019. 5ª Edição.
+
+\end{thebibliography}
+\end{document}
